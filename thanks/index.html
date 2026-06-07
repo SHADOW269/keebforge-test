@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeebForge.in — Order Received</title>
+  <meta name="description" content="Thank you for your request. We will review your details shortly." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Root & Reset ── */
+    :root {
+      --black:     #060608;
+      --bg:        #080a0c;
+      --bg1:       #0d0f12;
+      --bg2:       #12151a;
+      --bg3:       #191d24;
+      --surf:      rgba(255,255,255,0.038);
+      --surf-h:    rgba(255,255,255,0.065);
+      --bdr:       rgba(255,255,255,0.07);
+      --bdr-h:     rgba(255,255,255,0.14);
+      --t1:        #f0f0f5;
+      --t2:        #b0b0bf;
+      --t3:        #808094;
+      --acc:       #d4f700;
+      --acc-dim:   rgba(212,247,0,0.10);
+      --acc-glow:  rgba(212,247,0,0.22);
+      --nav-h:     58px;
+      --max-w:     1160px;
+      --pad-x:     clamp(20px, 5vw, 48px);
+      --ease-out:  cubic-bezier(0.16,1,0.3,1);
+      --r-sm:      10px;
+      --r-md:      16px;
+      --r-lg:      24px;
+      --ff-display:'Syne', sans-serif;
+      --ff-body:   'Outfit', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: var(--ff-body);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 500;
+      background: rgba(6,6,8,0.80);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-right: auto;
+    }
+    .logo-dot { color: var(--acc); }
+    
+    /* ── Main Layout Centered Content ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-h) + 40px) var(--pad-x) 64px;
+      position: relative;
+    }
+    main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .thanks-card {
+      background: var(--bg1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 48px 36px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      animation: fadeUp 0.8s var(--ease-out) both;
+    }
+    .thanks-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(212,247,0,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--acc-dim);
+      border: 1px solid rgba(212,247,0,0.3);
+      color: var(--acc);
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+      box-shadow: 0 0 24px var(--acc-dim);
+    }
+
+    .sec-num {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: 8px;
+    }
+    .thanks-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .thanks-desc {
+      font-size: 0.92rem;
+      color: var(--t2);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* Steps list */
+    .next-steps {
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-md);
+      padding: 20px 22px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+    .steps-title {
+      font-family: var(--ff-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--t3);
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--bdr);
+      padding-bottom: 6px;
+    }
+    .step-item {
+      display: flex;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--t1);
+      margin-bottom: 10px;
+    }
+    .step-item:last-child { margin-bottom: 0; }
+    .step-num {
+      font-family: var(--ff-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--acc);
+      margin-top: 1px;
+    }
+
+    /* Buttons layout */
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-prime {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--ff-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #000;
+      background: var(--acc);
+      padding: 12px 24px;
+      border-radius: 99px;
+      transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
+    }
+    .btn-prime:hover { transform: translateY(-2px); box-shadow: 0 0 24px var(--acc-glow); }
+    
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--ff-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--t1);
+      border: 1px solid var(--bdr);
+      padding: 12px 22px;
+      border-radius: 99px;
+      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover { color: var(--acc); border-color: var(--acc); transform: translateY(-1px); }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--bdr);
+      background: var(--bg1);
+      padding: 24px var(--pad-x);
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--ff-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .footer-copy { font-size: 0.68rem; color: var(--t3); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .thanks-card { padding: 36px 20px; }
+      .btn-group { flex-direction: column; gap: 10px; }
+      .btn-prime, .btn-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span>KeebForge</span><span class="logo-dot">.</span><span>in</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="thanks-card">
+      <div class="success-badge">✓</div>
+      <span class="sec-num">transmission_complete</span>
+      <h1 class="thanks-title">Order Received</h1>
+      <p class="thanks-desc">Thank you for submitting your custom request. Your details have been securely routed to the workshop processing system.</p>
+
+      <div class="next-steps">
+        <h2 class="steps-title">What Happens Next?</h2>
+        <div class="step-item">
+          <span class="step-num">01</span>
+          <div><strong>Queue Verification:</strong> Your requested modification profile and estimated component metrics will be fully cross-checked within 24 hours.</div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">02</span>
+          <div><strong>Client Consultation:</strong> I will contact you on your chosen social handler to finalize courier shipping logistics, scheduling windows, and downpayments.</div>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="btn-prime">
+          Connect on Discord
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="../index.html" class="btn-ghost">Return Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span>KeebForge</span><span class="logo-dot">.</span><span>in</span></div>
+      <p class="footer-copy">© 2026 — Component-Level Electronics Engineering &amp; Custom Keyboards</p>
+    </div>
+  </footer>
+
+</body>
+</html>

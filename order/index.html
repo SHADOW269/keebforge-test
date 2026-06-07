@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeebForge.in — Place an Order</title>
+  <meta name="description" content="Place a custom keyboard service order — switch lubing, stabs, builds, PCB design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Root & Reset ── */
+    :root {
+      --black:     #060608;
+      --bg:        #080a0c;
+      --bg1:       #0d0f12;
+      --bg2:       #12151a;
+      --bg3:       #191d24;
+      --surf:      rgba(255,255,255,0.038);
+      --surf-h:    rgba(255,255,255,0.065);
+      --bdr:       rgba(255,255,255,0.07);
+      --bdr-h:     rgba(255,255,255,0.14);
+      --t1:        #f0f0f5;
+      --t2:        #b0b0bf;
+      --t3:        #808094;
+      --acc:       #d4f700;
+      --acc-dim:   rgba(212,247,0,0.10);
+      --acc-glow:  rgba(212,247,0,0.22);
+      --nav-h:     58px;
+      --max-w:     1160px;
+      --pad-x:     clamp(20px, 5vw, 48px);
+      --ease-out:  cubic-bezier(0.16,1,0.3,1);
+      --r-sm:      10px;
+      --r-md:      16px;
+      --r-lg:      24px;
+      --ff-display:'Syne', sans-serif;
+      --ff-body:   'Outfit', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: var(--ff-body);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 500;
+      background: rgba(6,6,8,0.80);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-right: auto;
+    }
+    .logo-dot { color: var(--acc); }
+    .nav-links { display: flex; gap: 28px; margin-right: 36px; }
+    .nav-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--t2);
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--t1); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--ff-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--acc);
+      padding: 7px 16px;
+      border-radius: 99px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 20px var(--acc-glow); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: calc(var(--nav-h) + 64px) var(--pad-x) 0;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .sec-num {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: 8px;
+    }
+    .page-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .page-desc { font-size: 0.92rem; color: var(--t2); max-width: 480px; }
+
+    /* ── Main layout ── */
+    .order-wrap {
+      max-width: var(--max-w);
+      margin: 48px auto 0;
+      padding: 0 var(--pad-x) 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .order-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ── Panel shared ── */
+    .panel {
+      background: var(--bg1);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 30px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.025) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .panel-tag {
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--acc);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .panel-tag::before { content: '//'; opacity: 0.5; }
+    .panel-title {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    /* ── Estimator panel ── */
+    .est-group {
+      margin-bottom: 22px;
+    }
+    .est-group-label {
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t2);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .service-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      cursor: pointer;
+      border-radius: var(--r-sm);
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .service-row:hover { background: var(--surf); }
+    .service-row input[type="checkbox"] { display: none; }
+    .chk-box {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--bdr-h);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .service-row.selected .chk-box {
+      background: var(--acc);
+      border-color: var(--acc);
+    }
+    .chk-box svg { display: none; }
+    .service-row.selected .chk-box svg { display: block; }
+    .svc-info { flex: 1; }
+    .svc-name {
+      font-family: var(--ff-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--t1);
+      text-transform: uppercase;
+    }
+    .svc-desc { font-size: 0.73rem; color: var(--t2); margin-top: 1px; }
+    .svc-price {
+      font-family: var(--ff-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--acc);
+      white-space: nowrap;
+    }
+
+    /* Quantity row */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0 4px;
+    }
+    .qty-label { font-size: 0.8rem; color: var(--t1); }
+    .qty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      background: var(--bg2);
+      border: none;
+      color: var(--t1);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .qty-btn:hover { background: var(--bg3); }
+    .qty-val {
+      width: 48px;
+      text-align: center;
+      font-family: var(--ff-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: var(--bg1);
+      border: none;
+      color: var(--t1);
+      border-left: 1px solid var(--bdr);
+      border-right: 1px solid var(--bdr);
+      padding: 0;
+      height: 32px;
+    }
+    .qty-val::-webkit-outer-spin-button,
+    .qty-val::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+    /* Clear button */
+    .clear-btn {
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t2);
+      background: none;
+      border: 1px solid var(--bdr);
+      border-radius: 99px;
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      position: absolute;
+      top: 30px;
+      right: 26px;
+    }
+    .clear-btn:hover { color: var(--t1); border-color: var(--bdr-h); }
+
+    /* Total bar */
+    .total-bar {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .total-label {
+      font-family: var(--ff-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
+    .total-amount {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--acc);
+    }
+    .total-note {
+      font-size: 0.72rem;
+      color: var(--t2);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* ── Form panel ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-family: var(--ff-display);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
+    .field label .req { color: var(--acc); margin-left: 2px; }
+    .field input,
+    .field textarea {
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      color: var(--t1);
+      font-family: var(--ff-body);
+      font-size: 0.84rem;
+      padding: 10px 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: var(--t3); font-size: 0.8rem; }
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(212,247,0,0.4);
+      box-shadow: 0 0 0 3px var(--acc-dim);
+    }
+    .field textarea { resize: vertical; min-height: 96px; }
+
+    /* Order summary field */
+    .summary-box {
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      color: var(--t1);
+      min-height: 80px;
+      font-family: var(--ff-body);
+      line-height: 1.6;
+    }
+    .summary-box.empty { color: var(--t2); font-style: italic; }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--acc);
+      border: none;
+      border-radius: var(--r-sm);
+      padding: 14px 26px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px var(--acc-glow), 0 0 0 4px var(--acc-dim);
+    }
+    .submit-note {
+      text-align: center;
+      font-size: 0.73rem;
+      color: var(--t2);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .submit-note a { color: var(--acc); }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--bdr);
+      background: var(--bg1);
+      padding: 32px var(--pad-x);
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px 24px;
+    }
+    .footer-brand {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .footer-tag { text-align: center; font-size: 0.85rem; color: var(--t2); font-style: italic; }
+    .footer-copy { font-size: 0.68rem; color: var(--t2); text-align: right; }
+    @media (max-width: 640px) {
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-copy { text-align: center; }
+    }
+
+    .dev-name {
+      color: #fff;
+      font-family: var(--ff-display);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: var(--bg3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--bdr-h);
+      box-shadow: 0 2px 8px rgba(212,247,0,0.04);
+      transition: border-color 0.2s;
+    }
+    .dev-name:hover { border-color: var(--acc); }
+
+    /* Quote-based service rows */
+    .quote-row { opacity: 0.95; }
+    .quote-row:hover { opacity: 1; }
+    .svc-price-quote {
+      color: var(--t1) !important;
+      font-size: 0.72rem !important;
+      background: var(--bg3);
+      border: 1px solid var(--bdr);
+      padding: 3px 9px;
+      border-radius: 99px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .quote-row.selected .svc-price-quote {
+      color: var(--acc) !important;
+      border-color: rgba(212,247,0,0.3);
+      background: var(--acc-dim);
+    }
+    .quote-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 0.75rem;
+      color: var(--t2);
+      line-height: 1.5;
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: var(--bg2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--bdr);
+    }
+    .quote-note svg { flex-shrink: 0; margin-top: 1px; color: var(--t2); }
+
+    /* Shipping notice */
+    .shipping-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 0 0 20px;
+      padding: 13px 16px;
+      background: rgba(212,247,0,0.04);
+      border: 1px solid rgba(212,247,0,0.18);
+      border-radius: var(--r-sm);
+      font-size: 0.8rem;
+      color: var(--t2);
+      line-height: 1.55;
+    }
+    .shipping-notice svg { flex-shrink: 0; margin-top: 2px; color: var(--acc); }
+    .shipping-notice strong { color: var(--t1); display: block; margin-bottom: 2px; font-family: var(--ff-display); font-size: 0.78rem; letter-spacing: 0.04em; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-header { animation: fadeUp 0.8s 0.1s both; }
+    .panel { animation: fadeUp 0.8s 0.25s both; }
+    .panel:last-child { animation-delay: 0.38s; }
+
+    /* ── Combo highlight ── */
+    .service-row.combo-row { background: rgba(212,247,0,0.04); border-radius: var(--r-sm); }
+    .combo-badge {
+      font-family: var(--ff-display);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--acc);
+      color: #000;
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+
+    @media (max-width: 480px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .panel { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span>KeebForge</span><span class="logo-dot">.</span><span>in</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#services" class="nav-link">Services</a>
+        <a href="../index.html#pricing" class="nav-link">Pricing</a>
+        <a href="../index.html#info" class="nav-link">Info</a>
+      </div>
+      <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="nav-cta">
+        Discord
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <header class="page-header">
+    <h1 class="page-title">Place an Order</h1>
+    <p class="page-desc">Select your services, get an instant estimate, and send your request directly.</p>
+  </header>
+
+  <!-- Main grid -->
+  <div class="order-wrap">
+
+    <!-- LEFT: Price Estimator -->
+    <div class="panel" id="estimator">
+      <button class="clear-btn" type="button" onclick="clearAll()">✕ Clear All</button>
+      <p class="panel-tag">price_estimator</p>
+      <h2 class="panel-title">Build Your Order</h2>
+
+      <!-- Dynamically rendered from prices.js -->
+      <div id="estimator-groups"></div>
+
+      <!-- Shipping notice -->
+      <div class="shipping-notice">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M10 6h1.5a1 1 0 0 1 .9.55l.6 1.2V11h-3V6Z" stroke="currentColor" stroke-width="1.2"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><circle cx="9.5" cy="12" r="1" fill="currentColor"/></svg>
+        <div>
+          <strong>Shipping not included</strong> — courier charges (both ways) are calculated separately and will be confirmed before work begins. You'll be notified of the exact shipping cost.
+        </div>
+      </div>
+
+      <!-- Total -->
+      <div class="total-bar">
+        <div>
+          <div class="total-label">Estimated Total</div>
+          <div class="total-note">* Excludes quoted &amp; shipping charges.<br/>Bulk discounts available on large orders.</div>
+        </div>
+        <div class="total-amount" id="total-display">₹0</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Order Form -->
+    <div class="panel">
+      <p class="panel-tag">send_request</p>
+      <h2 class="panel-title">Your Details</h2>
+
+      <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
+        <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
+        <input type="hidden" name="Order Summary" id="order-summary-hidden" value="No services selected." />
+        <input type="hidden" name="Estimated Total" id="total-hidden" value="₹0" />
+
+        <div class="form-grid">
+          <!-- Name -->
+          <div class="field">
+            <label for="name">Your Name <span class="req">*</span></label>
+            <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
+          </div>
+
+          <!-- Discord -->
+          <div class="field">
+            <label for="discord">Discord Username</label>
+            <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul#1234" />
+          </div>
+
+          <!-- Email -->
+          <div class="field">
+            <label for="email">Email Address <span class="req">*</span></label>
+            <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+
+          <!-- Phone -->
+          <div class="field">
+            <label for="phone">Phone / WhatsApp <span class="req">*</span></label>
+            <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
+          </div>
+
+          <!-- Keyboard / PCB model -->
+          <div class="field full">
+            <label for="keyboard">Keyboard / PCB Model</label>
+            <input type="text" id="keyboard" name="Keyboard / PCB Model" placeholder="e.g. GMMK Pro, Keychron Q1, Custom PCB…" />
+          </div>
+
+          <!-- Switch details -->
+          <div class="field full">
+            <label for="switches">Switch Details</label>
+            <input type="text" id="switches" name="Switch Details" placeholder="e.g. Gateron Yellow, 65 pcs, 3-pin…" />
+          </div>
+
+          <!-- Selected services -->
+          <div class="field full">
+            <label>Selected Services <span style="color:var(--t3);font-style:italic;text-transform:none;letter-spacing:0">(auto-filled from estimator)</span></label>
+            <div class="summary-box empty" id="summary-display">
+              No services selected yet. Use the estimator on the left →
+            </div>
+          </div>
+
+          <!-- Additional notes -->
+          <div class="field full">
+            <label for="notes">Additional Notes / Special Requests</label>
+            <textarea id="notes" name="Additional Notes" placeholder="Any specific instructions, lube preferences, deadlines, or questions…"></textarea>
+          </div>
+
+          <!-- Address -->
+          <div class="field full">
+            <label for="address">Street Address <span class="req">*</span></label>
+            <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
+          </div>
+
+          <!-- City + State -->
+          <div class="field">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
+          </div>
+          <div class="field">
+            <label for="state">State <span class="req">*</span></label>
+            <input type="text" id="state" name="State" placeholder="e.g. Jammu & Kashmir" required autocomplete="address-level1" />
+          </div>
+
+          <!-- Pincode -->
+          <div class="field">
+            <label for="pincode">Pincode <span class="req">*</span></label>
+            <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
+          </div>
+        </div>
+
+        <button class="submit-btn" type="submit">
+          Send Order Request
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <p class="submit-note">
+          Your request goes directly to <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br/>
+          You'll be contacted on Discord within 24–48 hours to confirm details.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><span>KeebForge</span><span class="logo-dot">.</span><span>in</span></div>
+      <p class="footer-tag">Quality work. Fair pricing. Fast turnaround.</p>
+      <p class="footer-copy">© 2026 — Designed &amp; built by <a href="https://portfolio.shadow269.in/" target="_blank" rel="noopener" class="dev-name">shadow269</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/prices.js"></script>
+  <script>
+    const CHK_SVG = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    function priceLabel(item, groupUnit) {
+      const unit = item.unit || groupUnit;
+      if (item.unit === 'quote' || (item.price === 0 && !item.priceMin)) {
+        return `<span class="svc-price svc-price-quote">Quote</span>`;
+      }
+      if (item.priceMin != null) {
+        return `<span class="svc-price">₹${item.priceMin}–${item.priceMax}</span>`;
+      }
+      const suffix = item.priceLabel
+        ? item.priceLabel.replace('₹' + item.price, '')
+        : (unit === 'stab' ? '/EA' : unit === 'flat' ? '' : '/SW');
+      return `<span class="svc-price">+₹${item.price}${suffix}</span>`;
+    }
+
+    function buildRow(item, groupUnit) {
+      const unit = item.unit || groupUnit;
+      const isQuote = unit === 'quote' || (item.price === 0 && !item.priceMin);
+      const isRange = item.priceMin != null;
+
+      const label = document.createElement('label');
+      label.className = 'service-row' +
+        (item.combo ? ' combo-row' : '') +
+        (isQuote ? ' quote-row' : '');
+      label.dataset.price = isRange ? item.priceMin : (item.price || 0);
+      label.dataset.priceMax = item.priceMax || 0;
+      label.dataset.unit = unit;
+      label.dataset.name = item.name;
+      if (item.comboReplaces) label.dataset.comboReplaces = JSON.stringify(item.comboReplaces);
+      if (item.exclusiveWith) label.dataset.exclusiveWith = JSON.stringify(item.exclusiveWith);
+
+      const descHtml = item.popular
+        ? `${item.desc} &nbsp;<span class="combo-badge">★ Popular</span>`
+        : item.desc;
+
+      label.innerHTML = `
+        <input type="checkbox" />
+        <div class="chk-box">${CHK_SVG}</div>
+        <div class="svc-info">
+          <div class="svc-name">${item.name}</div>
+          <div class="svc-desc">${descHtml}</div>
+        </div>
+        ${priceLabel(item, groupUnit)}
+      `;
+      return label;
+    }
+
+    function qtyRowHTML(unit, defaultVal, max, label) {
+      return `
+        <div class="qty-row">
+          <span class="qty-label">${label}</span>
+          <div class="qty-ctrl">
+            <button class="qty-btn" type="button" onclick="adjustQty('${unit}',-1)">−</button>
+            <input class="qty-val" type="number" id="qty-${unit}" value="${defaultVal}" min="1" max="${max}" onchange="recalc()" />
+            <button class="qty-btn" type="button" onclick="adjustQty('${unit}',1)">+</button>
+          </div>
+        </div>`;
+    }
+
+    const QUOTE_NOTE_HTML = `
+      <div class="quote-note">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Tick the services you need. Pricing will be confirmed after reviewing your requirements on Discord.
+      </div>`;
+
+    function renderGroups() {
+      const container = document.getElementById('estimator-groups');
+      const P = window.KEEBFORGE_PRICES;
+      if (!P) return;
+
+      const sections = [
+        { key: 'switchServices',  showQty: true,  qtyUnit: 'sw',   qtyDef: 65, qtyMax: 999, qtyLabel: 'Number of switches' },
+        { key: 'stabServices',    showQty: true,  qtyUnit: 'stab', qtyDef: 4,  qtyMax: 99,  qtyLabel: 'Number of stabilizers' },
+        { key: 'solderServices',  showQty: false },
+        { key: 'customWork',      showQty: false, isAllQuote: true },
+      ];
+
+      sections.forEach(sec => {
+        const group = P[sec.key];
+        if (!group) return;
+
+        const div = document.createElement('div');
+        div.className = 'est-group';
+
+        const lbl = document.createElement('div');
+        lbl.className = 'est-group-label';
+        lbl.textContent = group.label;
+        div.appendChild(lbl);
+
+        group.items.forEach(item => {
+          div.appendChild(buildRow(item, group.unit));
+        });
+
+        if (sec.showQty) {
+          const qtyDiv = document.createElement('div');
+          qtyDiv.innerHTML = qtyRowHTML(sec.qtyUnit, sec.qtyDef, sec.qtyMax, sec.qtyLabel);
+          div.appendChild(qtyDiv.firstElementChild);
+        }
+
+        if (sec.isAllQuote) {
+          const noteDiv = document.createElement('div');
+          noteDiv.innerHTML = QUOTE_NOTE_HTML;
+          div.appendChild(noteDiv.firstElementChild);
+        }
+
+        container.appendChild(div);
+      });
+
+      attachListeners();
+    }
+
+    function attachListeners() {
+      document.querySelectorAll('.service-row input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const row = cb.closest('.service-row');
+          row.classList.toggle('selected', cb.checked);
+
+          if (cb.checked) {
+            const replaces = row.dataset.comboReplaces
+              ? JSON.parse(row.dataset.comboReplaces) : [];
+            uncheckByName(replaces);
+
+            const exclusive = row.dataset.exclusiveWith
+              ? JSON.parse(row.dataset.exclusiveWith) : [];
+            uncheckByName(exclusive);
+
+            document.querySelectorAll('.service-row[data-combo-replaces]').forEach(comboRow => {
+              const list = JSON.parse(comboRow.dataset.comboReplaces);
+              if (list.includes(row.dataset.name)) {
+                comboRow.querySelector('input[type="checkbox"]').checked = false;
+                comboRow.classList.remove('selected');
+              }
+            });
+          }
+
+          recalc();
+        });
+      });
+    }
+
+    function uncheckByName(names) {
+      document.querySelectorAll('.service-row').forEach(row => {
+        if (names.includes(row.dataset.name)) {
+          row.querySelector('input[type="checkbox"]').checked = false;
+          row.classList.remove('selected');
+        }
+      });
+    }
+
+    function adjustQty(unit, delta) {
+      const el = document.getElementById('qty-' + unit);
+      if (el) {
+        el.value = Math.max(1, parseInt(el.value || 1) + delta);
+        recalc();
+      }
+    }
+
+    function clearAll() {
+      document.querySelectorAll('.service-row').forEach(r => {
+        r.classList.remove('selected');
+        r.querySelector('input[type="checkbox"]').checked = false;
+      });
+      recalc();
+    }
+
+    function recalc() {
+      const qtySw   = parseInt(document.getElementById('qty-sw')?.value)   || 1;
+      const qtyStab = parseInt(document.getElementById('qty-stab')?.value) || 1;
+
+      let total = 0;
+      const lines = [];
+      const quoteLines = [];
+
+      document.querySelectorAll('.service-row').forEach(row => {
+        if (!row.querySelector('input[type="checkbox"]').checked) return;
+        const price    = parseInt(row.dataset.price)    || 0;
+        const priceMax = parseInt(row.dataset.priceMax) || 0;
+        const unit     = row.dataset.unit;
+        const name     = row.dataset.name;
+
+        if (unit === 'quote' || (price === 0 && priceMax === 0)) {
+          quoteLines.push(`${name} — Price to be quoted`);
+          return;
+        }
+
+        if (priceMax > 0) {
+          quoteLines.push(`${name} — ₹${price}–${priceMax} (confirmed on order)`);
+          return;
+        }
+
+        const qty = unit === 'stab' ? qtyStab : unit === 'flat' ? 1 : qtySw;
+        const sub = price * qty;
+        total += sub;
+        const unitLabel = unit === 'stab' ? 'EA' : unit === 'flat' ? 'flat' : 'SW';
+        lines.push(`${name} × ${qty} @ ₹${price}/${unitLabel} = ₹${sub}`);
+      });
+
+      document.getElementById('total-display').textContent = '₹' + total.toLocaleString('en-IN');
+
+      const summaryEl = document.getElementById('summary-display');
+      const allLines = [...lines, ...quoteLines];
+      if (allLines.length === 0) {
+        summaryEl.textContent = 'No services selected yet. Use the estimator on the left →';
+        summaryEl.classList.add('empty');
+      } else {
+        summaryEl.innerHTML =
+          lines.map(l => `<div style="margin-bottom:3px">${l}</div>`).join('') +
+          quoteLines.map(l => `<div style="margin-bottom:3px;color:var(--t2)">${l}</div>`).join('') +
+          `<div style="margin-top:8px;color:var(--acc);font-weight:600">
+            Estimated Total: ₹${total.toLocaleString('en-IN')}
+            ${quoteLines.length > 0 ? '<span style="color:var(--t3);font-size:0.8em"> + quoted / range items</span>' : ''}
+          </div>`;
+        summaryEl.classList.remove('empty');
+      }
+
+      const summaryText = [
+        ...lines,
+        ...quoteLines,
+        `Estimated Total: ₹${total.toLocaleString('en-IN')}${quoteLines.length > 0 ? ' + quoted/range items' : ''}`
+      ].join('\n');
+      
+      document.getElementById('order-summary-hidden').value = summaryText || 'No services selected.';
+      document.getElementById('total-hidden').value =
+        '₹' + total.toLocaleString('en-IN') + (quoteLines.length > 0 ? ' + quoted/range items' : '');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderGroups();
+      recalc();
+    });
+  </script>
+</body>
+</html>
