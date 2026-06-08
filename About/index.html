@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — KeebForge.in</title>
+  <meta name="description" content="Meet the electronics engineer behind KeebForge.in. Precision keyboard modifications, PCB design, and component-level electronics repair." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+/* ══════════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════════ */
+:root {
+  --black:      #060608;
+  --bg:         #080a0c;
+  --bg1:        #0d0f12;
+  --bg2:        #12151a;
+  --bg3:        #191d24;
+  --surf:       rgba(255,255,255,0.038);
+  --bdr:        rgba(255,255,255,0.07);
+  --bdr-h:      rgba(255,255,255,0.14);
+  --t1:         #f0f0f5;
+  --t2:         #9a9aa8;
+  --t3:         #5a5a68;
+  --acc:        #d4f700;
+  --ff-display: 'Syne', sans-serif;
+  --ff-body:    'Outfit', sans-serif;
+  --nav-h:      56px;
+  --max-w:      850px;
+  --pad-x:      clamp(20px, 5vw, 48px);
+  --r-md: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--t1);
+  font-family: var(--ff-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: var(--acc); transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+
+/* ══════════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════════ */
+.about-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 60px) var(--pad-x) 120px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 40px;
+}
+.page-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+}
+.subtitle {
+  font-family: var(--ff-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--acc);
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+
+/* ══════════════════════════════════════════════
+   CONTENT STYLING
+══════════════════════════════════════════════ */
+.story p {
+  color: var(--t2);
+  font-size: 0.96rem;
+  margin-bottom: 24px;
+}
+.grid-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 48px 0;
+}
+.spec-card {
+  background: var(--surf);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r-md);
+  padding: 24px;
+}
+.spec-card h3 {
+  font-family: var(--ff-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.spec-card p {
+  font-size: 0.84rem;
+  color: var(--t2);
+  margin-bottom: 0;
+}
+
+.cta-block {
+  border-top: 1px solid var(--bdr);
+  padding-top: 40px;
+  margin-top: 56px;
+}
+.cta-block h2 {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+  .grid-specs { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+
+  <div class="about-container">
+    <a href="/" class="back-link">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="transform: scaleX(-1);">
+        <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Forge
+    </a>
+
+    <header>
+      <h1 class="page-title">The Engineer Behind the Keyboards</h1>
+      <p class="subtitle">Where precision electronics engineering meets bespoke mechanical hardware tuning.</p>
+    </header>
+
+    <main class="story">
+      <p>
+        I started KeebForge with a straightforward goal: to push the boundaries of mechanical keyboards beyond off-the-shelf limits. As an <strong>Electronics Engineer</strong>, I don't look at a keyboard simply as a workspace device—I treat it as an intricate collection of structural physics, audio performance variables, and circuit timing layers.
+      </p>
+      <p>
+        Operating out of <strong>Jammu &amp; Kashmir</strong>, I run an advanced engineering workshop designed specifically for mail-in micro-soldering, structural diagnostic tuning, and detailed custom builds. Every job that passes over my workbench is handled with deep attention to detail, clean flux management, and uniform lubrication.
+      </p>
+
+      <div class="grid-specs">
+        <div class="spec-card">
+          <h3>Precision Craftsmanship</h3>
+          <p>Every single switch is systematically opened, inspected, and lubricated manually with clean, even layers of premium Krytox grease. No shortcuts, no over-lubing—just pure, fluid keystrokes.</p>
+        </div>
+        <div class="spec-card">
+          <h3>Circuit Level Expertise</h3>
+          <p>From designing standalone custom layouts and routing multi-layer PCBs to troubleshooting trace damage and fixing torn pads, your keyboard's electronics are handled safely with industrial equipment.</p>
+        </div>
+      </div>
+
+      <p>
+        Whether you are a casual typist seeking a pristine sound profile, a software engineer trying to find an ergonomic split layout, or a competitive gamer looking for specialized mod adjustments, my workshop is engineered to realize your exact hardware specifications.
+      </p>
+
+      <section class="cta-block">
+        <h2>Let's upgrade your desk setup.</h2>
+        <p>Have a complex repair project or a completely unique custom build idea? Get in touch on <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener">Discord</a> or jump straight to the checkout framework and <a href="/order/">Place an Order</a>.</p>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
