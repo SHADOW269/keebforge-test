@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -346,7 +348,6 @@ ul { list-style: none; }
   transition: opacity 0.4s;
   animation: fadeUp 1s 1.1s both;
 }
-/* Ensure the button looks like a clean, clickable text/icon trigger */
 button.scroll-ind {
   background: none;
   border: none;
@@ -652,9 +653,9 @@ button.scroll-ind {
 }
 
 /* ══════════════════════════════════════════════
-   REVIEWS SECTION
+   REVIEWS INFINITE MOTION MARQUEE
 ══════════════════════════════════════════════ */
-.reviews-section { padding-top: 90px; }
+.reviews-section { padding-top: 90px; overflow: hidden; }
 .reviews-meta {
   display: flex;
   align-items: center;
@@ -691,26 +692,58 @@ button.scroll-ind {
   color: var(--t3);
   letter-spacing: 0.04em;
 }
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 13px;
-  margin-top: 36px;
+
+/* Dual Marquee Outer Enclosures */
+.marquee-reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-@media (max-width: 900px) { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .reviews-grid { grid-template-columns: 1fr; } }
+.reviews-marquee-row {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+.reviews-marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding: 10px 0;
+}
+
+/* Opposite Animation Configurations */
+.track-left { animation: review-scroll-left 45s linear infinite; }
+.track-right { animation: review-scroll-right 45s linear infinite; }
+.reviews-marquee-row:hover .reviews-marquee-track { animation-play-state: paused; }
+
+@keyframes review-scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes review-scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
 
 .review-card {
   background: var(--bg1);
   border: 1px solid var(--bdr);
   border-radius: var(--r-md);
-  padding: 20px 20px 18px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transition: transform 0.28s var(--ease-out), border-color 0.28s, box-shadow 0.28s;
+  gap: 14px;
+  width: 340px; /* Locked explicit width for perfect tracks spacing balance */
+  flex-shrink: 0;
+  transition: border-color 0.25s, box-shadow 0.25s;
   position: relative;
-  overflow: hidden;
 }
 .review-card::before {
   content: '';
@@ -720,7 +753,6 @@ button.scroll-ind {
   pointer-events: none;
 }
 .review-card:hover {
-  transform: translateY(-4px);
   border-color: var(--bdr-h);
   box-shadow: var(--shadow-card);
 }
@@ -730,14 +762,8 @@ button.scroll-ind {
   justify-content: space-between;
   gap: 10px;
 }
-.review-stars {
-  display: flex;
-  gap: 2px;
-}
-.review-stars .star {
-  font-size: 0.78rem;
-  color: var(--acc);
-}
+.review-stars { display: flex; gap: 2px; }
+.review-stars .star { font-size: 0.78rem; color: var(--acc); }
 .review-stars .star-empty { color: var(--t3); }
 .review-service-badge {
   font-family: var(--ff-display);
@@ -752,22 +778,7 @@ button.scroll-ind {
   border-radius: 99px;
   white-space: nowrap;
 }
-.review-text {
-  font-size: 0.8rem;
-  color: var(--t2);
-  line-height: 1.68;
-  flex: 1;
-}
-.review-text::before {
-  content: '"';
-  font-family: var(--ff-display);
-  font-size: 2rem;
-  color: var(--acc);
-  opacity: 0.35;
-  line-height: 0;
-  vertical-align: -0.45em;
-  margin-right: 2px;
-}
+.review-text { font-size: 0.82rem; color: var(--t2); line-height: 1.65; flex: 1; }
 .review-footer {
   display: flex;
   align-items: center;
@@ -776,59 +787,23 @@ button.scroll-ind {
   padding-top: 12px;
   border-top: 1px solid var(--bdr);
 }
-.review-author {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.review-author { display: flex; align-items: center; gap: 8px; }
 .review-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--bg3);
-  border: 1px solid var(--bdr);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--ff-display);
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: var(--acc);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--bg3); border: 1px solid var(--bdr);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display); font-size: 0.65rem; font-weight: 800; color: var(--acc);
   flex-shrink: 0;
 }
-.review-name {
-  font-family: var(--ff-display);
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--t1);
-}
-.review-location {
-  font-size: 0.67rem;
-  color: var(--t3);
-}
-.review-meta-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-}
-.review-date {
-  font-size: 0.63rem;
-  color: var(--t3);
-  letter-spacing: 0.04em;
-}
+.review-name { font-family: var(--ff-display); font-size: 0.76rem; font-weight: 700; color: var(--t1); }
+.review-location { font-size: 0.67rem; color: var(--t3); }
+.review-meta-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.review-date { font-size: 0.63rem; color: var(--t3); letter-spacing: 0.04em; }
 .review-verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-family: var(--ff-display);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #5dde6a;
-  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--ff-display); font-size: 0.58rem; font-weight: 700;
+  letter-spacing: 0.06em; color: #5dde6a; text-transform: uppercase;
 }
-.review-verified svg { flex-shrink: 0; }
 
 /* ══════════════════════════════════════════════
    INFO GRID — 3×2
@@ -1289,7 +1264,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       </div>
     </section>
 
-    <section class="svc-section rv" aria-labelledby="t5">
+    <section class="svc-section rv" id="custom-design" aria-labelledby="t5">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">04</span>
@@ -1351,7 +1326,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
                 <input type="text" id="fi-name" name="name" placeholder="Your full name" required autocomplete="name" />
               </div>
               <div class="form-row">
-                <label for="fi-phone">WhatsApp / Phone Number</label>
+                <label Whitespace for="fi-phone">WhatsApp / Phone Number</label>
                 <input type="tel" id="fi-phone" name="phone" placeholder="+91 9998888000" required autocomplete="tel" pattern="[0-9+\-\s()]{10,20}" />
               </div>
               <div class="form-row">
@@ -1444,7 +1419,15 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
             <span class="reviews-count" id="reviews-count">0 reviews</span>
           </div>
         </header>
-        <div class="reviews-grid" id="reviews-grid"></div>
+      </div>
+
+      <div class="marquee-reviews-container">
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-left" id="reviews-track-1"></div>
+        </div>
+        <div class="reviews-marquee-row">
+          <div class="reviews-marquee-track track-right" id="reviews-track-2"></div>
+        </div>
       </div>
     </section>
 
@@ -1536,15 +1519,15 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       </div>
 
       <div>
-  <div class="footer-col-title">Quick Links</div>
-  <div class="footer-links">
-    <a href="#services" class="footer-link"><span class="footer-link-dot"></span>Services</a>
-    <a href="#pricing"  class="footer-link"><span class="footer-link-dot"></span>Pricing</a>
-    <a href="#gallery"  class="footer-link"><span class="footer-link-dot"></span>Sample Work</a>
-    <a href="/Terms&Conditions/" class="footer-link"><span class="footer-link-dot"></span>Terms &amp; Conditions</a>
-    <a href="/order/" class="footer-link"><span class="footer-link-dot"></span>Place an Order</a>
-  </div>
-</div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="#services" class="footer-link"><span class="footer-link-dot"></span>Services</a>
+          <a href="#pricing"  class="footer-link"><span class="footer-link-dot"></span>Pricing</a>
+          <a href="#gallery"  class="footer-link"><span class="footer-link-dot"></span>Sample Work</a>
+          <a href="/Terms&Conditions/" class="footer-link"><span class="footer-link-dot"></span>Terms &amp; Conditions</a>
+          <a href="/order/" class="footer-link"><span class="footer-link-dot"></span>Place an Order</a>
+        </div>
+      </div>
 
       <div>
         <div class="footer-col-title">Contact</div>
@@ -1587,7 +1570,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   <script src="/assets/js/prices.js"></script>
   <script src="/assets/js/reviews.js"></script>
 
-<script>
+  <script>
 (function () {
   'use strict';
 
@@ -1622,25 +1605,25 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   applyPrices();
 
   /* ══════════════════════════════════════════
-     REVIEWS RENDERING
+     DYNAMIC DUAL-MARQUEE REVIEWS RENDERING
   ══════════════════════════════════════════ */
   function renderReviews () {
     var reviews = window.KEEBFORGE_REVIEWS;
     if (!reviews || !reviews.length) return;
 
-    var grid  = document.getElementById('reviews-grid');
+    var track1 = document.getElementById('reviews-track-1');
+    var track2 = document.getElementById('reviews-track-2');
     var avgEl = document.getElementById('reviews-avg-num');
     var starsEl = document.getElementById('reviews-avg-stars');
     var countEl = document.getElementById('reviews-count');
-    if (!grid) return;
+    if (!track1 || !track2) return;
 
-    // Compute average rating
+    // Compute average stats
     var total = reviews.reduce(function (s, r) { return s + r.rating; }, 0);
     var avg   = (total / reviews.length).toFixed(1);
     if (avgEl) avgEl.textContent = avg;
     if (countEl) countEl.textContent = reviews.length + ' review' + (reviews.length !== 1 ? 's' : '');
 
-    // Render aggregate stars
     if (starsEl) {
       var starsHTML = '';
       for (var s = 1; s <= 5; s++) {
@@ -1649,9 +1632,8 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       starsEl.innerHTML = starsHTML;
     }
 
-    // Render review cards
-    var html = '';
-    reviews.forEach(function (r) {
+    // Helper to map card elements cleanly
+    function buildCardHTML(r) {
       var initials = r.name.split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
       var starsHTML = '';
       for (var i = 1; i <= 5; i++) {
@@ -1660,7 +1642,8 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       var verifiedHTML = r.verified
         ? '<span class="review-verified"><svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#5dde6a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified</span>'
         : '';
-      html += '<article class="review-card rv-card">' +
+        
+      return '<article class="review-card">' +
         '<div class="review-card-top">' +
           '<div class="review-stars">' + starsHTML + '</div>' +
           '<span class="review-service-badge">' + r.service + '</span>' +
@@ -1680,8 +1663,24 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
           '</div>' +
         '</div>' +
       '</article>';
+    }
+
+    // Split reviews evenly into odd and even collections to populate separate paths
+    var track1HTML = '';
+    var track2HTML = '';
+
+    reviews.forEach(function (r, index) {
+      var cardHTML = buildCardHTML(r);
+      if (index % 2 === 0) {
+        track1HTML += cardHTML;
+      } else {
+        track2HTML += cardHTML;
+      }
     });
-    grid.innerHTML = html;
+
+    // Duplicate string lists to maintain an unbroken infinite slider illusion
+    track1.innerHTML = track1HTML + track1HTML;
+    track2.innerHTML = track2HTML + track2HTML;
   }
 
   renderReviews();
@@ -1816,11 +1815,11 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
         obs.unobserve(e.target);
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.cards, .info-grid, .gallery-grid, .reviews-grid, .switch-grid, .cards-stab, .repair-layout, .switch-cards-wrap').forEach(el => obs.observe(el));
+    document.querySelectorAll('.cards, .info-grid, .gallery-grid, .marquee-reviews-container, .switch-grid, .cards-stab, .repair-layout, .switch-cards-wrap').forEach(el => obs.observe(el));
   }
 
   /* ══════════════════════════════════════════
-     CONTROLLED SMOOTH SCROLL OVERRIDE (FIXED)
+     CONTROLLED SMOOTH SCROLL OVERRIDE
   ══════════════════════════════════════════ */
   function bindScrollButton() {
     if (!scrollInd) return;
@@ -1829,7 +1828,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       const targetSection = document.getElementById('services');
       if (!targetSection) return;
 
-      // 1. Temporarily kill the global CSS smooth scroll so it doesn't fight our script
       document.documentElement.style.scrollBehavior = 'auto';
 
       const yOffset = -12;
@@ -1837,7 +1835,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       const startY  = window.pageYOffset;
       const distance = targetY - startY;
       
-      // Controlled timeline config (2200ms allows all 207 frames to render gorgeously)
       const duration = 4000; 
       let startTime = null;
 
@@ -1855,7 +1852,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
         if (progress < 1) {
           requestAnimationFrame(stepAnimation);
         } else {
-          // 2. The animation completed safely. Restore your global CSS smooth-scrolling behavior
           document.documentElement.style.scrollBehavior = '';
         }
       }
