@@ -421,7 +421,7 @@ button.scroll-ind {
 /* ══════════════════════════════════════════════
    SECTION HEADERS
 ══════════════════════════════════════════════ */
-.svc-section, .info-section, .cta-section { padding-top: 90px; }
+.svc-section, .info-section, .cta-section, .gallery-section { padding-top: 90px; }
 .sec-head { margin-bottom: 46px; }
 .sec-num {
   display: block;
@@ -541,6 +541,7 @@ button.scroll-ind {
   padding: 10px 22px;
   border-radius: 99px;
   transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
 }
 .btn-feat:hover { transform: translateY(-2px); box-shadow: 0 0 24px var(--acc-glow); }
 
@@ -601,7 +602,6 @@ button.scroll-ind {
 /* ══════════════════════════════════════════════
    SAMPLE IMAGES SECTION
 ══════════════════════════════════════════════ */
-.gallery-section { padding-top: 90px; }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -645,6 +645,7 @@ button.scroll-ind {
   aspect-ratio: 4/3;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; color: var(--t3);
+  width: 100%; text-align: center; padding: 20px;
 }
 .gallery-placeholder svg { opacity: 0.4; }
 .gallery-placeholder-text {
@@ -989,6 +990,39 @@ button.scroll-ind {
   .gallery-grid { grid-template-columns: 1fr; }
 }
 section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+/* ══════════════════════════════════════════════
+    GROUP BUY CUSTOM POPUP & DETAILED SECTION STYLES
+══════════════════════════════════════════════ */
+.gb-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.4s var(--ease-out), visibility 0.4s;
+}
+.gb-modal.modal-open { opacity: 1; visibility: visible; }
+.gb-modal-overlay { position: absolute; inset: 0; background: rgba(4, 5, 6, 0.85); backdrop-filter: blur(8px); }
+.gb-modal-content {
+  position: relative; background: var(--bg1); border: 1px solid var(--bdr-h);
+  border-radius: var(--r-md); padding: 28px; max-width: 440px; width: 90%;
+  transform: translateY(20px); transition: transform 0.4s var(--ease-out);
+  box-shadow: 0 0 50px rgba(0, 229, 255, 0.15), var(--shadow-card);
+}
+.gb-modal.modal-open .gb-modal-content { transform: translateY(0); }
+.gb-modal-close {
+  position: absolute; top: 16px; right: 16px; background: none; border: none;
+  font-size: 1.5rem; color: var(--t3); cursor: pointer; transition: color 0.2s;
+}
+.gb-modal-close:hover { color: var(--t1); }
+
+.gb-detail-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+.gb-media-pane { position: sticky; top: calc(var(--nav-h) + 20px); display: flex; flex-direction: column; gap: 14px; }
+.gb-hardware-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+
+@media (max-width: 868px) {
+  .gb-detail-layout { grid-template-columns: 1fr; }
+  .gb-media-pane { position: relative; top: 0; }
+  .gb-hardware-grid { grid-template-columns: 1fr; }
+}
   </style>
 </head>
 <body>
@@ -1005,6 +1039,22 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     </div>
   </div>
 
+  <div class="gb-modal" id="gbModal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="gb-modal-overlay" id="gbModalOverlay"></div>
+    <div class="gb-modal-content">
+      <button class="gb-modal-close" id="gbModalClose" aria-label="Close modal">&times;</button>
+      <span class="feat-badge" style="background: #00e5ff; color: #000; font-weight: 700;">★ COMMUNITY PROJECT</span>
+      <h3 id="modal-title" style="font-family: var(--ff-display); font-size: 1.5rem; color: var(--t1); margin: 8px 0 4px;">[IC] Mochi40 Keyboard</h3>
+      <p style="font-size: 0.82rem; color: var(--t2); margin-bottom: 20px; line-height: 1.5;">
+        Interest Check is live for the Mochi40 Hotswap PCB! Tray mount layout featuring optional OLED screen, rotary encoder knob, and full wireless configurations.
+      </p>
+      <div style="display: flex; gap: 10px;">
+        <a href="#group-buy-detail" class="btn-feat" id="gbModalLearn" style="background: #00e5ff; flex: 1; text-align: center; font-size: 0.78rem;">View Spec Layout</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform" target="_blank" rel="noopener" class="btn-ghost" style="font-size: 0.78rem; padding: 10px 14px;">Fill Google Form</a>
+      </div>
+    </div>
+  </div>
+
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#" class="nav-logo" aria-label="KeebForge.in Home">
@@ -1012,6 +1062,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       </a>
       <div class="nav-links">
         <a href="#services" class="nav-link">Services</a>
+        <a href="#group-buy-detail" class="nav-link" style="color: #00e5ff; font-weight: 600;">Mochi40 IC</a>
         <a href="#pricing"  class="nav-link">Pricing</a>
         <a href="#gallery"  class="nav-link">Gallery</a>
         <a href="#info"     class="nav-link">Info</a>
@@ -1160,10 +1211,114 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       </div>
     </section>
 
+<!-- ══════════════════════════════════════════════
+        DETAILED GROUP BUY RUN SECTION
+    ══════════════════════════════════════════════ -->
+    <section class="svc-section rv" id="group-buy-detail" aria-labelledby="t-gb">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-num" style="color: #00e5ff;">COMMUNITY RUN</span>
+          <h2 class="sec-title" id="t-gb">[IC] Mochi40 Hotswap PCB &amp; Build</h2>
+          <p class="sec-desc">Bespoke, compact 40% form-factor hotswap custom mechanical keyboard project.</p>
+        </header>
+
+        <div class="gb-detail-layout">
+          <div class="gb-info-pane">
+            <article class="card card-feat" style="border-color: rgba(0, 229, 255, 0.2); background: linear-gradient(140deg, rgba(0,229,255,0.04) 0%, transparent 60%); padding: 26px;">
+              <div class="ch">
+                <span class="ci" style="font-size: 1.8rem;">⌨</span>
+                <div class="cp">
+                  <em class="ca ca-lg" style="color: #00e5ff;">₹4,500</em>
+                  <span class="cu" style="text-transform: uppercase; font-size: 0.6rem; color: var(--t3);">Bare Bone Estimated Price</span>
+                </div>
+              </div>
+              
+              <h3 class="ct" style="font-size: 1.25rem; margin-bottom: 6px;">Core Structural Architecture</h3>
+              <ul class="feat-list">
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Standard Tray Mount Case Engineering</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Ultra-compact 40% Layout Options</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Integrated SSD1306 OLED Screen Trace Support</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Optional EC11 Rotary Control Encoder Knob Mounts</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Standard Wired &amp; nice!nano Bluetooth Wireless Provision</li>
+              </ul>
+
+              <div style="margin: 24px 0 18px; padding-top: 18px; border-top: 1px solid var(--bdr);">
+                <h4 style="font-family: var(--ff-display); font-size: 0.82rem; color: var(--t1); margin-bottom: 8px; letter-spacing: 0.02em;">Raw PCB Fabrication Cost (LionCircuits Scale)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
+                    <span style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If MOQ is 5 Units</span>
+                    <em style="font-style: normal; color: var(--t2); font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹631 <span style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
+                  </div>
+                  <div style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
+                    <span style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If MOQ is 10 Units</span>
+                    <em style="font-style: normal; color: var(--acc); font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹566 <span style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
+                  </div>
+                </div>
+                <span style="font-size: 0.65rem; color: var(--t3); display: block; margin-top: 8px; font-style: italic;">*Current State Tracking Status - MOQ: NOT SET | Closes: 10 Jul 2026</span>
+              </div>
+
+              <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform" target="_blank" rel="noopener" class="btn-feat" style="background: #00e5ff; flex: 1;">Join Interest Check Form</a>
+                <a href="https://github.com/Aidan-OS/Mochi40" target="_blank" rel="noopener" class="btn-ghost" style="padding: 10px 20px;">Source Repository</a>
+              </div>
+            </article>
+
+            <div style="margin-top: 14px; background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 22px;">
+              <h4 style="font-family: var(--ff-display); font-size: 0.9rem; margin-bottom: 14px; color: var(--t1); border-bottom: 1px solid var(--bdr); padding-bottom: 8px;">Hardware &amp; Bill of Materials (BOM) Requirements</h4>
+              <div class="gb-hardware-grid">
+                <div>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Microcontroller Target</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires Elite-C layout form factor footprints. Standard Pro Micros without a bottom-row pin trace map are incompatible. Supports nice!nano for wireless builds.</p>
+                </div>
+                <div>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">OLED Panel Support (Optional)</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Provisions accommodate standard SSD1306 panels, easily acquired via Robu. Native support includes both 128x64 and 128x32 display module matrix versions.</p>
+                </div>
+                <div>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Rotary Controls (Optional)</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Built around standard EC11 encoders (also obtainable from Robu). The outward matching physical dial knobs can be custom 3D printed.</p>
+                </div>
+                <div>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Discrete Logic Hardware Components</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires 60x Through-Hole 1N4148 logic diodes, 60x switch hotswap sockets, 1x discrete Reset switch, and a chassis framework calling for 9x M2 heat inserts paired with 5mm M2 screws.</p>
+                </div>
+              </div>
+              <p style="font-size:0.72rem; color:var(--t3); margin-top:14px; border-top:1px solid var(--bdr); padding-top:8px;">
+                The complete itemized checklist map manifest file can be found right on the open source link grid page: <a href="https://github.com/Aidan-OS/Mochi40/blob/main/BOM.csv" target="_blank" rel="noopener" style="color:#00e5ff; text-decoration:underline;">Mochi40 Full BOM File Checklist</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- ══════════════════════════════════════════════
+              MOCHI40 IMAGE MEDIA PANE
+          ══════════════════════════════════════════════ -->
+          <div class="gb-media-pane">
+            <div class="gallery-item rv-card" style="aspect-ratio: 4/3; width: 100%;">
+              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" 
+                   style="width: 100%; height: 100%; object-fit: cover;"
+                   onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
+              <div class="gallery-item-overlay">
+                <span class="gallery-item-label">Mochi40 PCB Layout</span>
+              </div>
+            </div>
+            
+            <div class="gallery-item rv-card" style="aspect-ratio: 4/3; width: 100%;">
+              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" 
+                   style="width: 100%; height: 100%; object-fit: cover;"
+                   onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
+              <div class="gallery-item-overlay">
+                <span class="gallery-item-label">Case Integration Build</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="svc-section rv" aria-labelledby="t3">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">02</span>
+          <span class="sec-num">03</span>
           <h2 class="sec-title" id="t3">Stabilizer Tuning Services</h2>
           <p class="sec-desc">Eliminate rattle and achieve smooth, consistent stabilizers on every key.</p>
         </header>
@@ -1199,7 +1354,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="svc-section rv" aria-labelledby="t4">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">03</span>
+          <span class="sec-num">04</span>
           <h2 class="sec-title" id="t4">Build &amp; Soldering Services</h2>
           <p class="sec-desc">Professional soldering, desoldering, and complete keyboard assembly.</p>
         </header>
@@ -1267,7 +1422,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="svc-section rv" id="custom-design" aria-labelledby="t5">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">04</span>
+          <span class="sec-num">05</span>
           <h2 class="sec-title" id="t5">Custom Keyboard &amp; PCB Design</h2>
           <p class="sec-desc">End-to-end design, fabrication support, and firmware — from concept to working board.</p>
         </header>
@@ -1299,7 +1454,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="svc-section rv" aria-labelledby="t6">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">05</span>
+          <span class="sec-num">06</span>
           <h2 class="sec-title" id="t6">Electronics Repair</h2>
           <p class="sec-desc">Component-level diagnosis and repair for general electronics.</p>
         </header>
@@ -1322,11 +1477,13 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
               <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
               <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
               <div class="form-row">
-                <label for="fi-name">Name</label>
-                <input type="text" id="fi-name" name="name" placeholder="Your full name" required autocomplete="name" />
+                <div class="form-row">
+                  <label for="fi-name">Name</label>
+                  <input type="text" id="fi-name" name="name" placeholder="Your full name" required autocomplete="name" />
+                </div>
               </div>
               <div class="form-row">
-                <label Whitespace for="fi-phone">WhatsApp / Phone Number</label>
+                <label for="fi-phone">WhatsApp / Phone Number</label>
                 <input type="tel" id="fi-phone" name="phone" placeholder="+91 9998888000" required autocomplete="tel" pattern="[0-9+\-\s()]{10,20}" />
               </div>
               <div class="form-row">
@@ -1356,7 +1513,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="gallery-section rv" id="gallery" aria-labelledby="t-gallery">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">06</span>
+          <span class="sec-num">07</span>
           <h2 class="sec-title" id="t-gallery">Sample Work</h2>
           <p class="sec-desc">A look at previous builds, mods, and PCB work — quality you can see.</p>
         </header>
@@ -1398,7 +1555,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="reviews-section rv" id="reviews" aria-labelledby="t-reviews">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">07</span>
+          <span class="sec-num">08</span>
           <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
             <h2 class="sec-title" id="t-reviews" style="margin-bottom:0;">Customer Reviews</h2>
             <a href="https://discord.com/channels/716114857430220861/1466808214896246950" target="_blank" rel="noopener"
@@ -1434,7 +1591,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     <section class="info-section rv" id="info" aria-labelledby="t8">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">08</span>
+          <span class="sec-num">09</span>
           <h2 class="sec-title" id="t8">Important Information</h2>
         </header>
         <div class="info-grid">
@@ -1522,6 +1679,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
         <div class="footer-col-title">Quick Links</div>
         <div class="footer-links">
           <a href="#services" class="footer-link"><span class="footer-link-dot"></span>Services</a>
+          <a href="#group-buy-detail" class="footer-link"><span class="footer-link-dot" style="background:#00e5ff;"></span>Mochi40 Run</a>
           <a href="#pricing"  class="footer-link"><span class="footer-link-dot"></span>Pricing</a>
           <a href="#gallery"  class="footer-link"><span class="footer-link-dot"></span>Sample Work</a>
           <a href="/Terms&Conditions/" class="footer-link"><span class="footer-link-dot"></span>Terms &amp; Conditions</a>
@@ -1575,7 +1733,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   'use strict';
 
   /* ══════════════════════════════════════════
-     PRICING INJECTION
+      PRICING INJECTION
   ══════════════════════════════════════════ */
   function applyPrices () {
     var P = window.KEEBFORGE_PRICES;
@@ -1605,7 +1763,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   applyPrices();
 
   /* ══════════════════════════════════════════
-     DYNAMIC DUAL-MARQUEE REVIEWS RENDERING
+      DYNAMIC DUAL-MARQUEE REVIEWS RENDERING
   ══════════════════════════════════════════ */
   function renderReviews () {
     var reviews = window.KEEBFORGE_REVIEWS;
@@ -1665,7 +1823,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       '</article>';
     }
 
-    // Split reviews evenly into odd and even collections to populate separate paths
     var track1HTML = '';
     var track2HTML = '';
 
@@ -1678,7 +1835,6 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
       }
     });
 
-    // Duplicate string lists to maintain an unbroken infinite slider illusion
     track1.innerHTML = track1HTML + track1HTML;
     track2.innerHTML = track2HTML + track2HTML;
   }
@@ -1686,7 +1842,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   renderReviews();
 
   /* ══════════════════════════════════════════
-     CANVAS SCROLL ANIMATION
+      CANVAS SCROLL ANIMATION
   ══════════════════════════════════════════ */
   const TOTAL_FRAMES  = 207;
   const FRAME_DIR     = 'assets/frames/';
@@ -1815,12 +1971,9 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
         obs.unobserve(e.target);
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-    document.querySelectorAll('.cards, .info-grid, .gallery-grid, .marquee-reviews-container, .switch-grid, .cards-stab, .repair-layout, .switch-cards-wrap').forEach(el => obs.observe(el));
+    document.querySelectorAll('.cards, .info-grid, .gallery-grid, .marquee-reviews-container, .switch-grid, .cards-stab, .repair-layout, .switch-cards-wrap, .gb-detail-layout').forEach(el => obs.observe(el));
   }
 
-  /* ══════════════════════════════════════════
-     CONTROLLED SMOOTH SCROLL OVERRIDE
-  ══════════════════════════════════════════ */
   function bindScrollButton() {
     if (!scrollInd) return;
 
@@ -1842,22 +1995,36 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
         return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       }
 
-      function stepAnimation(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-
-        window.scrollTo(0, startY + (distance * easeInOutCubic(progress)));
-
-        if (progress < 1) {
-          requestAnimationFrame(stepAnimation);
-        } else {
-          document.documentElement.style.scrollBehavior = '';
-        }
-      }
-
-      requestAnimationFrame(stepAnimation);
+      document.documentElement.style.scrollBehavior = '';
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
+  }
+
+  /* ══════════════════════════════════════════
+      INTERACTIVE MODAL CONFIGURATIONS
+  ══════════════════════════════════════════ */
+  function setupGBModal() {
+    const modal = document.getElementById('gbModal');
+    const closeBtn = document.getElementById('gbModalClose');
+    const overlay = document.getElementById('gbModalOverlay');
+    const learnBtn = document.getElementById('gbModalLearn');
+
+    if (!modal) return;
+
+    if (!sessionStorage.getItem('mochi40-ic-seen')) {
+      setTimeout(() => {
+        modal.classList.add('modal-open');
+      }, 2000);
+    }
+
+    function closeModal() {
+      modal.classList.remove('modal-open');
+      sessionStorage.setItem('mochi40-ic-seen', 'true');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    learnBtn.addEventListener('click', closeModal);
   }
 
   async function init () {
@@ -1874,6 +2041,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
     initRevealSections();
     initRevealCards();
     bindScrollButton();
+    setupGBModal();
   }
 
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(init);
