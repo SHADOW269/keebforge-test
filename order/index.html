@@ -1,98 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist</title>
-
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
-
   <meta name="description" content="Professional switch lubing, custom keyboard builds, PCB design, troubleshooting, and micro-soldering repairs. Based in Jammu &amp; Kashmir. Pan-India mail-in service." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://keebforge.in/" />
-
   <meta name="geo.region" content="IN-JK" />
   <meta name="geo.placename" content="Jammu &amp; Kashmir" />
   <meta name="theme-color" content="#060709" />
-
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
-
   <meta property="og:title" content="KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist" />
   <meta property="og:description" content="Professional custom mechanical keyboard building, switch lubing, custom PCB design, and component-level electronics repair across India." />
   <meta property="og:url" content="https://keebforge.in/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="KeebForge.in" />
   <meta property="og:locale" content="en_IN" />
-  
   <meta property="og:image" content="https://keebforge.in/assets/img/Banner.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:alt" content="KeebForge.in — Engineering-grade Custom Keyboards &amp; Hardware Repairs" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist" />
   <meta name="twitter:description" content="Engineering-grade workshop handling custom mechanical keyboard builds, switch mods, and board-level micro-soldering diagnostics across India." />
   <meta name="twitter:image" content="https://keebforge.in/assets/img/Banner.png" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet" />
+
   <style>
-    /* ── Root & Reset ── */
     :root {
-      --black:     #040507;
-      --bg:        #060709;
-      --bg1:       #0b0d11;
-      --bg2:       #101318;
-      --bg3:       #161a22;
-      --surf:      rgba(255,255,255,0.02);
-      --surf-h:    rgba(255,255,255,0.04);
-      --bdr:       rgba(255,255,255,0.045);
-      --bdr-h:     rgba(255,255,255,0.12);
-      --t1:        #f3f4f6;
-      --t2:        #9ca3af;
-      --t3:        #6b7280;
-      --acc:       #d4f700;
-      --acc-dim:   rgba(212,247,0,0.06);
-      --acc-glow:  rgba(212,247,0,0.08);
-      --nav-h:     64px;
-      --max-w:     1160px;
-      --pad-x:     clamp(24px, 6vw, 48px);
-      --ease-out:  cubic-bezier(0.16,1,0.3,1);
-      --r-sm:      6px;
-      --r-md:      10px;
-      --r-lg:      16px;
-      --ff-display:'Space Grotesk', sans-serif;
-      --ff-body:   'Inter', sans-serif;
+      --bg: #060709;
+      --bg1: #0b0d11;
+      --bg2: #101318;
+      --bg3: #161a22;
+      --surf: rgba(255, 255, 255, 0.02);
+      --bdr: rgba(255, 255, 255, 0.045);
+      --bdr-h: rgba(255, 255, 255, 0.12);
+      --t1: #f3f4f6;
+      --t2: #9ca3af;
+      --t3: #6b7280;
+      --acc: #d4f700;
+      --acc-dim: rgba(212, 247, 0, 0.04);
+      --acc-glow: rgba(212, 247, 0, 0.08);
+      --nav-h: 64px;
+      --max-w: 1320px;
+      --pad-x: clamp(16px, 4vw, 40px);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --r-sm: 6px;
+      --r-md: 12px;
+      --ff-display: 'Space Grotesk', sans-serif;
+      --ff-body: 'Inter', sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 15px; scroll-behavior: smooth; }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--bg);
       color: var(--t1);
       font-family: var(--ff-body);
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-    a { text-decoration: none; color: inherit; }
 
-    /* ── Nav ── */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ── Navigation ── */
     .nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: var(--nav-h);
       z-index: 500;
-      background: rgba(4,5,7,0.75);
+      background: rgba(4, 5, 7, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bdr);
     }
+
     .nav-inner {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -100,23 +108,38 @@
       height: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
     }
+
     .nav-logo {
       font-family: var(--ff-display);
       font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-right: auto;
     }
-    .logo-dot { color: var(--acc); }
-    .nav-links { display: flex; gap: 32px; margin-right: 36px; }
+
+    .logo-dot {
+      color: var(--acc);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 36px;
+    }
+
     .nav-link {
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--t2);
       transition: color 0.2s var(--ease-out);
     }
-    .nav-link:hover { color: var(--t1); }
+
+    .nav-link:hover {
+      color: var(--t1);
+    }
+
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -130,161 +153,470 @@
       border-radius: var(--r-sm);
       transition: background 0.2s, transform 0.2s var(--ease-out);
     }
-    .nav-cta:hover { transform: translateY(-1px); background: #e2ff00; }
-    @media (max-width: 640px) { .nav-links { display: none; } }
 
-    /* ── Page header ── */
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      background: #e2ff00;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ── Typography & Structure ── */
     .page-header {
-      padding: calc(var(--nav-h) + 64px) var(--pad-x) 0;
+      padding: calc(var(--nav-h) + 48px) var(--pad-x) 0;
       max-width: var(--max-w);
       margin: 0 auto;
+      animation: fadeUp 0.6s both var(--ease-out);
     }
-    .sec-num {
-      display: block;
-      font-family: var(--ff-display);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--acc);
-      margin-bottom: 8px;
-    }
+
     .page-title {
       font-family: var(--ff-display);
-      font-size: clamp(2rem, 5.5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       line-height: 1.1;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
-    .page-desc { font-size: 0.95rem; color: var(--t2); max-width: 520px; line-height: 1.6; }
 
-    /* ── Main layout ── */
+    .page-desc {
+      font-size: 0.95rem;
+      color: var(--t2);
+      max-width: 600px;
+    }
+
     .order-wrap {
       max-width: var(--max-w);
-      margin: 48px auto 0;
-      padding: 0 var(--pad-x) 100px;
+      margin: 32px auto 0;
+      padding: 0 var(--pad-x) 120px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-    @media (max-width: 900px) {
-      .order-wrap { grid-template-columns: 1fr; }
+      gap: 32px;
+      grid-template-columns: 1fr;
     }
 
-    /* ── Panel shared ── */
+    @media (min-width: 1024px) {
+      .order-wrap {
+        grid-template-columns: 1fr 400px;
+      }
+    }
+
+    .main-config-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+    }
+
+    .sticky-summary-hub {
+      position: relative;
+    }
+
+    @media (min-width: 1024px) {
+      .sticky-summary-hub {
+        position: sticky;
+        top: calc(var(--nav-h) + 24px);
+      }
+    }
+
+    /* ── Dashboard Panels ── */
     .panel {
       background: var(--bg1);
       border: 1px solid var(--bdr);
       border-radius: var(--r-md);
-      padding: 32px 26px;
+      padding: clamp(16px, 4vw, 32px);
       position: relative;
-      overflow: hidden;
+      animation: fadeUp 0.6s 0.1s both var(--ease-out);
     }
+
     .panel-tag {
       font-family: var(--ff-display);
       font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--acc);
-      margin-bottom: 6px;
+      color: var(--t3);
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .panel-tag::before { content: '//'; opacity: 0.5; }
+
+    .panel-tag::before {
+      content: '//';
+      color: var(--acc);
+      opacity: 0.8;
+    }
+
     .panel-title {
       font-family: var(--ff-display);
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       margin-bottom: 24px;
     }
 
-    /* ── Estimator panel ── */
-    .est-group {
+    /* ── Component Elements & Inputs ── */
+    .device-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
       margin-bottom: 24px;
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      padding: 4px;
     }
+
+    .device-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--t2);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--r-sm);
+      padding: 12px 8px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .device-tab:hover {
+      color: var(--t1);
+      background: var(--surf);
+    }
+
+    .device-tab.active {
+      background: var(--bg3);
+      color: var(--acc);
+      border-color: var(--bdr-h);
+    }
+
+    .tab-count {
+      font-family: var(--ff-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--bg1);
+      color: var(--t2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--bdr);
+    }
+
+    .device-tab.active .tab-count {
+      color: #000;
+      background: var(--acc);
+      border-color: var(--acc);
+    }
+
+    .tab-count:empty {
+      display: none;
+    }
+
+    .device-panel {
+      display: none;
+    }
+
+    .device-panel.active-device {
+      display: block;
+    }
+
+    .field-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field-inline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-inline label {
+      font-family: var(--ff-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--t2);
+    }
+
+    .field-inline input[type="text"] {
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      color: var(--t1);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      outline: none;
+      width: 100%;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .field-inline input[type="text"]::placeholder {
+      color: var(--t3);
+    }
+
+    .field-inline input[type="text"]:focus {
+      border-color: var(--bdr-h);
+      background: var(--bg3);
+      box-shadow: 0 0 0 1px var(--bdr-h);
+    }
+
+    .pill-radio-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 8px;
+    }
+
+    .pill-radio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--t2);
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      padding: 10px 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s var(--ease-out);
+      text-align: center;
+    }
+
+    .pill-radio:hover {
+      color: var(--t1);
+      border-color: var(--bdr-h);
+      background: var(--bg3);
+    }
+
+    .pill-radio input {
+      display: none;
+    }
+
+    .pill-radio.selected {
+      background: var(--acc-dim);
+      color: var(--acc);
+      border-color: var(--acc);
+    }
+
+    .inline-note {
+      display: flex;
+      align-start: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--t2);
+      padding: 12px;
+      background: var(--bg2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--bdr);
+    }
+
+    /* ── Service Matrices ── */
+    .est-group {
+      margin-bottom: 32px;
+    }
+
+    .est-group:last-child {
+      margin-bottom: 0;
+    }
+
     .est-group-label {
       font-family: var(--ff-display);
       font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--t3);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--bdr);
+    }
+
+    .service-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .service-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 8px;
+      gap: 16px;
+      padding: 16px;
       cursor: pointer;
       border-radius: var(--r-sm);
-      transition: background 0.2s, border-color 0.2s;
+      transition: all 0.2s var(--ease-out);
       user-select: none;
-      border: 1px solid transparent;
+      border: 1px solid var(--bdr);
+      background: var(--bg2);
     }
-    .service-row:hover { background: var(--surf); }
-    .service-row input[type="checkbox"] { display: none; }
+
+    .service-row:hover {
+      background: var(--bg3);
+      border-color: var(--bdr-h);
+    }
+
+    .service-row.selected {
+      border-color: var(--acc);
+      background: var(--acc-dim);
+    }
+
+    .service-row input[type="checkbox"] {
+      display: none;
+    }
+
     .chk-box {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border: 1px solid var(--bdr-h);
       border-radius: 4px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color 0.15s, background 0.15s;
+      transition: all 0.15s;
+      background: var(--bg1);
     }
+
     .service-row.selected .chk-box {
       background: var(--acc);
       border-color: var(--acc);
     }
-    .chk-box svg { display: none; }
-    .service-row.selected .chk-box svg { display: block; }
-    .svc-info { flex: 1; }
+
+    .chk-box svg {
+      display: none;
+    }
+
+    .service-row.selected .chk-box svg {
+      display: block;
+    }
+
+    .svc-info {
+      flex: 1;
+      min-width: 0;
+    }
+
     .svc-name {
       font-family: var(--ff-display);
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--t1);
-      letter-spacing: -0.01em;
     }
-    .svc-desc { font-size: 0.8rem; color: var(--t2); margin-top: 2px; line-height: 1.5; }
+
+    .svc-desc {
+      font-size: 0.8rem;
+      color: var(--t2);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
     .svc-price {
       font-family: var(--ff-display);
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--t1);
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    /* Quantity row */
+    .service-row.selected .svc-price {
+      color: var(--acc);
+    }
+
+    .combo-badge {
+      font-family: var(--ff-display);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bdr);
+      color: var(--t2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .service-row.selected .combo-badge {
+      background: var(--acc);
+      color: #000;
+      border-color: var(--acc);
+    }
+
+    .service-row.highlight-row {
+      border: 1px solid rgba(212, 247, 0, 0.25);
+      background: rgba(212, 247, 0, 0.02);
+    }
+
+    .service-row.highlight-row:hover {
+      border-color: rgba(212, 247, 0, 0.45);
+      background: rgba(212, 247, 0, 0.05);
+    }
+
+    .svc-price-quote {
+      color: var(--t3) !important;
+      font-size: 0.75rem !important;
+      background: var(--bg1);
+      border: 1px solid var(--bdr);
+      padding: 4px 10px;
+      border-radius: var(--r-sm);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ── Quantity Controller Grid ── */
+    .qty-stack-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
     .qty-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 8px 4px;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
     }
-    .qty-label { font-size: 0.85rem; color: var(--t2); font-weight: 500; }
+
+    .qty-label {
+      font-size: 0.8rem;
+      color: var(--t2);
+      font-weight: 500;
+      font-family: var(--ff-display);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
     .qty-ctrl {
       display: flex;
       align-items: center;
       border: 1px solid var(--bdr);
       border-radius: var(--r-sm);
       overflow: hidden;
-      background: var(--bg2);
+      background: var(--bg1);
     }
+
     .qty-btn {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       background: transparent;
       border: none;
       color: var(--t1);
@@ -295,91 +627,174 @@
       justify-content: center;
       transition: background 0.2s;
     }
-    .qty-btn:hover { background: var(--bg3); }
+
+    .qty-btn:hover {
+      background: var(--bg3);
+    }
+
     .qty-val {
       width: 48px;
       text-align: center;
       font-family: var(--ff-display);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       background: transparent;
       border: none;
       color: var(--t1);
       border-left: 1px solid var(--bdr);
       border-right: 1px solid var(--bdr);
       padding: 0;
-      height: 34px;
+      height: 36px;
     }
-    .qty-val::-webkit-outer-spin-button,
-    .qty-val::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-    /* Clear button */
+    .qty-val::-webkit-outer-spin-button,
+    .qty-val::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
     .clear-btn {
       font-family: var(--ff-display);
       font-size: 0.75rem;
       font-weight: 600;
-      color: var(--t2);
+      color: var(--t3);
+      background: transparent;
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease-out);
+      position: absolute;
+      top: 32px;
+      right: 32px;
+    }
+
+    .clear-btn:hover {
+      color: var(--t1);
+      border-color: var(--bdr-h);
+      background: var(--bg2);
+    }
+
+    @media (max-width: 480px) {
+      .clear-btn {
+        position: static;
+        margin-bottom: 16px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .switch-detail-block {
+      display: none;
       background: var(--bg2);
       border: 1px solid var(--bdr);
       border-radius: var(--r-sm);
-      padding: 6px 14px;
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, background 0.2s var(--ease-out);
-      position: absolute;
-      top: 32px;
-      right: 26px;
+      padding: 20px;
+      margin-top: 12px;
     }
-    .clear-btn:hover { color: var(--t1); border-color: var(--bdr-h); background: var(--bg3); }
 
-    /* Total bar */
+    .switch-detail-block.visible {
+      display: block;
+    }
+
+    .switch-detail-block .field-inline input[type="text"] {
+      background: var(--bg1);
+    }
+
+    /* ── Checkout Panel Components ── */
+    .shipping-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      font-size: 0.85rem;
+      color: var(--t2);
+      line-height: 1.5;
+    }
+
+    .shipping-notice svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--t3);
+    }
+
+    .shipping-notice strong {
+      color: var(--t1);
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--ff-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .total-container {
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-sm);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
     .total-bar {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--bdr);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
+
     .total-label {
       font-family: var(--ff-display);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--t3);
+      color: var(--t2);
     }
+
     .total-amount {
       font-family: var(--ff-display);
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--acc);
-      letter-spacing: -0.01em;
-    }
-    .total-note {
-      font-size: 0.8rem;
-      color: var(--t3);
-      margin-top: 4px;
-      line-height: 1.5;
+      letter-spacing: -0.02em;
     }
 
-    /* ── Form panel ── */
+    .total-note {
+      font-size: 0.75rem;
+      color: var(--t3);
+      margin-top: 6px;
+      text-align: right;
+    }
+
     .form-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
     }
-    .form-grid .full { grid-column: 1 / -1; }
 
-    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
     .field label {
       font-family: var(--ff-display);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--t2);
     }
-    .field label .req { color: var(--acc); margin-left: 2px; }
+
+    .field label .req {
+      color: var(--acc);
+      margin-left: 2px;
+    }
+
     .field input,
     .field textarea {
       background: var(--bg2);
@@ -388,35 +803,44 @@
       color: var(--t1);
       font-family: var(--ff-body);
       font-size: 0.9rem;
-      padding: 10px 14px;
-      transition: border-color 0.2s var(--ease-out), background 0.2s;
+      padding: 12px 14px;
+      transition: all 0.2s var(--ease-out);
       outline: none;
       width: 100%;
     }
+
     .field input::placeholder,
-    .field textarea::placeholder { color: var(--t3); font-size: 0.85rem; }
+    .field textarea::placeholder {
+      color: var(--t3);
+    }
+
     .field input:focus,
     .field textarea:focus {
-      border-color: rgba(212,247,0,0.4);
+      border-color: var(--bdr-h);
       background: var(--bg3);
     }
-    .field textarea { resize: vertical; min-height: 100px; }
 
-    /* Order summary field */
+    .field textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
     .summary-box {
       background: var(--bg2);
       border: 1px solid var(--bdr);
       border-radius: var(--r-sm);
-      padding: 14px;
+      padding: 16px;
       font-size: 0.85rem;
       color: var(--t1);
-      min-height: 80px;
+      min-height: 60px;
       font-family: var(--ff-body);
       line-height: 1.6;
     }
-    .summary-box.empty { color: var(--t3); font-style: normal; }
 
-    /* Submit button */
+    .summary-box.empty {
+      color: var(--t3);
+    }
+
     .submit-btn {
       width: 100%;
       display: flex;
@@ -424,147 +848,229 @@
       justify-content: center;
       gap: 8px;
       font-family: var(--ff-display);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: #000;
       background: var(--acc);
       border: none;
       border-radius: var(--r-sm);
-      padding: 14px 26px;
+      padding: 16px;
       cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.2s, transform 0.2s var(--ease-out);
+      margin-top: 12px;
+      transition: all 0.2s var(--ease-out);
     }
+
     .submit-btn:hover {
-      transform: translateY(-1px);
       background: #e2ff00;
+      transform: translateY(-1px);
     }
+
     .submit-note {
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--t3);
-      margin-top: 14px;
-      line-height: 1.6;
+      margin-top: 16px;
+      line-height: 1.5;
     }
-    .submit-note a { color: var(--acc); }
 
-    /* ── Footer ── */
-    .footer {
-      border-top: 1px solid var(--bdr);
+    .submit-note a {
+      color: var(--acc);
+    }
+
+    /* ── Terminal Style Footer ── */
+    .site-footer {
+      position: relative;
+      margin-top: 90px;
       background: var(--bg1);
-      padding: 36px var(--pad-x);
+      border-top: 2px solid var(--acc);
+      overflow: hidden;
     }
-    .footer-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 16px 24px;
-    }
-    .footer-brand {
+
+    .footer-watermark {
+      position: absolute;
+      right: -0.02em;
+      bottom: -0.16em;
       font-family: var(--ff-display);
-      font-size: 1.15rem;
+      font-size: clamp(6rem, 16vw, 13rem);
       font-weight: 700;
       letter-spacing: -0.02em;
+      color: var(--t1);
+      opacity: 0.035;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
     }
-    .footer-tag { text-align: center; font-size: 0.85rem; color: var(--t2); font-style: normal; }
-    .footer-copy { font-size: 0.75rem; color: var(--t3); text-align: right; }
-    @media (max-width: 640px) {
-      .footer-inner { grid-template-columns: 1fr; text-align: center; }
-      .footer-copy { text-align: center; }
+
+    .footer-main {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 56px var(--pad-x) 34px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 36px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-main {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    .footer-brand-line {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--ff-display);
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--t1);
+      margin-bottom: 13px;
+    }
+
+    .footer-brand-line .logo-dot {
+      color: var(--acc);
+    }
+
+    .footer-brand-ico {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: var(--acc-dim);
+      border: 1px solid rgba(201, 243, 29, 0.28);
+      color: var(--acc);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .footer-blurb {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      color: var(--t3);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    .footer-col-title {
+      font-family: monospace;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--acc);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--bdr);
+    }
+
+    .footer-col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col-links a {
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: var(--t2);
+      transition: color 0.18s, transform 0.18s;
+      width: fit-content;
+    }
+
+    .footer-col-links a:hover {
+      color: var(--acc);
+      transform: translateX(2px);
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 20px var(--pad-x) 26px;
+      border-top: 1px solid var(--bdr);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-sys-line {
+      font-family: monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.02em;
+      color: var(--t3);
+    }
+
+    .footer-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--t2);
+      background: var(--bg2);
+      border: 1px solid var(--bdr);
+      padding: 7px 14px;
+      border-radius: var(--r-sm);
+      margin-top: 16px;
+    }
+
+    .footer-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--acc);
+      box-shadow: 0 0 10px var(--acc-glow);
+      animation: pulse 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .footer-dev-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: monospace;
+      font-size: 0.66rem;
+      color: var(--t3);
     }
 
     .dev-name {
-      color: var(--t1);
-      font-family: var(--ff-display);
-      font-weight: 600;
-    }
-
-    /* Quote-based service rows */
-    .quote-row { opacity: 0.95; }
-    .quote-row:hover { opacity: 1; }
-    .svc-price-quote {
-      color: var(--t2) !important;
-      font-size: 0.75rem !important;
-      background: var(--bg3);
-      border: 1px solid var(--bdr);
-      padding: 4px 10px;
-      border-radius: var(--r-sm);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .quote-row.selected .svc-price-quote {
-      color: var(--acc) !important;
-      border-color: rgba(212,247,0,0.2);
-      background: var(--acc-dim);
-    }
-    .quote-note {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.8rem;
-      color: var(--t2);
-      line-height: 1.55;
-      margin-top: 12px;
-      padding: 12px;
-      background: var(--bg2);
-      border-radius: var(--r-sm);
-      border: 1px solid var(--bdr);
-    }
-    .quote-note svg { flex-shrink: 0; margin-top: 2px; color: var(--t3); }
-
-    /* Shipping notice */
-    .shipping-notice {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin: 0 0 24px;
-      padding: 14px 16px;
-      background: var(--bg2);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-sm);
-      font-size: 0.85rem;
-      color: var(--t2);
-      line-height: 1.6;
-    }
-    .shipping-notice svg { flex-shrink: 0; margin-top: 2px; color: var(--t3); }
-    .shipping-notice strong { color: var(--t1); display: block; margin-bottom: 2px; font-family: var(--ff-display); font-size: 0.85rem; font-weight: 600; }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .page-header { animation: fadeUp 0.8s 0.1s both var(--ease-out); }
-    .panel { animation: fadeUp 0.8s 0.2s both var(--ease-out); }
-    .panel:last-child { animation-delay: 0.3s; }
-
-    /* ── Combo highlight ── */
-    .service-row.combo-row { background: var(--bg2); border: 1px solid rgba(212, 247, 0, 0.15); }
-    .service-row.combo-row:hover { background: var(--bg3); }
-    .combo-badge {
-      font-family: var(--ff-display);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      background: var(--acc-dim);
-      border: 1px solid rgba(212, 247, 0, 0.2);
       color: var(--acc);
-      padding: 2px 8px;
-      border-radius: var(--r-sm);
+      font-weight: 700;
     }
 
-    @media (max-width: 480px) {
-      .form-grid { grid-template-columns: 1fr; }
-      .panel { padding: 28px 20px; }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
   </style>
 </head>
-<body>
 
-  <!-- Nav -->
+<body>
+  <!-- Navigation Top Bar -->
   <nav class="nav">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">
@@ -577,160 +1083,288 @@
       </div>
       <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="nav-cta">
         Discord
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </a>
     </div>
   </nav>
 
-  <!-- Page header -->
   <header class="page-header">
     <h1 class="page-title">Place an Order</h1>
-    <p class="page-desc">Select your services, get an instant estimate, and send your request directly.</p>
+    <p class="page-desc">Configure your custom service request package down below. Systems pricing values adapt live as you edit changes.</p>
   </header>
 
-  <!-- Main grid -->
+  <!-- Interactive Dashboard Setup Container -->
   <div class="order-wrap">
 
-    <!-- LEFT: Price Estimator -->
-    <div class="panel" id="estimator">
-      <button class="clear-btn" type="button" onclick="clearAll()">✕ Clear All</button>
-      <p class="panel-tag">price_estimator</p>
-      <h2 class="panel-title">Build Your Order</h2>
+    <!-- Configurator Section (Left) -->
+    <div class="main-config-stream">
+      <div class="panel">
+        <button class="clear-btn" type="button" onclick="clearAll()">✕ Reset Config</button>
+        <p class="panel-tag">Step 01</p>
+        <h2 class="panel-title">Hardware Definition &amp; Target Spec</h2>
 
-      <!-- Dynamically rendered from prices.js -->
-      <div id="estimator-groups"></div>
+        <div class="device-tabs" role="tablist">
+          <button type="button" class="device-tab active" data-device="keyboard" onclick="switchDevice('keyboard')" role="tab" aria-selected="true">
+            ⌨️ Keyboard Variant <span class="tab-count" id="tab-count-keyboard"></span>
+          </button>
+          <button type="button" class="device-tab" data-device="mouse" onclick="switchDevice('mouse')" role="tab" aria-selected="false">
+            🖱️ Mouse Variant <span class="tab-count" id="tab-count-mouse"></span>
+          </button>
+        </div>
 
-      <!-- Shipping notice -->
-      <div class="shipping-notice">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M10 6h1.5a1 1 0 0 1 .9.55l.6 1.2V11h-3V6Z" stroke="currentColor" stroke-width="1.2"/><circle cx="3.5" cy="12" r="1" fill="currentColor"/><circle cx="9.5" cy="12" r="1" fill="currentColor"/></svg>
-        <div>
-          <strong>Shipping not included</strong> — courier charges (both ways) are calculated separately and will be confirmed before work begins. You'll be notified of the exact shipping cost.
+        <!-- Keyboard Dynamic Fields Panel -->
+        <div class="device-panel active-device" data-device="keyboard">
+          <div class="field-stack">
+            <div class="field-inline">
+              <label for="kb-model">Keyboard Chassis Hardware / Model Name</label>
+              <input type="text" id="kb-model" placeholder="e.g. Neo65, Keychron Q1, Mode Envoy…" />
+            </div>
+
+            <div class="field-inline">
+              <label>Form-Factor Layout Allocation Matrix</label>
+              <div class="pill-radio-group" id="layout-group">
+                <label class="pill-radio"><input type="radio" name="layout" value="60%" /><span>60%</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="65%" /><span>65%</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="75%" /><span>75%</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="TKL" /><span>TKL</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="96%" /><span>96%</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="100%" /><span>100%</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="Full Size" /><span>Full Size</span></label>
+                <label class="pill-radio"><input type="radio" name="layout" value="Custom" /><span>Custom</span></label>
+              </div>
+            </div>
+
+            <div class="field-inline">
+              <label>Component Scale Parameters</label>
+              <div class="qty-stack-row">
+                <div class="qty-row">
+                  <span class="qty-label">Switches</span>
+                  <div class="qty-ctrl">
+                    <button class="qty-btn" type="button" onclick="adjustQty('sw',-1)">−</button>
+                    <input class="qty-val" type="number" id="qty-sw" value="65" min="1" max="999" onchange="recalc()" />
+                    <button class="qty-btn" type="button" onclick="adjustQty('sw',1)">+</button>
+                  </div>
+                </div>
+                <div class="qty-row">
+                  <span class="qty-label">Stabilizers</span>
+                  <div class="qty-ctrl">
+                    <button class="qty-btn" type="button" onclick="adjustQty('stab',-1)">−</button>
+                    <input class="qty-val" type="number" id="qty-stab" value="4" min="1" max="99" onchange="recalc()" />
+                    <button class="qty-btn" type="button" onclick="adjustQty('stab',1)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-inline">
+              <label for="kb-switch-name">Component Switch Identifier Model</label>
+              <input type="text" id="kb-switch-name" placeholder="e.g. Gateron Cream Soda, HMX Xinhai…" />
+            </div>
+
+            <div class="field-inline">
+              <label>Keycap Matrix Enclosure State</label>
+              <div class="pill-radio-group" id="keycaps-group">
+                <label class="pill-radio"><input type="radio" name="keycaps" value="Keycaps Included" /><span>Included</span></label>
+                <label class="pill-radio"><input type="radio" name="keycaps" value="No Keycaps" /><span>Omit Caps</span></label>
+              </div>
+              <div class="inline-note" id="keycaps-note" style="display:none;">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0;margin-top:2px;color:var(--t3)">
+                  <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2" />
+                  <path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+                </svg>
+                <span>Chassis system undergoes deep multi-point structural functional mapping confirmation tests during final dynamic pass staging operations.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mouse Dynamic Fields Panel -->
+        <div class="device-panel" data-device="mouse">
+          <div class="field-stack">
+            <div class="field-inline">
+              <label for="mouse-model">Mouse Core Chassis Target Identity Model</label>
+              <input type="text" id="mouse-model" placeholder="e.g. G Pro X Superlight 2, Razer Viper V3 Pro…" />
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Total -->
-      <div class="total-bar">
-        <div>
-          <div class="total-label">Estimated Total</div>
-          <div class="total-note">* Excludes quoted &amp; shipping charges.<br/>Bulk discounts available on large orders.</div>
+      <!-- Lab Operation Matrix Modifiers -->
+      <div class="panel">
+        <p class="panel-tag">Step 02</p>
+        <h2 class="panel-title" id="services-panel-title">Available Lab Operation Tuning Modules</h2>
+        <div class="device-panel active-device" data-device="keyboard">
+          <div id="keyboard-services" class="service-grid"></div>
         </div>
-        <div class="total-amount" id="total-display">₹0</div>
+        <div class="device-panel" data-device="mouse">
+          <div id="mouse-services" class="service-grid"></div>
+        </div>
       </div>
     </div>
 
-    <!-- RIGHT: Order Form -->
-    <div class="panel">
-      <p class="panel-tag">send_request</p>
-      <h2 class="panel-title">Your Details</h2>
+    <!-- Persistent Invoice Hub Sidebar (Right) -->
+    <div class="sticky-summary-hub">
+      <div class="panel">
+        <p class="panel-tag">Summary</p>
+        <h2 class="panel-title">Dynamic Package Invoice</h2>
 
-      <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
-        <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
-        <input type="hidden" name="Order Summary" id="order-summary-hidden" value="No services selected." />
-        <input type="hidden" name="Estimated Total" id="total-hidden" value="₹0" />
-
-        <div class="form-grid">
-          <!-- Name -->
-          <div class="field">
-            <label for="name">Your Name <span class="req">*</span></label>
-            <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
+        <div class="shipping-notice">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="4" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+            <path d="M10 6h1.5a1 1 0 0 1 .9.55l.6 1.2V11h-3V6Z" stroke="currentColor" stroke-width="1.2" />
+            <circle cx="3.5" cy="12" r="1" fill="currentColor" />
+            <circle cx="9.5" cy="12" r="1" fill="currentColor" />
+          </svg>
+          <div>
+            <strong>Logistics Variables Omitted</strong> Logistic transport overhead limits calculated outside base structural framework totals.
           </div>
+        </div>
 
-          <!-- Discord -->
-          <div class="field">
-            <label for="discord">Discord Username</label>
-            <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul#1234" />
+        <div class="total-container">
+          <div class="total-bar">
+            <span class="total-label">Subtotal Estimate</span>
+            <span class="total-amount" id="total-display">₹0</span>
           </div>
+          <div class="total-note">* Custom operations parameters evaluated upon arrival.</div>
+        </div>
 
-          <!-- Email -->
-          <div class="field">
-            <label for="email">Email Address <span class="req">*</span></label>
-            <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
-          </div>
+        <p class="panel-tag">Identity &amp; Routing</p>
+        <h2 class="panel-title">User Validation Profile</h2>
 
-          <!-- Phone -->
-          <div class="field">
-            <label for="phone">Phone / WhatsApp <span class="req">*</span></label>
-            <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
-          </div>
+        <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
+          <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
+          <input type="hidden" name="Order Summary" id="order-summary-hidden" value="No services selected." />
+          <input type="hidden" name="Estimated Total" id="total-hidden" value="₹0" />
 
-          <!-- Keyboard / PCB model -->
-          <div class="field full">
-            <label for="keyboard">Keyboard / PCB Model</label>
-            <input type="text" id="keyboard" name="Keyboard / PCB Model" placeholder="e.g. GMMK Pro, Keychron Q1, Custom PCB…" />
-          </div>
+          <input type="hidden" name="Keyboard Model" id="hidden-kb-model" value="" />
+          <input type="hidden" name="Keyboard Layout" id="hidden-kb-layout" value="" />
+          <input type="hidden" name="Keyboard Switch Name" id="hidden-kb-switch" value="" />
+          <input type="hidden" name="Keycaps" id="hidden-kb-keycaps" value="" />
+          <input type="hidden" name="Mouse Model" id="hidden-mouse-model" value="" />
+          <input type="hidden" name="Mouse Switch Name" id="hidden-mouse-switch" value="" />
+          <input type="hidden" name="Mouse Switch Source" id="hidden-mouse-switch-source" value="" />
 
-          <!-- Switch details -->
-          <div class="field full">
-            <label for="switches">Switch Details</label>
-            <input type="text" id="switches" name="Switch Details" placeholder="e.g. Gateron Yellow, 65 pcs, 3-pin…" />
-          </div>
-
-          <!-- Selected services -->
-          <div class="field full">
-            <label>Selected Services <span style="color:var(--t3);font-style:normal;text-transform:none;letter-spacing:0">(auto-filled from estimator)</span></label>
-            <div class="summary-box empty" id="summary-display">
-              No services selected yet. Use the estimator on the left →
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Legal Name Statement <span class="req">*</span></label>
+              <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="discord">Discord Handle Identity</label>
+              <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul_forge" />
+            </div>
+            <div class="field">
+              <label for="email">Primary Communication Node / Email <span class="req">*</span></label>
+              <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="phone">Mobile Network Interface / WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label>Aggregated Operations Manifest</label>
+              <div class="summary-box empty" id="summary-display">No active service processes declared.</div>
+            </div>
+            <div class="field">
+              <label for="notes">Engineering Notes / Explicit Structural Adjustments</label>
+              <textarea id="notes" name="Additional Notes" placeholder="Detail operational expectations, alignment metrics, grease parameters, target acoustic signatures..."></textarea>
+            </div>
+            <div class="field">
+              <label for="address">Postal Line Drop Address <span class="req">*</span></label>
+              <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
+            </div>
+            <div class="field">
+              <label for="city">City Element <span class="req">*</span></label>
+              <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
+            </div>
+            <div class="field">
+              <label for="state">Territory / State Province <span class="req">*</span></label>
+              <input type="text" id="state" name="State" placeholder="e.g. Jammu & Kashmir" required autocomplete="address-level1" />
+            </div>
+            <div class="field">
+              <label for="pincode">Postal Region Code / Pincode <span class="req">*</span></label>
+              <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
             </div>
           </div>
 
-          <!-- Additional notes -->
-          <div class="field full">
-            <label for="notes">Additional Notes / Special Requests</label>
-            <textarea id="notes" name="Additional Notes" placeholder="Any specific instructions, lube preferences, deadlines, or questions…"></textarea>
-          </div>
-
-          <!-- Address -->
-          <div class="field full">
-            <label for="address">Street Address <span class="req">*</span></label>
-            <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
-          </div>
-
-          <!-- City + State -->
-          <div class="field">
-            <label for="city">City <span class="req">*</span></label>
-            <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
-          </div>
-          <div class="field">
-            <label for="state">State <span class="req">*</span></label>
-            <input type="text" id="state" name="State" placeholder="e.g. Jammu & Kashmir" required autocomplete="address-level1" />
-          </div>
-
-          <!-- Pincode -->
-          <div class="field">
-            <label for="pincode">Pincode <span class="req">*</span></label>
-            <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
-          </div>
-        </div>
-
-        <button class="submit-btn" type="submit">
-          Send Order Request
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-
-        <p class="submit-note">
-          Your request goes directly to <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br/>
-          We’ll reach out within 24–48 hours to finalize your build details. 
-          By submitting, you agree to our <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a>.
-        </p>
-      </form>
+          <button class="submit-btn" type="submit">
+            Commit Configuration Manifest
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <p class="submit-note">
+            Telemetry routes directly onto <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br />
+            Processing takes up to 24–48 hours. Submitting confirms alignment with systemic <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a> modules.
+          </p>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand"><span>KeebForge</span><span class="logo-dot">.</span><span>in</span></div>
-      <p class="footer-tag">Quality work. Fair pricing. Fast turnaround.</p>
-      <p class="footer-copy">© 2026 — Designed &amp; built by <a href="https://portfolio.shadow269.in/" target="_blank" rel="noopener" class="dev-name">shadow269</a></p>
+  <footer class="site-footer">
+    <span class="footer-watermark" aria-hidden="true">KEEBFORGE</span>
+    <div class="footer-main">
+      <div>
+        <div class="footer-brand-line">
+          <span class="footer-brand-ico" aria-hidden="true">⌨</span>
+          <span>KeebForge<span class="logo-dot">.</span>in</span>
+        </div>
+        <p class="footer-blurb">Independent electronics workshop for custom keyboards. No middlemen, no markups — just precision switch, build, and repair work for the keeb community.</p>
+        <span class="footer-status">
+          <span class="footer-status-dot"></span>Accepting Orders
+        </span>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-col-links">
+          <a href="#services">_Switch Lubing</a>
+          <a href="#services">_Stabilizer Tuning</a>
+          <a href="#services">_Keyboard Builds</a>
+          <a href="#custom-design">_PCB Design</a>
+          <a href="#mouse-services">_Mouse Services</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <div class="footer-col-links">
+          <a href="#">_Home</a>
+          <a href="/order/">_Order</a>
+          <a href="/Terms&amp;Conditions/">_Terms &amp; Conditions</a>
+          <a href="/Review/">_Drop Reviews</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-sys-line">© 2026 KEEBFORGE.in // ELECTRONICS ENGINEER // JAMMU &amp; KASHMIR // SYSTEM_END</p>
+      <div class="footer-dev-credit">
+        Designed by <span class="dev-name">shadow269</span>
+      </div>
     </div>
   </footer>
 
   <script src="/assets/js/prices.js"></script>
   <script>
     const CHK_SVG = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const LAYOUT_MAP = {
+      '60%': { sw: 61, stab: 4 }, '65%': { sw: 68, stab: 4 }, '75%': { sw: 82, stab: 5 },
+      'TKL': { sw: 87, stab: 5 }, '96%': { sw: 96, stab: 6 }, '100%': { sw: 104, stab: 6 },
+      'Full Size': { sw: 108, stab: 7 }
+    };
+    const MOUSE_SWITCH_ITEM_NAMES = ['Switch Swap (Left / Right Click)', 'Middle / Side Button Switch Swap'];
+    const SECTIONS = [
+      { key: 'switchServices', showQty: false, target: 'keyboard-services' },
+      { key: 'stabServices', showQty: false, target: 'keyboard-services' },
+      { key: 'solderServices', showQty: false, target: 'keyboard-services' },
+      { key: 'customWork', showQty: false, isAllQuote: true, target: 'keyboard-services' },
+      { key: 'mouseSwitchServices', showQty: true, qtyUnit: 'msw', qtyDef: 2, qtyMax: 8, qtyLabel: 'Target Switch Units', target: 'mouse-services', hasSwitchDetail: true },
+      { key: 'mouseModServices', showQty: false, target: 'mouse-services' },
+    ];
 
     function priceLabel(item, groupUnit) {
       const unit = item.unit || groupUnit;
@@ -740,9 +1374,7 @@
       if (item.priceMin != null) {
         return `<span class="svc-price">₹${item.priceMin}–${item.priceMax}</span>`;
       }
-      const suffix = item.priceLabel
-        ? item.priceLabel.replace('₹' + item.price, '')
-        : (unit === 'stab' ? '/EA' : unit === 'flat' ? '' : '/SW');
+      const suffix = item.priceLabel ? item.priceLabel.replace('₹' + item.price, '') : (unit === 'stab' ? '/EA' : unit === 'flat' ? '' : '/SW');
       return `<span class="svc-price">+₹${item.price}${suffix}</span>`;
     }
 
@@ -750,11 +1382,8 @@
       const unit = item.unit || groupUnit;
       const isQuote = unit === 'quote' || (item.price === 0 && !item.priceMin);
       const isRange = item.priceMin != null;
-
       const label = document.createElement('label');
-      label.className = 'service-row' +
-        (item.combo ? ' combo-row' : '') +
-        (isQuote ? ' quote-row' : '');
+      label.className = `service-row${isQuote ? ' quote-row' : ''}${item.highlight ? ' highlight-row' : ''}`;
       label.dataset.price = isRange ? item.priceMin : (item.price || 0);
       label.dataset.priceMax = item.priceMax || 0;
       label.dataset.unit = unit;
@@ -762,10 +1391,7 @@
       if (item.comboReplaces) label.dataset.comboReplaces = JSON.stringify(item.comboReplaces);
       if (item.exclusiveWith) label.dataset.exclusiveWith = JSON.stringify(item.exclusiveWith);
 
-      const descHtml = item.popular
-        ? `${item.desc} &nbsp;<span class="combo-badge">★ Popular</span>`
-        : item.desc;
-
+      const descHtml = item.popular ? `${item.desc} <br/><span class="combo-badge">★ Recommended Process</span>` : item.desc;
       label.innerHTML = `
         <input type="checkbox" />
         <div class="chk-box">${CHK_SVG}</div>
@@ -778,68 +1404,78 @@
       return label;
     }
 
-    function qtyRowHTML(unit, defaultVal, max, label) {
-      return `
-        <div class="qty-row">
-          <span class="qty-label">${label}</span>
-          <div class="qty-ctrl">
-            <button class="qty-btn" type="button" onclick="adjustQty('${unit}',-1)">−</button>
-            <input class="qty-val" type="number" id="qty-${unit}" value="${defaultVal}" min="1" max="${max}" onchange="recalc()" />
-            <button class="qty-btn" type="button" onclick="adjustQty('${unit}',1)">+</button>
-          </div>
-        </div>`;
-    }
-
-    const QUOTE_NOTE_HTML = `
-      <div class="quote-note">
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        Tick the services you need. Pricing will be confirmed after reviewing your requirements on Discord.
-      </div>`;
-
     function renderGroups() {
-      const container = document.getElementById('estimator-groups');
       const P = window.KEEBFORGE_PRICES;
       if (!P) return;
 
-      const sections = [
-        { key: 'switchServices',  showQty: true,  qtyUnit: 'sw',   qtyDef: 65, qtyMax: 999, qtyLabel: 'Number of switches' },
-        { key: 'stabServices',    showQty: true,  qtyUnit: 'stab', qtyDef: 4,  qtyMax: 99,  qtyLabel: 'Number of stabilizers' },
-        { key: 'solderServices',  showQty: false },
-        { key: 'customWork',      showQty: false, isAllQuote: true },
-      ];
-
-      sections.forEach(sec => {
+      SECTIONS.forEach(sec => {
         const group = P[sec.key];
         if (!group) return;
+        const targetEl = document.getElementById(sec.target);
+        if (!targetEl) return;
 
         const div = document.createElement('div');
         div.className = 'est-group';
+        div.innerHTML = `<div class="est-group-label">${group.label}</div>`;
 
-        const lbl = document.createElement('div');
-        lbl.className = 'est-group-label';
-        lbl.textContent = group.label;
-        div.appendChild(lbl);
-
-        group.items.forEach(item => {
-          div.appendChild(buildRow(item, group.unit));
-        });
+        const grid = document.createElement('div');
+        grid.className = 'service-grid';
+        group.items.forEach(item => grid.appendChild(buildRow(item, group.unit)));
+        div.appendChild(grid);
 
         if (sec.showQty) {
           const qtyDiv = document.createElement('div');
-          qtyDiv.innerHTML = qtyRowHTML(sec.qtyUnit, sec.qtyDef, sec.qtyMax, sec.qtyLabel);
-          div.appendChild(qtyDiv.firstElementChild);
+          qtyDiv.className = 'qty-row';
+          qtyDiv.style.marginTop = '12px';
+          qtyDiv.innerHTML = `
+            <span class="qty-label">${sec.qtyLabel}</span>
+            <div class="qty-ctrl">
+              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',-1)">−</button>
+              <input class="qty-val" type="number" id="qty-${sec.qtyUnit}" value="${sec.qtyDef}" min="1" max="${sec.qtyMax}" onchange="recalc()" />
+              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',1)">+</button>
+            </div>`;
+          div.appendChild(qtyDiv);
         }
-
         if (sec.isAllQuote) {
           const noteDiv = document.createElement('div');
-          noteDiv.innerHTML = QUOTE_NOTE_HTML;
-          div.appendChild(noteDiv.firstElementChild);
+          noteDiv.className = 'inline-note';
+          noteDiv.style.marginTop = '12px';
+          noteDiv.innerHTML = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <span>Select custom engineering pathways. Dynamic quotes lock sequentially during manual staging verification passes on Discord.</span>`;
+          div.appendChild(noteDiv);
         }
-
-        container.appendChild(div);
+        if (sec.hasSwitchDetail) {
+          const detailDiv = document.createElement('div');
+          detailDiv.className = 'switch-detail-block';
+          detailDiv.id = 'mouse-switch-detail';
+          detailDiv.innerHTML = `
+            <div class="field-inline">
+              <label>Switch Name</label>
+              <input type="text" id="mouse-switch-name" placeholder="e.g. Kailh GM 8.0, Huano Blue Dot…" />
+            </div>
+            <div class="field-inline" style="margin-top: 12px;">
+              <label>Switch Source</label>
+              <div class="pill-radio-group" id="mouse-switch-source-group">
+                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Bring your own switch" /><span>Supply Own</span></label>
+                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Source from KeebForge" /><span>Lab Source</span></label>
+              </div>
+            </div>`;
+          div.appendChild(detailDiv);
+        }
+        targetEl.appendChild(div);
       });
-
       attachListeners();
+      attachInfoListeners();
+    }
+
+    function switchDevice(device) {
+      document.querySelectorAll('.device-panel').forEach(p => p.classList.toggle('active-device', p.dataset.device === device));
+      document.querySelectorAll('.device-tab').forEach(t => {
+        const isActive = t.dataset.device === device;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      document.getElementById('services-panel-title').textContent = device === 'keyboard' ? 'Available Keyboard Operation Tuning Modules' : 'Available Mouse Operation Tuning Modules';
     }
 
     function attachListeners() {
@@ -847,25 +1483,18 @@
         cb.addEventListener('change', () => {
           const row = cb.closest('.service-row');
           row.classList.toggle('selected', cb.checked);
-
           if (cb.checked) {
-            const replaces = row.dataset.comboReplaces
-              ? JSON.parse(row.dataset.comboReplaces) : [];
-            uncheckByName(replaces);
-
-            const exclusive = row.dataset.exclusiveWith
-              ? JSON.parse(row.dataset.exclusiveWith) : [];
-            uncheckByName(exclusive);
-
+            uncheckByName(row.dataset.comboReplaces ? JSON.parse(row.dataset.comboReplaces) : []);
+            uncheckByName(row.dataset.exclusiveWith ? JSON.parse(row.dataset.exclusiveWith) : []);
             document.querySelectorAll('.service-row[data-combo-replaces]').forEach(comboRow => {
-              const list = JSON.parse(comboRow.dataset.comboReplaces);
-              if (list.includes(row.dataset.name)) {
+              if (JSON.parse(comboRow.dataset.comboReplaces).includes(row.dataset.name)) {
                 comboRow.querySelector('input[type="checkbox"]').checked = false;
                 comboRow.classList.remove('selected');
               }
             });
           }
-
+          const anyChecked = Array.from(document.querySelectorAll('.service-row')).some(r => MOUSE_SWITCH_ITEM_NAMES.includes(r.dataset.name) && r.querySelector('input[type="checkbox"]').checked);
+          document.getElementById('mouse-switch-detail')?.classList.toggle('visible', anyChecked);
           recalc();
         });
       });
@@ -893,68 +1522,117 @@
         r.classList.remove('selected');
         r.querySelector('input[type="checkbox"]').checked = false;
       });
+      document.querySelectorAll('.pill-radio').forEach(p => p.classList.remove('selected'));
+      document.querySelectorAll('input[type="text"], textarea').forEach(i => i.value = '');
+      if (document.getElementById('qty-sw')) document.getElementById('qty-sw').value = 65;
+      if (document.getElementById('qty-stab')) document.getElementById('qty-stab').value = 4;
+      document.getElementById('mouse-switch-detail')?.classList.remove('visible');
       recalc();
     }
 
-    function recalc() {
-      const qtySw   = parseInt(document.getElementById('qty-sw')?.value)   || 1;
-      const qtyStab = parseInt(document.getElementById('qty-stab')?.value) || 1;
+    function selectPill(groupEl, selectedInput) {
+      groupEl.querySelectorAll('.pill-radio').forEach(p => p.classList.remove('selected'));
+      selectedInput.closest('.pill-radio').classList.add('selected');
+    }
 
+    function attachInfoListeners() {
+      document.getElementById('kb-model').addEventListener('input', (e) => document.getElementById('hidden-kb-model').value = e.target.value);
+      const layoutGroup = document.getElementById('layout-group');
+      layoutGroup.querySelectorAll('input[name="layout"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          selectPill(layoutGroup, radio);
+          document.getElementById('hidden-kb-layout').value = radio.value;
+          const mapping = LAYOUT_MAP[radio.value];
+          if (mapping) {
+            if (document.getElementById('qty-sw')) document.getElementById('qty-sw').value = mapping.sw;
+            if (document.getElementById('qty-stab')) document.getElementById('qty-stab').value = mapping.stab;
+          }
+          recalc();
+        });
+      });
+
+      document.getElementById('qty-sw').addEventListener('change', recalc);
+      document.getElementById('qty-stab').addEventListener('change', recalc);
+      document.getElementById('kb-switch-name').addEventListener('input', (e) => document.getElementById('hidden-kb-switch').value = e.target.value);
+
+      const keycapsGroup = document.getElementById('keycaps-group');
+      keycapsGroup.querySelectorAll('input[name="keycaps"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          selectPill(keycapsGroup, radio);
+          document.getElementById('hidden-kb-keycaps').value = radio.value;
+          document.getElementById('keycaps-note').style.display = radio.value === 'Keycaps Included' ? 'flex' : 'none';
+        });
+      });
+
+      document.getElementById('mouse-model').addEventListener('input', (e) => document.getElementById('hidden-mouse-model').value = e.target.value);
+      document.body.addEventListener('input', (e) => {
+        if (e.target?.id === 'mouse-switch-name') document.getElementById('hidden-mouse-switch').value = e.target.value;
+      });
+      document.body.addEventListener('change', (e) => {
+        if (e.target?.name === 'mouse-switch-source') {
+          selectPill(document.getElementById('mouse-switch-source-group'), e.target);
+          document.getElementById('hidden-mouse-switch-source').value = e.target.value;
+        }
+      });
+    }
+
+    function recalc() {
+      const qtySw = parseInt(document.getElementById('qty-sw')?.value) || 1;
+      const qtyStab = parseInt(document.getElementById('qty-stab')?.value) || 1;
+      const qtyMsw = parseInt(document.getElementById('qty-msw')?.value) || 1;
       let total = 0;
-      const lines = [];
-      const quoteLines = [];
+      const lines = [], quoteLines = [];
+      const tabCounts = { keyboard: 0, mouse: 0 };
+      const P = window.KEEBFORGE_PRICES;
 
       document.querySelectorAll('.service-row').forEach(row => {
         if (!row.querySelector('input[type="checkbox"]').checked) return;
-        const price    = parseInt(row.dataset.price)    || 0;
+        let device = 'keyboard';
+        if (P) {
+          for (const sec of SECTIONS) {
+            if (P[sec.key]?.items.some(i => i.name === row.dataset.name)) {
+              device = P[sec.key].device || 'keyboard';
+              break;
+            }
+          }
+        }
+        tabCounts[device] = (tabCounts[device] || 0) + 1;
+        const price = parseInt(row.dataset.price) || 0;
         const priceMax = parseInt(row.dataset.priceMax) || 0;
-        const unit     = row.dataset.unit;
-        const name     = row.dataset.name;
+        const unit = row.dataset.unit;
+        const name = row.dataset.name;
 
         if (unit === 'quote' || (price === 0 && priceMax === 0)) {
-          quoteLines.push(`${name} — Price to be quoted`);
+          quoteLines.push(`${name} — Pending Review`);
           return;
         }
-
         if (priceMax > 0) {
-          quoteLines.push(`${name} — ₹${price}–${priceMax} (confirmed on order)`);
+          quoteLines.push(`${name} — ₹${price}–${priceMax}`);
           return;
         }
-
-        const qty = unit === 'stab' ? qtyStab : unit === 'flat' ? 1 : qtySw;
+        const qty = unit === 'stab' ? qtyStab : unit === 'msw' ? qtyMsw : unit === 'flat' ? 1 : qtySw;
         const sub = price * qty;
         total += sub;
-        const unitLabel = unit === 'stab' ? 'EA' : unit === 'flat' ? 'flat' : 'SW';
-        lines.push(`${name} × ${qty} @ ₹${price}/${unitLabel} = ₹${sub}`);
+        lines.push(`${name} × ${qty} = ₹${sub}`);
       });
 
       document.getElementById('total-display').textContent = '₹' + total.toLocaleString('en-IN');
+      ['keyboard', 'mouse'].forEach(d => {
+        const el = document.getElementById('tab-count-' + d);
+        if (el) el.textContent = tabCounts[d] > 0 ? tabCounts[d] : '';
+      });
 
       const summaryEl = document.getElementById('summary-display');
-      const allLines = [...lines, ...quoteLines];
-      if (allLines.length === 0) {
-        summaryEl.textContent = 'No services selected yet. Use the estimator on the left →';
-        summaryEl.classList.add('empty');
+      if (lines.length === 0 && quoteLines.length === 0) {
+        summaryEl.textContent = 'No active service processes declared.';
+        summaryEl.className = 'summary-box empty';
       } else {
-        summaryEl.innerHTML =
-          lines.map(l => `<div style="margin-bottom:3px">${l}</div>`).join('') +
-          quoteLines.map(l => `<div style="margin-bottom:3px;color:var(--t2)">${l}</div>`).join('') +
-          `<div style="margin-top:8px;color:var(--acc);font-weight:600">
-            Estimated Total: ₹${total.toLocaleString('en-IN')}
-            ${quoteLines.length > 0 ? '<span style="color:var(--t3);font-size:0.8em"> + quoted / range items</span>' : ''}
-          </div>`;
-        summaryEl.classList.remove('empty');
+        summaryEl.className = 'summary-box';
+        summaryEl.innerHTML = lines.map(l => `<div style="margin-bottom:4px; font-weight:500;">${l}</div>`).join('') + quoteLines.map(l => `<div style="margin-bottom:4px;color:var(--t3);font-size:0.85rem;">${l}</div>`).join('');
       }
-
-      const summaryText = [
-        ...lines,
-        ...quoteLines,
-        `Estimated Total: ₹${total.toLocaleString('en-IN')}${quoteLines.length > 0 ? ' + quoted/range items' : ''}`
-      ].join('\n');
-      
-      document.getElementById('order-summary-hidden').value = summaryText || 'No services selected.';
-      document.getElementById('total-hidden').value =
-        '₹' + total.toLocaleString('en-IN') + (quoteLines.length > 0 ? ' + quoted/range items' : '');
+      const summaryText = [...lines, ...quoteLines, `Estimated Total: ₹${total.toLocaleString('en-IN')}`].join('\n');
+      document.getElementById('order-summary-hidden').value = (lines.length || quoteLines.length) ? summaryText : 'No services selected.';
+      document.getElementById('total-hidden').value = '₹' + total.toLocaleString('en-IN');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -963,4 +1641,5 @@
     });
   </script>
 </body>
+
 </html>

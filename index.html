@@ -4,13 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>KeebForge.in — Electronics Engineer &amp; Keyboard Custom Builds and Repairs</title>
+  <title>KeebForge.in — Electronics Engineer &amp; Custom Keyboard Build and Repairs</title>
 
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
 
-  <meta name="description"
-    content="Professional switch lubing, custom keyboard builds, PCB design, troubleshooting, and micro-soldering repairs. Based in Jammu &amp; Kashmir. Pan-India mail-in service." />
+  <meta name="description" content="Professional switch lubing, custom keyboard builds, PCB design, troubleshooting, and micro-soldering repairs. Based in Jammu &amp; Kashmir. Pan-India mail-in service." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://keebforge.in/" />
 
@@ -23,35 +21,31 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
 
+  <!-- Open Graph / Meta -->
   <meta property="og:title" content="KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist" />
-  <meta property="og:description"
-    content="Professional custom mechanical keyboard building, switch lubing, custom PCB design, and component-level electronics repair across India." />
+  <meta property="og:description" content="Professional custom mechanical keyboard building, switch lubing, custom PCB design, and component-level electronics repair across India." />
   <meta property="og:url" content="https://keebforge.in/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="KeebForge.in" />
   <meta property="og:locale" content="en_IN" />
-
   <meta property="og:image" content="https://keebforge.in/assets/img/Banner.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:alt" content="KeebForge.in — Engineering-grade Custom Keyboards &amp; Hardware Repairs" />
 
+  <!-- Twitter Meta -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist" />
-  <meta name="twitter:description"
-    content="Engineering-grade workshop handling custom mechanical keyboard builds, switch mods, and board-level micro-soldering diagnostics across India." />
+  <meta name="twitter:description" content="Engineering-grade workshop handling custom mechanical keyboard builds, switch mods, and board-level micro-soldering diagnostics across India." />
   <meta name="twitter:image" content="https://keebforge.in/assets/img/Banner.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+  
   <style>
-    /* ══════════════════════════════════════════════
-   ROOT & RESET
-══════════════════════════════════════════════ */
+    /* Global Token Declarations */
     :root {
       --black: #08070c;
       --bg: #0a0910;
@@ -82,17 +76,10 @@
       --r-sm: 10px;
       --r-md: 14px;
       --r-lg: 20px;
-      --r-xl: 30px;
-      --shadow-card:
-        0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-        0 24px 48px -12px rgba(6, 5, 12, 0.6),
-        0 8px 24px -8px rgba(124, 111, 242, 0.10);
+      --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 1px 0 0 rgba(255, 255, 255, 0.06) inset, 0 24px 48px -12px rgba(6, 5, 12, 0.6), 0 8px 24px -8px rgba(124, 111, 242, 0.10);
     }
 
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -105,9 +92,7 @@
     }
 
     body {
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 111, 242, 0.10) 0%, transparent 60%),
-        var(--bg);
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 111, 242, 0.10) 0%, transparent 60%), var(--bg);
       color: var(--t1);
       font-family: var(--ff-body);
       font-weight: 400;
@@ -115,25 +100,13 @@
       letter-spacing: -0.005em;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    img,
-    canvas {
-      display: block;
-    }
+    img, canvas { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
 
-    a {
-      text-decoration: none;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    /* ══════════════════════════════════════════════
-   LOADER
-══════════════════════════════════════════════ */
+    /* App Loader Block */
     .loader {
       position: fixed;
       inset: 0;
@@ -144,1765 +117,293 @@
       justify-content: center;
       transition: opacity 0.7s var(--ease-in), visibility 0.7s;
     }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-inner { text-align: center; }
+    .loader-logo { font-family: var(--ff-display); font-size: 1.65rem; font-weight: 700; letter-spacing: 0.02em; color: var(--t1); margin-bottom: 30px; }
+    .loader-logo .dot { color: var(--acc); }
+    .loader-logo .suffix { color: var(--t2); font-weight: 600; }
+    .loader-bar-wrap { width: 220px; height: 2px; background: rgba(255, 255, 255, 0.08); border-radius: 99px; overflow: hidden; margin: 0 auto 14px; }
+    .loader-bar { height: 100%; width: 0%; background: var(--acc); border-radius: 99px; transition: width 0.15s linear; box-shadow: 0 0 12px var(--acc-glow); }
+    .loader-text { font-size: 0.72rem; color: var(--t3); letter-spacing: 0.06em; font-family: var(--ff-display); }
 
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .loader-inner {
-      text-align: center;
-    }
-
-    .loader-logo {
-      font-family: var(--ff-display);
-      font-size: 1.65rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--t1);
-      margin-bottom: 30px;
-    }
-
-    .loader-logo .dot {
-      color: var(--acc);
-    }
-
-    .loader-logo .suffix {
-      color: var(--t2);
-      font-weight: 600;
-    }
-
-    .loader-bar-wrap {
-      width: 220px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 99px;
-      overflow: hidden;
-      margin: 0 auto 14px;
-    }
-
-    .loader-bar {
-      height: 100%;
-      width: 0%;
-      background: var(--acc);
-      border-radius: 99px;
-      transition: width 0.15s linear;
-      box-shadow: 0 0 12px var(--acc-glow);
-    }
-
-    .loader-text {
-      font-size: 0.72rem;
-      color: var(--t3);
-      letter-spacing: 0.06em;
-      font-family: var(--ff-display);
-    }
-
-    /* ══════════════════════════════════════════════
-   NAV
-══════════════════════════════════════════════ */
+    /* Structural Top Navigation Element */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: var(--nav-h);
       z-index: 500;
       transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
       border-bottom: 1px solid transparent;
     }
-
     .nav.scrolled {
       background: rgba(6, 6, 8, 0.75);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
       border-color: var(--bdr);
     }
+    .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--ff-display); font-size: 0.97rem; font-weight: 700; letter-spacing: 0.04em; color: var(--t1); margin-right: auto; }
+    .logo-dot { color: var(--acc); }
+    .nav-links { display: flex; gap: 30px; margin-right: 32px; align-items: center; }
+    .nav-link { font-size: 0.76rem; font-weight: 500; color: var(--t2); letter-spacing: 0.03em; transition: color 0.2s; }
+    .nav-link:hover { color: var(--t1); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; font-family: var(--ff-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #000; background: var(--acc); padding: 7px 16px; border-radius: 99px; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 20px var(--acc-glow); }
 
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 var(--pad-x);
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
+    /* Cinematic Frame Sequence Container Mapping */
+    .hero-scroll { height: 500vh; position: relative; }
+    .hero-sticky { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: var(--black); }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlays { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    .ov { position: absolute; inset: 0; }
+    .ov-vignette { background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%); }
+    .ov-center { background: radial-gradient(ellipse 70% 55% at center 58%, rgba(0, 0, 0, 0.55) 0%, transparent 100%); }
+    .ov-bottom { background: linear-gradient(to top, rgba(8, 10, 12, 1) 0%, rgba(8, 10, 12, 0.65) 35%, rgba(8, 10, 12, 0.2) 65%, transparent 100%); }
+    .ov-top { background: linear-gradient(to bottom, rgba(6, 6, 8, 0.55) 0%, transparent 18%); }
+    .hero-content { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--nav-h) var(--pad-x) 80px; transition: opacity 0.25s ease, transform 0.25s ease; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 600; color: rgba(255, 255, 255, 0.95); background: rgba(0, 0, 0, 0.52); border: 1px solid rgba(255, 255, 255, 0.16); padding: 5px 14px; border-radius: 99px; margin-bottom: 24px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); letter-spacing: 0.02em; animation: fadeUp 1s 0.1s both; }
+    .badge-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 10px var(--acc-glow); animation: pulse 2.4s ease-in-out infinite; }
+    .badge-pipe { color: rgba(255, 255, 255, 0.35); }
 
-    .nav-logo {
-      font-family: var(--ff-display);
-      font-size: 0.97rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--t1);
-      margin-right: auto;
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.75); } }
+    .hero-title { font-family: var(--ff-display); font-size: clamp(2rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--t1); display: flex; flex-direction: column; gap: 2px; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55); }
+    .htl { display: block; animation: fadeUp 0.9s calc(var(--d) * 0.12s + 0.2s) both; }
+    .htl-accent { color: var(--acc); }
 
-    .logo-dot {
-      color: var(--acc);
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-sub { font-size: clamp(0.85rem, 1.5vw, 1rem); color: rgba(255, 255, 255, 0.88); letter-spacing: 0.05em; margin-bottom: 12px; animation: fadeUp 0.9s 0.55s both; }
+    .hero-desc { font-size: clamp(0.8rem, 1.2vw, 0.95rem); color: rgba(255, 255, 255, 0.72); margin-bottom: 34px; line-height: 1.65; animation: fadeUp 0.9s 0.68s both; }
+    .hero-btns { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s 0.82s both; }
+    
+    .btn-prime { display: inline-flex; align-items: center; gap: 7px; font-family: var(--ff-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: #000; background: var(--acc); padding: 11px 24px; border-radius: 99px; transition: transform 0.22s var(--ease-out), box-shadow 0.22s; }
+    .btn-prime:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 32px var(--acc-glow), 0 0 0 4px var(--acc-dim); }
+    .btn-prime-lg { font-size: 0.92rem; padding: 13px 32px; }
+    .btn-ghost { display: inline-flex; align-items: center; font-family: var(--ff-display); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.03em; color: var(--t2); border: 1px solid var(--bdr); padding: 11px 22px; border-radius: 99px; transition: color 0.2s, border-color 0.2s, transform 0.2s; }
+    .btn-ghost:hover { color: var(--t1); border-color: var(--bdr-h); transform: translateY(-1px); }
+    
+    .scroll-ind { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 7px; color: var(--t3); background: none; border: none; cursor: pointer; animation: fadeUp 1s 1.1s both; }
+    .si-mouse { width: 18px; height: 28px; border: 1.5px solid currentColor; border-radius: 9px; display: flex; justify-content: center; padding-top: 4px; }
+    .si-dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; animation: scroll-dot 1.8s ease-in-out infinite; }
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      margin-right: 32px;
-    }
+    @keyframes scroll-dot { 0% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(12px); opacity: 0; } 100% { transform: translateY(0); opacity: 0; } }
+    .si-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--ff-display); }
 
-    .nav-link {
-      font-size: 0.76rem;
-      font-weight: 500;
-      color: var(--t2);
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
+    /* Core Layout Blocks */
+    #main { position: relative; z-index: 10; background: var(--bg); }
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); width: 100%; }
 
-    .nav-link:hover {
-      color: var(--t1);
-    }
+    /* Marquee Module */
+    .marquee { border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); overflow: hidden; background: var(--bg1); padding: 12px 0; }
+    .marquee-track { display: flex; gap: 22px; white-space: nowrap; animation: marquee-scroll 28s linear infinite; width: max-content; }
+    .marquee-track span { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--t3); font-family: var(--ff-display); }
+    .marquee-track .dot { color: var(--acc); opacity: 0.6; }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--ff-display);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #000;
-      background: var(--acc);
-      padding: 7px 16px;
-      border-radius: 99px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    /* Standard Core Section Headers */
+    .svc-section, .info-section, .cta-section, .gallery-section { padding-top: clamp(60px, 8vw, 100px); }
+    .sec-head { margin-bottom: 40px; }
+    .sec-num { display: block; font-family: var(--ff-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acc); margin-bottom: 9px; }
+    .sec-title { font-family: var(--ff-display); font-size: clamp(1.65rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.025em; color: var(--t1); margin-bottom: 10px; line-height: 1.1; }
+    .sec-desc { font-size: 0.9rem; color: var(--t2); max-width: 500px; line-height: 1.65; }
 
-    .nav-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 20px var(--acc-glow);
-    }
+    /* Cards Engine Adaptive Layout Systems */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .cards-wide { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { position: relative; background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 24px 20px; overflow: hidden; transition: transform 0.28s var(--ease-out), border-color 0.28s, box-shadow 0.28s; display: flex; flex-direction: column; }
+    .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, transparent 55%); pointer-events: none; }
+    .card:hover { transform: translateY(-4px); border-color: var(--bdr-h); box-shadow: var(--shadow-card); }
+    
+    .ch { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; gap: 8px; }
+    .ci { font-size: 1.5rem; flex-shrink: 0; line-height: 1; }
+    .cp { text-align: right; }
+    .ca { display: block; font-family: var(--ff-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 700; font-style: normal; color: var(--acc); line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 28px var(--acc-glow); }
+    .ca-lg { font-size: clamp(1.8rem, 3.5vw, 2.6rem); text-shadow: 0 0 40px var(--acc-glow); }
+    .cu { display: block; font-size: 0.6rem; color: var(--t3); letter-spacing: 0.04em; margin-top: 3px; text-transform: uppercase; }
+    .ct { font-family: var(--ff-display); font-size: 1rem; font-weight: 700; color: var(--t1); margin-bottom: 8px; line-height: 1.3; }
+    .cd { font-size: 0.8rem; color: var(--t2); line-height: 1.6; }
+    
+    .qbadge { display: inline-block; font-family: var(--ff-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t3); background: var(--bg3); border: 1px solid var(--bdr); padding: 3px 10px; border-radius: 99px; margin-top: 2px; }
+    .card-q { opacity: 0.85; }
+    .card-q:hover { opacity: 1; }
+    .card-solo { max-width: 100%; width: 100%; }
 
-    @media (max-width: 640px) {
-      .nav-links {
-        display: none;
-      }
-    }
+    /* Featured Deal Component mapping */
+    .card-feat { background: linear-gradient(140deg, rgba(212, 247, 0, 0.06) 0%, rgba(212, 247, 0, 0.01) 60%, transparent 100%); border-color: rgba(212, 247, 0, 0.2); padding: 24px; }
+    .card-feat:hover { border-color: rgba(212, 247, 0, 0.45); box-shadow: 0 0 80px var(--acc-glow2), var(--shadow-card); }
+    .feat-badge { display: inline-block; font-family: var(--ff-display); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #000; background: var(--acc); padding: 3px 11px; border-radius: 99px; margin-bottom: 14px; width: max-content; }
+    .feat-list { margin: 16px 0 24px; display: flex; flex-direction: column; gap: 8px; }
+    .feat-list li { font-size: 0.8rem; color: var(--t2); display: flex; align-items: center; gap: 8px; }
+    .chk { color: var(--acc); font-weight: 700; }
+    .btn-feat { display: block; font-family: var(--ff-display); font-size: 0.8rem; font-weight: 700; color: #000; background: var(--acc); padding: 12px 22px; border-radius: 99px; transition: transform 0.2s, box-shadow 0.2s; text-align: center; cursor: pointer; border: none; width: 100%; }
+    .btn-feat:hover { transform: translateY(-2px); box-shadow: 0 0 24px var(--acc-glow); }
 
-    /* ══════════════════════════════════════════════
-   HERO SCROLL + STICKY
-══════════════════════════════════════════════ */
-    .hero-scroll {
-      height: 500vh;
-      position: relative;
-    }
+    /* Switch Module Structural Grid */
+    .switch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .switch-cards-wrap { grid-column: 1 / 3; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .combo-wrap { grid-column: 3 / 4; display: flex; }
+    .combo-wrap .card-feat { flex: 1; display: flex; flex-direction: column; }
+    .combo-wrap .card-feat .cd { flex-grow: 1; }
 
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: var(--black);
-    }
+    /* Stabilizer Block Layout */
+    .cards-stab { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; justify-content: center; }
 
-    #hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    /* Workspace Presentation Sample Work CSS Section */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .gallery-item { position: relative; background: var(--bg1); border: 1px solid var(--bdr); border-radius: var(--r-md); overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease-out), filter 0.4s; filter: brightness(0.88) saturate(0.85); }
+    .gallery-item:hover img { transform: scale(1.04); filter: brightness(1) saturate(1); }
+    .gallery-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 6, 8, 0.9) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 20px; }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label { font-family: var(--ff-display); font-size: 0.8rem; font-weight: 700; color: var(--t1); letter-spacing: 0.04em; }
+    
+    .gallery-placeholder { background: var(--bg1); border: 1.5px dashed var(--bdr-h); border-radius: var(--r-md); aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--t3); width: 100%; text-align: center; padding: 20px; }
+    .gallery-placeholder svg { opacity: 0.4; }
+    .gallery-placeholder-text { font-family: var(--ff-display); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; }
 
-    .hero-overlays {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
+    /* Customer Feedback Infinite Stream CSS Components */
+    .reviews-section { padding-top: clamp(60px, 8vw, 100px); overflow: hidden; }
+    .reviews-meta { display: flex; align-items: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+    .reviews-avg { display: flex; align-items: baseline; gap: 6px; }
+    .reviews-avg-num { font-family: var(--ff-display); font-size: 2.4rem; font-weight: 700; color: var(--acc); line-height: 1; text-shadow: 0 0 28px var(--acc-glow); }
+    .reviews-avg-label { font-size: 0.72rem; color: var(--t3); letter-spacing: 0.04em; }
+    .reviews-avg-stars { display: flex; gap: 3px; align-items: center; }
+    .reviews-avg-stars .star { font-size: 1.1rem; color: var(--acc); }
+    .reviews-count { font-size: 0.72rem; color: var(--t3); letter-spacing: 0.04em; }
 
-    .ov {
-      position: absolute;
-      inset: 0;
-    }
+    .marquee-reviews-container { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); }
+    .reviews-marquee-row { display: flex; overflow: hidden; width: 100%; mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%); }
+    .reviews-marquee-track { display: flex; gap: 20px; width: max-content; padding: 10px 0; }
+    .track-left { animation: review-scroll-left 45s linear infinite; }
+    .track-right { animation: review-scroll-right 45s linear infinite; }
+    .reviews-marquee-row:hover .reviews-marquee-track { animation-play-state: paused; }
 
-    .ov-vignette {
-      background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
-    }
+    @keyframes review-scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes review-scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
-    .ov-center {
-      background: radial-gradient(ellipse 70% 55% at center 58%, rgba(0, 0, 0, 0.55) 0%, transparent 100%);
-    }
+    .review-card { background: var(--bg1); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 24px; display: flex; flex-direction: column; gap: 14px; width: 340px; flex-shrink: 0; transition: border-color 0.25s, box-shadow 0.25s; position: relative; }
+    .review-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0%, transparent 55%); pointer-events: none; }
+    .review-card:hover { border-color: var(--bdr-h); box-shadow: var(--shadow-card); }
+    .review-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .review-stars { display: flex; gap: 2px; }
+    .review-stars .star { font-size: 0.78rem; color: var(--acc); }
+    .review-stars .star-empty { color: var(--t3); }
+    .review-service-badge { font-family: var(--ff-display); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--acc); background: var(--acc-dim); border: 1px solid rgba(212, 247, 0, 0.18); padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
+    .review-text { font-size: 0.82rem; color: var(--t2); line-height: 1.65; flex: 1; }
+    .review-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px solid var(--bdr); }
+    .review-author { display: flex; align-items: center; gap: 8px; }
+    .review-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-family: var(--ff-display); font-size: 0.65rem; font-weight: 700; color: var(--acc); flex-shrink: 0; }
+    .review-name { font-family: var(--ff-display); font-size: 0.76rem; font-weight: 700; color: var(--t1); }
+    .review-location { font-size: 0.67rem; color: var(--t3); }
+    .review-meta-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+    .review-date { font-size: 0.63rem; color: var(--t3); letter-spacing: 0.04em; }
+    .review-verified { display: inline-flex; align-items: center; gap: 3px; font-family: var(--ff-display); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.06em; color: #5dde6a; text-transform: uppercase; }
 
-    .ov-bottom {
-      background: linear-gradient(to top, rgba(8, 10, 12, 1) 0%, rgba(8, 10, 12, 0.65) 35%, rgba(8, 10, 12, 0.2) 65%, transparent 100%);
-    }
+    /* Informational Module Block CSS Layout */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .info-card { background: var(--bg1); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 26px 22px; transition: background 0.25s, border-color 0.28s, transform 0.28s var(--ease-out); }
+    .info-card:hover { background: var(--bg2); border-color: var(--bdr-h); transform: translateY(-4px); }
+    .info-ico { font-size: 1.75rem; margin-bottom: 14px; display: block; line-height: 1; }
+    .info-card h4 { font-family: var(--ff-display); font-size: 0.92rem; font-weight: 700; color: var(--t1); margin-bottom: 7px; }
+    .info-card p { font-size: 0.8rem; color: var(--t2); line-height: 1.65; }
 
-    .ov-top {
-      background: linear-gradient(to bottom, rgba(6, 6, 8, 0.55) 0%, transparent 18%);
-    }
+    /* Component Repair Forms Architecture */
+    .repair-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .inquiry-form-wrap { background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 26px 24px; position: relative; overflow: hidden; }
+    .inquiry-form-wrap::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 55%); pointer-events: none; }
+    .inquiry-form-title { font-family: var(--ff-display); font-size: 1rem; font-weight: 700; color: var(--t1); margin-bottom: 6px; }
+    .inquiry-form-sub { font-size: 0.78rem; color: var(--t3); margin-bottom: 24px; line-height: 1.5; }
+    
+    .form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-row label { font-family: var(--ff-display); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t3); }
+    .form-row input, .form-row textarea { background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r-sm); color: var(--t1); font-family: var(--ff-body); font-size: 0.85rem; padding: 11px 14px; width: 100%; outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: vertical; }
+    .form-row input::placeholder, .form-row textarea::placeholder { color: var(--t3); }
+    .form-row input:focus, .form-row textarea:focus { border-color: rgba(212, 247, 0, 0.4); box-shadow: 0 0 0 3px rgba(212, 247, 0, 0.07); }
+    .form-row textarea { min-height: 100px; }
+    .btn-form-submit { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; font-family: var(--ff-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.04em; color: #000; background: var(--acc); padding: 12px 22px; border-radius: 99px; border: none; cursor: pointer; margin-top: 8px; transition: transform 0.22s var(--ease-out), box-shadow 0.22s; }
+    .btn-form-submit:hover { transform: translateY(-2px); box-shadow: 0 0 28px var(--acc-glow); }
 
-    .hero-content {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: var(--nav-h) var(--pad-x) 80px;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
+    /* Marketing Closing Panel Conversion Section */
+    .cta-section { padding: clamp(80px, 12vw, 140px) var(--pad-x) clamp(60px, 10vw, 110px); text-align: center; position: relative; overflow: hidden; }
+    .cta-wrap { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-tag { display: inline-block; font-family: var(--ff-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acc); margin-bottom: 16px; }
+    .cta-title { font-family: var(--ff-display); font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; letter-spacing: -0.03em; color: var(--t1); line-height: 1.1; margin-bottom: 16px; }
+    .cta-desc { font-size: 0.95rem; color: var(--t2); line-height: 1.65; margin-bottom: 40px; }
+    .cta-deco { position: absolute; inset: -40%; background: radial-gradient(ellipse at center, var(--acc-dim) 0%, transparent 65%); z-index: -1; pointer-events: none; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 28px 28px; z-index: 0; mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%); }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.95);
-      background: rgba(0, 0, 0, 0.52);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 5px 14px;
-      border-radius: 99px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      letter-spacing: 0.02em;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
-      animation: fadeUp 1s 0.1s both;
-    }
+    /* System Micro-Solder Brand Footer Layouts */
+    .site-footer { position: relative; background: var(--bg1); border-top: 2px solid var(--acc); box-shadow: 0 0 24px var(--acc-glow2); overflow: hidden; }
+    .footer-watermark { position: absolute; right: -0.02em; bottom: -0.16em; font-family: var(--ff-display); font-size: clamp(5rem, 15vw, 12rem); font-weight: 700; letter-spacing: -0.02em; color: var(--t1); opacity: 0.025; line-height: 1; white-space: nowrap; pointer-events: none; user-select: none; z-index: 0; }
+    .footer-main { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 60px var(--pad-x) 40px; display: grid; grid-template-columns: 1.5fr repeat(2, 1fr); gap: 40px; }
+    .footer-brand-line { display: flex; align-items: center; gap: 9px; font-family: var(--ff-display); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; color: var(--t1); margin-bottom: 16px; }
+    .footer-brand-line .logo-dot { color: var(--acc); }
+    .footer-brand-ico { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 5px; background: var(--acc-dim); border: 1px solid rgba(201, 243, 29, 0.28); color: var(--acc); font-size: 0.75rem; flex-shrink: 0; }
+    .footer-blurb { font-size: 0.85rem; color: var(--t3); line-height: 1.7; max-width: 280px; }
+    
+    .footer-status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--ff-display); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--t2); background: var(--bg2); border: 1px solid var(--bdr); padding: 6px 12px; border-radius: var(--r-sm); margin-top: 20px; width: max-content; }
+    .footer-status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 10px var(--acc-glow); animation: pulse 2.4s ease-in-out infinite; }
+    
+    .footer-col-title { font-family: var(--ff-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--acc); padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--bdr); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-col-links a { font-size: 0.82rem; color: var(--t2); transition: color 0.18s, transform 0.18s; width: fit-content; }
+    .footer-col-links a:hover { color: var(--acc); transform: translateX(2px); }
+    
+    .footer-bottom { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 24px var(--pad-x) 32px; border-top: 1px solid var(--bdr); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .footer-sys-line { font-size: 0.68rem; letter-spacing: 0.02em; color: var(--t3); font-family: var(--ff-display); }
+    .footer-dev-credit { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; color: var(--t3); transition: color 0.2s; font-family: var(--ff-display); }
+    .footer-dev-credit:hover { color: var(--t2); }
+    .footer-dev-credit .dev-name { color: var(--acc); font-weight: 700; }
 
-    .badge-pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--acc);
-      box-shadow: 0 0 10px var(--acc-glow);
-      animation: pulse 2.4s ease-in-out infinite;
-    }
+    /* Community Group-Buy Modal Modules */
+    .gb-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s var(--ease-out), visibility 0.4s; }
+    .gb-modal.modal-open { opacity: 1; visibility: visible; }
+    .gb-modal-overlay { position: absolute; inset: 0; background: rgba(4, 5, 6, 0.85); backdrop-filter: blur(8px); }
+    .gb-modal-content { position: relative; background: var(--bg1); border: 1px solid var(--bdr-h); border-radius: var(--r-md); padding: 32px; max-width: 460px; width: 90%; transform: translateY(20px); transition: transform 0.4s var(--ease-out); box-shadow: 0 0 50px rgba(0, 229, 255, 0.15), var(--shadow-card); }
+    .gb-modal.modal-open .gb-modal-content { transform: translateY(0); }
+    .gb-modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; color: var(--t3); cursor: pointer; transition: color 0.2s; line-height: 1; }
+    .gb-modal-close:hover { color: var(--t1); }
 
-    .badge-pipe {
-      color: rgba(255, 255, 255, 0.35);
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.4;
-        transform: scale(0.75);
-      }
-    }
-
-    .hero-title {
-      font-family: var(--ff-display);
-      font-size: clamp(1.9rem, 5.6vw, 4.6rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--t1);
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 8px 48px rgba(0, 0, 0, 0.35);
-    }
-
-    .htl {
-      display: block;
-      animation: fadeUp 0.9s calc(var(--d) * 0.12s + 0.2s) both;
-    }
-
-    .htl-accent {
-      color: var(--acc);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-sub {
-      font-size: clamp(0.82rem, 1.6vw, 0.96rem);
-      color: rgba(255, 255, 255, 0.88);
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-      animation: fadeUp 0.9s 0.55s both;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75), 0 2px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-desc {
-      font-size: clamp(0.76rem, 1.3vw, 0.88rem);
-      color: rgba(255, 255, 255, 0.72);
-      margin-bottom: 34px;
-      line-height: 1.65;
-      animation: fadeUp 0.9s 0.68s both;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75), 0 2px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-btns {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.9s 0.82s both;
-    }
-
-    .btn-prime {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-family: var(--ff-display);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #000;
-      background: var(--acc);
-      padding: 11px 24px;
-      border-radius: 99px;
-      transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
-    }
-
-    .btn-prime:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 32px var(--acc-glow), 0 0 0 4px var(--acc-dim);
-    }
-
-    .btn-prime-lg {
-      font-size: 0.92rem;
-      padding: 13px 32px;
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--ff-display);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: var(--t2);
-      border: 1px solid var(--bdr);
-      padding: 11px 22px;
-      border-radius: 99px;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    .btn-ghost:hover {
-      color: var(--t1);
-      border-color: var(--bdr-h);
-      transform: translateY(-1px);
-    }
-
-    .scroll-ind {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      color: var(--t3);
-      transition: opacity 0.4s;
-      animation: fadeUp 1s 1.1s both;
-    }
-
-    button.scroll-ind {
-      background: none;
-      border: none;
-      font-family: inherit;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .si-mouse {
-      width: 18px;
-      height: 28px;
-      border: 1.5px solid currentColor;
-      border-radius: 9px;
-      display: flex;
-      justify-content: center;
-      padding-top: 4px;
-    }
-
-    .si-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: currentColor;
-      animation: scroll-dot 1.8s ease-in-out infinite;
-    }
-
-    @keyframes scroll-dot {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      60% {
-        transform: translateY(12px);
-        opacity: 0;
-      }
-
-      100% {
-        transform: translateY(0);
-        opacity: 0;
-      }
-    }
-
-    .si-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-family: var(--ff-display);
-    }
-
-    .frame-hud {
-      position: absolute;
-      bottom: 32px;
-      right: var(--pad-x);
-      z-index: 3;
-      font-family: var(--ff-display);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--t3);
-      animation: fadeUp 1s 1.2s both;
-    }
-
-    .fhud-sep {
-      margin: 0 3px;
-      opacity: 0.4;
-    }
+    /* Detailed Mochi Specification Panel Architectures */
+    .gb-detail-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+    .gb-media-pane { position: sticky; top: calc(var(--nav-h) + 24px); display: flex; flex-direction: column; gap: 16px; }
+    .gb-hardware-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
 
     /* ══════════════════════════════════════════════
-   MAIN / WRAP
-══════════════════════════════════════════════ */
-    #main {
-      position: relative;
-      z-index: 10;
-      background: var(--bg);
-    }
-
-    .wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 var(--pad-x);
-    }
-
-    /* ══════════════════════════════════════════════
-   MARQUEE
-══════════════════════════════════════════════ */
-    .marquee {
-      border-top: 1px solid var(--bdr);
-      border-bottom: 1px solid var(--bdr);
-      overflow: hidden;
-      background: var(--bg1);
-      padding: 12px 0;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 22px;
-      white-space: nowrap;
-      animation: marquee-scroll 28s linear infinite;
-      width: max-content;
-    }
-
-    .marquee-track span {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--t3);
-      font-family: var(--ff-display);
-    }
-
-    .marquee-track .dot {
-      color: var(--acc);
-      opacity: 0.6;
-    }
-
-    @keyframes marquee-scroll {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* ══════════════════════════════════════════════
-   SECTION HEADERS
-══════════════════════════════════════════════ */
-    .svc-section,
-    .info-section,
-    .cta-section,
-    .gallery-section {
-      padding-top: 90px;
-    }
-
-    .sec-head {
-      margin-bottom: 46px;
-    }
-
-    .sec-num {
-      display: block;
-      font-family: var(--ff-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--acc);
-      margin-bottom: 9px;
-    }
-
-    .sec-title {
-      font-family: var(--ff-display);
-      font-size: clamp(1.65rem, 4vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      color: var(--t1);
-      margin-bottom: 10px;
-      line-height: 1.1;
-    }
-
-    .sec-desc {
-      font-size: 0.9rem;
-      color: var(--t2);
-      max-width: 500px;
-      line-height: 1.65;
-    }
-
-    /* ══════════════════════════════════════════════
-   CARDS GRID
-══════════════════════════════════════════════ */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 13px;
-    }
-
-    .cards-wide {
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    }
-
-    .cards-center {
-      justify-items: center;
-    }
-
-    .card {
-      position: relative;
-      background: var(--surf);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-md);
-      padding: 20px 18px;
-      overflow: hidden;
-      transition: transform 0.28s var(--ease-out), border-color 0.28s, box-shadow 0.28s;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--bdr-h);
-      box-shadow: var(--shadow-card);
-    }
-
-    .ch {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 8px;
-    }
-
-    .ci {
-      font-size: 1.35rem;
-      flex-shrink: 0;
-    }
-
-    .cp {
-      text-align: right;
-    }
-
-    /* ── PRICE NUMBERS ── */
-    .ca {
-      display: block;
-      font-family: var(--ff-display);
-      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-      font-weight: 700;
-      font-style: normal;
-      color: var(--acc);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      text-shadow: 0 0 28px var(--acc-glow);
-    }
-
-    .ca-lg {
-      font-size: clamp(2rem, 3.8vw, 2.9rem);
-      text-shadow: 0 0 40px var(--acc-glow);
-    }
-
-    .cu {
-      display: block;
-      font-size: 0.6rem;
-      color: var(--t3);
-      letter-spacing: 0.04em;
-      margin-top: 3px;
-    }
-
-    .ct {
-      font-family: var(--ff-display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--t1);
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-
-    .cd {
-      font-size: 0.78rem;
-      color: var(--t2);
-      line-height: 1.6;
-    }
-
-    .qbadge {
-      display: inline-block;
-      font-family: var(--ff-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--t3);
-      background: var(--bg3);
-      border: 1px solid var(--bdr);
-      padding: 3px 9px;
-      border-radius: 99px;
-      align-self: flex-start;
-      margin-top: 2px;
-    }
-
-    .card-q {
-      opacity: 0.82;
-    }
-
-    .card-q:hover {
-      opacity: 1;
-    }
-
-    .card-solo {
-      max-width: 460px;
-      width: 100%;
-    }
-
-    .card-feat {
-      background: linear-gradient(140deg, rgba(212, 247, 0, 0.07) 0%, rgba(212, 247, 0, 0.02) 60%, transparent 100%);
-      border-color: rgba(212, 247, 0, 0.2);
-      width: 100%;
-      padding: 24px 22px;
-    }
-
-    .card-feat:hover {
-      border-color: rgba(212, 247, 0, 0.45);
-      box-shadow: 0 0 80px var(--acc-glow2), var(--shadow-card);
-    }
-
-    .feat-badge {
-      display: inline-block;
-      font-family: var(--ff-display);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #000;
-      background: var(--acc);
-      padding: 3px 11px;
-      border-radius: 99px;
-      margin-bottom: 14px;
-    }
-
-    .feat-list {
-      margin: 12px 0 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .feat-list li {
-      font-size: 0.78rem;
-      color: var(--t2);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .chk {
-      color: var(--acc);
-      font-weight: 700;
-    }
-
-    .btn-feat {
-      display: inline-block;
-      font-family: var(--ff-display);
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #000;
-      background: var(--acc);
-      padding: 10px 22px;
-      border-radius: 99px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-align: center;
-    }
-
-    .btn-feat:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 24px var(--acc-glow);
-    }
-
-    /* ══════════════════════════════════════════════
-   SWITCH SERVICES — 3×2 GRID + COMBO INLINE
-══════════════════════════════════════════════ */
-    .switch-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 13px;
-    }
-
-    .switch-grid .switch-cards-wrap {
-      grid-column: 1 / 3;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 13px;
-    }
-
-    .switch-grid .combo-wrap {
-      grid-column: 3 / 4;
-      grid-row: 1 / 3;
-      display: flex;
-    }
-
-    .switch-grid .combo-wrap .card-feat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .switch-grid .combo-wrap .card-feat .feat-list {
-      flex: 1;
-    }
-
-    @media (max-width: 900px) {
-      .switch-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .switch-grid .switch-cards-wrap {
-        grid-column: 1 / 3;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .switch-grid .combo-wrap {
-        grid-column: 1 / 3;
-        grid-row: auto;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .switch-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .switch-grid .switch-cards-wrap {
-        grid-column: 1 / 2;
-        grid-template-columns: 1fr;
-      }
-
-      .switch-grid .combo-wrap {
-        grid-column: 1 / 2;
-      }
-    }
-
-    /* ══════════════════════════════════════════════
-   STABILIZERS — centered cards
-══════════════════════════════════════════════ */
-    .cards-stab {
-      display: flex;
-      gap: 13px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cards-stab .card {
-      flex: 0 1 250px;
-      min-width: 190px;
-    }
-
-    /* ══════════════════════════════════════════════
-   SAMPLE IMAGES SECTION
-══════════════════════════════════════════════ */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
-    }
-
-    .gallery-item {
-      position: relative;
-      background: var(--bg1);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-md);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      transition: transform 0.28s var(--ease-out), border-color 0.28s, box-shadow 0.28s;
-      cursor: pointer;
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-5px);
-      border-color: var(--bdr-h);
-      box-shadow: var(--shadow-card);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s var(--ease-out), filter 0.4s;
-      filter: brightness(0.88) saturate(0.85);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-      filter: brightness(1) saturate(1);
-    }
-
-    .gallery-item-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(6, 6, 8, 0.85) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.35s;
-      display: flex;
-      align-items: flex-end;
-      padding: 16px 18px;
-    }
-
-    .gallery-item:hover .gallery-item-overlay {
-      opacity: 1;
-    }
-
-    .gallery-item-label {
-      font-family: var(--ff-display);
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--t1);
-      letter-spacing: 0.04em;
-    }
-
-    .gallery-placeholder {
-      background: var(--bg1);
-      border: 1.5px dashed var(--bdr-h);
-      border-radius: var(--r-md);
-      aspect-ratio: 4/3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--t3);
-      width: 100%;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .gallery-placeholder svg {
-      opacity: 0.4;
-    }
-
-    .gallery-placeholder-text {
-      font-family: var(--ff-display);
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
-
-    /* ══════════════════════════════════════════════
-   REVIEWS INFINITE MOTION MARQUEE
-══════════════════════════════════════════════ */
-    .reviews-section {
-      padding-top: 90px;
-      overflow: hidden;
-    }
-
-    .reviews-meta {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
-
-    .reviews-avg {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-
-    .reviews-avg-num {
-      font-family: var(--ff-display);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--acc);
-      line-height: 1;
-      text-shadow: 0 0 28px var(--acc-glow);
-    }
-
-    .reviews-avg-label {
-      font-size: 0.72rem;
-      color: var(--t3);
-      letter-spacing: 0.04em;
-    }
-
-    .reviews-avg-stars {
-      display: flex;
-      gap: 3px;
-      align-items: center;
-    }
-
-    .reviews-avg-stars .star {
-      font-size: 1.1rem;
-      color: var(--acc);
-    }
-
-    .reviews-count {
-      font-size: 0.72rem;
-      color: var(--t3);
-      letter-spacing: 0.04em;
-    }
-
-    /* Dual Marquee Outer Enclosures */
-    .marquee-reviews-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: 40px;
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .reviews-marquee-row {
-      display: flex;
-      overflow: hidden;
-      width: 100%;
-      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    }
-
-    .reviews-marquee-track {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      padding: 10px 0;
-    }
-
-    /* Opposite Animation Configurations */
-    .track-left {
-      animation: review-scroll-left 45s linear infinite;
-    }
-
-    .track-right {
-      animation: review-scroll-right 45s linear infinite;
-    }
-
-    .reviews-marquee-row:hover .reviews-marquee-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes review-scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes review-scroll-right {
-      0% {
-        transform: translateX(-50%);
-      }
-
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    .review-card {
-      background: var(--bg1);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-md);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      width: 340px;
-      /* Locked explicit width for perfect tracks spacing balance */
-      flex-shrink: 0;
-      transition: border-color 0.25s, box-shadow 0.25s;
-      position: relative;
-    }
-
-    .review-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .review-card:hover {
-      border-color: var(--bdr-h);
-      box-shadow: var(--shadow-card);
-    }
-
-    .review-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .review-stars {
-      display: flex;
-      gap: 2px;
-    }
-
-    .review-stars .star {
-      font-size: 0.78rem;
-      color: var(--acc);
-    }
-
-    .review-stars .star-empty {
-      color: var(--t3);
-    }
-
-    .review-service-badge {
-      font-family: var(--ff-display);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--acc);
-      background: var(--acc-dim);
-      border: 1px solid rgba(212, 247, 0, 0.18);
-      padding: 3px 9px;
-      border-radius: 99px;
-      white-space: nowrap;
-    }
-
-    .review-text {
-      font-size: 0.82rem;
-      color: var(--t2);
-      line-height: 1.65;
-      flex: 1;
-    }
-
-    .review-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 12px;
-      border-top: 1px solid var(--bdr);
-    }
-
-    .review-author {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .review-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bg3);
-      border: 1px solid var(--bdr);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--ff-display);
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--acc);
-      flex-shrink: 0;
-    }
-
-    .review-name {
-      font-family: var(--ff-display);
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--t1);
-    }
-
-    .review-location {
-      font-size: 0.67rem;
-      color: var(--t3);
-    }
-
-    .review-meta-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 3px;
-    }
-
-    .review-date {
-      font-size: 0.63rem;
-      color: var(--t3);
-      letter-spacing: 0.04em;
-    }
-
-    .review-verified {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      font-family: var(--ff-display);
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: #5dde6a;
-      text-transform: uppercase;
-    }
-
-    /* ══════════════════════════════════════════════
-   INFO GRID — 3×2
-══════════════════════════════════════════════ */
-    .info-section {
-      padding-bottom: 0;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 13px;
-    }
-
-    .info-card {
-      background: var(--bg1);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-md);
-      padding: 26px 22px;
-      transition: background 0.25s, border-color 0.28s, transform 0.28s var(--ease-out);
-    }
-
-    .info-card:hover {
-      background: var(--bg2);
-      border-color: var(--bdr-h);
-      transform: translateY(-4px);
-    }
-
-    .info-ico {
-      font-size: 1.75rem;
-      margin-bottom: 14px;
-      display: block;
-      line-height: 1;
-    }
-
-    .info-card h4 {
-      font-family: var(--ff-display);
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--t1);
-      margin-bottom: 7px;
-    }
-
-    .info-card p {
-      font-size: 0.78rem;
-      color: var(--t2);
-      line-height: 1.65;
+       RESPONSIVE BREAKPOINTS ENGINE (Unified Media Mix)
+    ══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .switch-grid { grid-template-columns: 1fr; }
+      .switch-cards-wrap { grid-column: 1 / -1; grid-template-columns: repeat(2, 1fr); }
+      .combo-wrap { grid-column: 1 / -1; }
     }
 
     @media (max-width: 768px) {
-      .info-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      html { font-size: 14px; }
+      .nav-links { display: none; }
+      .btn-ghost { display: none; }
+      
+      .gb-detail-layout { grid-template-columns: 1fr; }
+      .gb-media-pane { position: relative; top: 0; }
+      .gb-hardware-grid { grid-template-columns: 1fr; }
+      .repair-layout { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-main { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
     }
 
-    @media (max-width: 480px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 560px) {
+      .switch-cards-wrap { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
     }
 
-    /* ══════════════════════════════════════════════
-   ELECTRONICS REPAIR INQUIRY FORM
-══════════════════════════════════════════════ */
-    .repair-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .repair-layout .card-solo {
-      max-width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .repair-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .inquiry-form-wrap {
-      background: var(--surf);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-md);
-      padding: 24px 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .inquiry-form-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .inquiry-form-title {
-      font-family: var(--ff-display);
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--t1);
-      margin-bottom: 5px;
-    }
-
-    .inquiry-form-sub {
-      font-size: 0.74rem;
-      color: var(--t3);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-    .form-row {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 13px;
-    }
-
-    .form-row label {
-      font-family: var(--ff-display);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--t3);
-    }
-
-    .form-row input,
-    .form-row textarea {
-      background: var(--bg2);
-      border: 1px solid var(--bdr);
-      border-radius: var(--r-sm);
-      color: var(--t1);
-      font-family: var(--ff-body);
-      font-size: 0.82rem;
-      padding: 9px 13px;
-      width: 100%;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      resize: vertical;
-    }
-
-    .form-row input::placeholder,
-    .form-row textarea::placeholder {
-      color: var(--t3);
-    }
-
-    .form-row input:focus,
-    .form-row textarea:focus {
-      border-color: rgba(212, 247, 0, 0.4);
-      box-shadow: 0 0 0 3px rgba(212, 247, 0, 0.07);
-    }
-
-    .form-row textarea {
-      min-height: 85px;
-    }
-
-    .btn-form-submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      width: 100%;
-      font-family: var(--ff-display);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #000;
-      background: var(--acc);
-      padding: 11px 22px;
-      border-radius: 99px;
-      border: none;
-      cursor: pointer;
-      margin-top: 5px;
-      transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
-    }
-
-    .btn-form-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 28px var(--acc-glow);
-    }
-
-    /* ══════════════════════════════════════════════
-   CTA SECTION
-══════════════════════════════════════════════ */
-    .cta-section {
-      padding: 140px var(--pad-x) 110px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-wrap {
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-tag {
-      display: inline-block;
-      font-family: var(--ff-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--acc);
-      margin-bottom: 16px;
-    }
-
-    .cta-title {
-      font-family: var(--ff-display);
-      font-size: clamp(2.2rem, 6.2vw, 4.3rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--t1);
-      line-height: 1.06;
-      margin-bottom: 16px;
-    }
-
-    .cta-desc {
-      font-size: 0.92rem;
-      color: var(--t2);
-      line-height: 1.65;
-      margin-bottom: 40px;
-    }
-
-    .cta-deco {
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(ellipse at center, var(--acc-dim) 0%, transparent 65%);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-      background-size: 28px 28px;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-    }
-
-    /* ══════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════ */
-    .footer {
-      border-top: 1px solid var(--bdr);
-      background: var(--bg1);
-    }
-
-    .footer-main {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 50px var(--pad-x) 36px;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 44px;
-    }
-
-    .footer-logo {
-      font-family: var(--ff-display);
-      font-size: 1.12rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: 11px;
-    }
-
-    .footer-tagline {
-      font-size: 0.79rem;
-      color: var(--t2);
-      line-height: 1.6;
-      max-width: 280px;
-      margin-bottom: 22px;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 9px;
-    }
-
-    .footer-social {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-family: var(--ff-display);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--t3);
-      border: 1px solid var(--bdr);
-      padding: 6px 12px;
-      border-radius: 99px;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    .footer-social:hover {
-      color: var(--t1);
-      border-color: var(--bdr-h);
-      transform: translateY(-1px);
-    }
-
-    .footer-col-title {
-      font-family: var(--ff-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--t3);
-      margin-bottom: 16px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid var(--bdr);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .footer-link {
-      font-size: 0.78rem;
-      color: var(--t2);
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .footer-link:hover {
-      color: var(--t1);
-    }
-
-    .footer-link-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--acc);
-      opacity: 0.5;
-      flex-shrink: 0;
-    }
-
-    .footer-dev {
-      border-top: 1px solid var(--bdr);
-      background: var(--bg);
-    }
-
-    .footer-dev-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 16px var(--pad-x);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .footer-copy {
-      font-size: 0.67rem;
-      color: var(--t3);
-    }
-
-    .footer-dev-credit {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.67rem;
-      color: var(--t3);
-      transition: color 0.2s;
-    }
-
-    .footer-dev-credit:hover {
-      color: var(--t2);
-    }
-
-    .footer-dev-credit .dev-name {
-      color: var(--acc);
-      font-family: var(--ff-display);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-shadow: 0 0 14px rgba(212, 247, 0, 0.55), 0 0 30px rgba(212, 247, 0, 0.2);
-      transition: text-shadow 0.3s;
-    }
-
-    .footer-dev-credit:hover .dev-name {
-      text-shadow: 0 0 20px rgba(212, 247, 0, 0.85), 0 0 45px rgba(212, 247, 0, 0.35);
-    }
-
-    .footer-dev-credit svg {
-      opacity: 0.5;
-    }
-
-    @media (max-width: 768px) {
-      .footer-main {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding-top: 36px;
-      }
-
-      .footer-dev-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    /* ══════════════════════════════════════════════
-   REVEAL ANIMATIONS
-══════════════════════════════════════════════ */
-    .rv {
-      opacity: 0;
-      transform: translateY(44px);
-      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
-    }
-
-    .rv.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .rv-card {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out), border-color 0.28s, box-shadow 0.28s;
-    }
-
-    .rv-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ══════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: clamp(1.6rem, 7.5vw, 2.4rem);
-        line-height: 1.16;
-      }
-
-      .svc-section,
-      .info-section,
-      .gallery-section {
-        padding-top: 64px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .cards-wide {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-title {
-        font-size: clamp(1.8rem, 8vw, 2.7rem);
-      }
-
-      .cta-section {
-        padding: 90px var(--pad-x) 72px;
-      }
-
-      .hero-btns {
-        gap: 10px;
-      }
-
-      .btn-ghost {
-        display: none;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-badge {
-        font-size: 0.66rem;
-        gap: 5px;
-      }
-
-      .hero-desc br {
-        display: none;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    section[id] {
-      scroll-margin-top: calc(var(--nav-h) + 12px);
-    }
-
-    /* ══════════════════════════════════════════════
-    GROUP BUY CUSTOM POPUP & DETAILED SECTION STYLES
-══════════════════════════════════════════════ */
-    .gb-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s var(--ease-out), visibility 0.4s;
-    }
-
-    .gb-modal.modal-open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .gb-modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(4, 5, 6, 0.85);
-      backdrop-filter: blur(8px);
-    }
-
-    .gb-modal-content {
-      position: relative;
-      background: var(--bg1);
-      border: 1px solid var(--bdr-h);
-      border-radius: var(--r-md);
-      padding: 28px;
-      max-width: 440px;
-      width: 90%;
-      transform: translateY(20px);
-      transition: transform 0.4s var(--ease-out);
-      box-shadow: 0 0 50px rgba(0, 229, 255, 0.15), var(--shadow-card);
-    }
-
-    .gb-modal.modal-open .gb-modal-content {
-      transform: translateY(0);
-    }
-
-    .gb-modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--t3);
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .gb-modal-close:hover {
-      color: var(--t1);
-    }
-
-    .gb-detail-layout {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .gb-media-pane {
-      position: sticky;
-      top: calc(var(--nav-h) + 20px);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .gb-hardware-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 868px) {
-      .gb-detail-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .gb-media-pane {
-        position: relative;
-        top: 0;
-      }
-
-      .gb-hardware-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   </style>
 </head>
 
 <body>
 
+  <!-- Loading Animation Wrapper Block -->
   <div class="loader" id="loader" role="status" aria-label="Loading">
     <div class="loader-inner">
       <div class="loader-logo">
@@ -1915,24 +416,19 @@
     </div>
   </div>
 
+  <!-- Global Action Notification Popup Layout -->
   <div class="gb-modal" id="gbModal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
     <div class="gb-modal-overlay" id="gbModalOverlay"></div>
     <div class="gb-modal-content">
       <button class="gb-modal-close" id="gbModalClose" aria-label="Close modal">&times;</button>
       <span class="feat-badge" style="background: #00e5ff; color: #000; font-weight: 700;">★ COMMUNITY PROJECT</span>
-      <h3 id="modal-title"
-        style="font-family: var(--ff-display); font-size: 1.5rem; color: var(--t1); margin: 8px 0 4px;">[IC] Mochi40
-        Keyboard</h3>
+      <h3 id="modal-title" style="font-family: var(--ff-display); font-size: 1.5rem; color: var(--t1); margin: 8px 0 4px;">[IC] Mochi40 Keyboard</h3>
       <p style="font-size: 0.82rem; color: var(--t2); margin-bottom: 20px; line-height: 1.5;">
-        Interest Check is live for the Mochi40 Hotswap PCB! Tray mount layout featuring optional OLED screen, rotary
-        encoder knob, and full wireless configurations.
+        Interest Check is live for the Mochi40 Hotswap PCB! Tray mount layout featuring optional OLED screen, rotary encoder knob, and full wireless configurations.
       </p>
       <div style="display: flex; gap: 10px;">
-        <a href="#group-buy-detail" class="btn-feat" id="gbModalLearn"
-          style="background: #00e5ff; flex: 1; text-align: center; font-size: 0.78rem;">View Spec Layout</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform"
-          target="_blank" rel="noopener" class="btn-ghost" style="font-size: 0.78rem; padding: 10px 14px;">Fill Google
-          Form</a>
+        <a href="#group-buy-detail" class="btn-feat" id="gbModalLearn" style="background: #00e5ff; flex: 1; text-align: center; font-size: 0.78rem;">View Spec Layout</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform" target="_blank" rel="noopener" class="btn-ghost" style="font-size: 0.78rem; padding: 10px 14px;">Fill Google Form</a>
       </div>
     </div>
   </div>
@@ -1944,18 +440,12 @@
       </a>
       <div class="nav-links">
         <a href="#services" class="nav-link">Services</a>
-        <a href="#group-buy-detail" class="nav-link" style="color: #00e5ff; font-weight: 600;">Mochi40 IC</a>
+        <a href="#group-buy-detail" data-open-gb-modal class="nav-link" style="color: #00e5ff; font-weight: 600;">Mochi40 IC</a>
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#info" class="nav-link">Info</a>
       </div>
-      <a href="/order/" class="nav-cta">
-        Place an Order
-        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg>
-      </a>
+      <a href="/order/" class="nav-cta">Place an Order</a>
     </div>
   </nav>
 
@@ -1978,20 +468,13 @@
         <h1 class="hero-title">
           <span class="htl" style="--d:0">Electronics Engineer</span>
           <span class="htl htl-accent" style="--d:1">&amp; Custom Keyboard</span>
-          <span class="htl" style="--d:2">Build & Repairs</span>
+          <span class="htl" style="--d:2">Build &amp; Repairs</span>
         </h1>
         <p class="hero-sub">Switch Lubing &nbsp;·&nbsp; Custom Builds &nbsp;·&nbsp; PCB Design &amp; Repair</p>
         <p class="hero-desc">From hobby mods to full custom keyboard builds<br />with precision engineering quality.</p>
         <div class="hero-btns">
-          <a href="/order/" class="btn-prime">
-            Place an Order
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </a>
-          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="btn-ghost">Contact on
-            Discord</a>
+          <a href="/order/" class="btn-prime">Place an Order</a>
+          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="btn-ghost">Contact on Discord</a>
         </div>
       </div>
       <button class="scroll-ind" id="scroll-ind" type="button" aria-label="Scroll down to services">
@@ -2004,7 +487,6 @@
   </section>
 
   <main id="main">
-
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <span>Switch Lubing</span><span class="dot">·</span>
@@ -2024,18 +506,18 @@
       </div>
     </div>
 
-    <section class="svc-section rv" id="services" aria-labelledby="t1">
+    <!-- Section 01: Switches -->
+    <section class="svc-section" id="services" aria-labelledby="t1">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">01</span>
           <h2 class="sec-title" id="t1">Switch Services</h2>
-          <p class="sec-desc">Individual switch modifications with precision application — every switch treated with
-            care.</p>
+          <p class="sec-desc">Individual switch modifications with precision application — every switch treated with care.</p>
         </header>
 
         <div class="switch-grid" id="pricing">
           <div class="switch-cards-wrap">
-            <article class="card rv-card">
+            <article class="card">
               <div class="ch"><span class="ci">🟡</span>
                 <div class="cp">
                   <em class="ca" data-price-key="switchServices.Krytox 205g0 Lubing">₹12</em>
@@ -2045,7 +527,7 @@
               <h3 class="ct">Krytox 205g0 Lubing</h3>
               <p class="cd">Smooth, consistent application using premium Krytox lubricant for buttery keystrokes.</p>
             </article>
-            <article class="card rv-card">
+            <article class="card">
               <div class="ch"><span class="ci">🔵</span>
                 <div class="cp">
                   <em class="ca" data-price-key="switchServices.Durock Films">₹7</em>
@@ -2055,7 +537,7 @@
               <h3 class="ct">Durock Films</h3>
               <p class="cd">Premium switch stabilization film for tighter feel and reduced wobble.</p>
             </article>
-            <article class="card rv-card">
+            <article class="card">
               <div class="ch"><span class="ci">⚪</span>
                 <div class="cp">
                   <em class="ca" data-price-key="switchServices.TX Films">₹9</em>
@@ -2065,17 +547,17 @@
               <h3 class="ct">TX Films</h3>
               <p class="cd">Heavy-duty film option for maximum housing stability and solid typing feel.</p>
             </article>
-            <article class="card rv-card">
+            <article class="card">
               <div class="ch"><span class="ci">🌀</span>
                 <div class="cp">
-                  <em class="ca" data-price-key="switchServices.Spring Swap & Oil">₹3</em>
+                  <em class="ca" data-price-key="switchServices.Spring Swap &amp; Oil">₹3</em>
                   <span class="cu">per switch</span>
                 </div>
               </div>
               <h3 class="ct">Spring Swap &amp; Oil</h3>
               <p class="cd">Supply your own springs — we handle the swap and precision spring lubing.</p>
             </article>
-            <article class="card rv-card" style="grid-column: 1 / -1;">
+            <article class="card" style="grid-column: 1 / -1;">
               <div class="ch"><span class="ci">✨</span>
                 <div class="cp">
                   <em class="ca" data-price-key="switchServices.Switch Stem Tuning">₹5</em>
@@ -2088,7 +570,7 @@
           </div>
 
           <div class="combo-wrap">
-            <article class="card card-feat rv-card">
+            <article class="card card-feat">
               <div class="feat-badge">★ Most Popular</div>
               <div class="ch"><span class="ci">🔥</span>
                 <div class="cp">
@@ -2097,8 +579,7 @@
                 </div>
               </div>
               <h3 class="ct">Complete Switch Mod</h3>
-              <p class="cd">The full treatment — lube, film, and spring swap in one precision pass. Maximum performance
-                for every switch.</p>
+              <p class="cd">The full treatment — lube, film, and spring swap in one precision pass. Maximum performance for every switch.</p>
               <ul class="feat-list">
                 <li><span class="chk">✓</span> Krytox 205g0 Lubing</li>
                 <li><span class="chk">✓</span> Film Installation (Durock or TX)</li>
@@ -2108,14 +589,11 @@
             </article>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════════
-        DETAILED GROUP BUY RUN SECTION
-    ══════════════════════════════════════════════ -->
-    <section class="svc-section rv" id="group-buy-detail" aria-labelledby="t-gb">
+    <!-- Community Track Integration Section -->
+    <section class="svc-section" id="group-buy-detail" aria-labelledby="t-gb">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num" style="color: #00e5ff;">COMMUNITY RUN</span>
@@ -2125,14 +603,12 @@
 
         <div class="gb-detail-layout">
           <div class="gb-info-pane">
-            <article class="card card-feat"
-              style="border-color: rgba(0, 229, 255, 0.2); background: linear-gradient(140deg, rgba(0,229,255,0.04) 0%, transparent 60%); padding: 26px;">
+            <article class="card card-feat" style="border-color: rgba(0, 229, 255, 0.2); background: linear-gradient(140deg, rgba(0,229,255,0.04) 0%, transparent 60%); padding: 26px;">
               <div class="ch">
                 <span class="ci" style="font-size: 1.8rem;">⌨</span>
                 <div class="cp">
                   <em class="ca ca-lg" style="color: #00e5ff;">₹4,500</em>
-                  <span class="cu" style="text-transform: uppercase; font-size: 0.6rem; color: var(--t3);">Bare Bone
-                    Estimated Price</span>
+                  <span class="cu" style="color: var(--t3);">Bare Bone Estimated Price</span>
                 </div>
               </div>
 
@@ -2141,122 +617,74 @@
                 <li><span class="chk" style="color: #00e5ff;">✓</span> Standard Tray Mount Case Engineering</li>
                 <li><span class="chk" style="color: #00e5ff;">✓</span> Ultra-compact 40% Layout Options</li>
                 <li><span class="chk" style="color: #00e5ff;">✓</span> Integrated SSD1306 OLED Screen Trace Support</li>
-                <li><span class="chk" style="color: #00e5ff;">✓</span> Optional EC11 Rotary Control Encoder Knob Mounts
-                </li>
-                <li><span class="chk" style="color: #00e5ff;">✓</span> Standard Wired &amp; nice!nano Bluetooth Wireless
-                  Provision</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Optional EC11 Rotary Control Encoder Knob Mounts</li>
+                <li><span class="chk" style="color: #00e5ff;">✓</span> Standard Wired &amp; nice!nano Bluetooth Wireless Provision</li>
               </ul>
 
               <div style="margin: 24px 0 18px; padding-top: 18px; border-top: 1px solid var(--bdr);">
-                <h4
-                  style="font-family: var(--ff-display); font-size: 0.82rem; color: var(--t1); margin-bottom: 8px; letter-spacing: 0.02em;">
-                  Raw PCB Fabrication Cost (LionCircuits Scale)</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                  <div
-                    style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
-                    <span
-                      style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If
-                      MOQ is 5 Units</span>
-                    <em
-                      style="font-style: normal; color: var(--t2); font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹631
-                      <span
-                        style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
+                <h4 style="font-family: var(--ff-display); font-size: 0.82rem; color: var(--t1); margin-bottom: 8px; letter-spacing: 0.02em;">Raw PCB Fabrication Cost (LionCircuits Scale)</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px;">
+                  <div style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
+                    <span style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If MOQ is 5 Units</span>
+                    <em style="font-style: normal; color: var(--t2); font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹631<span style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
                   </div>
-                  <div
-                    style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
-                    <span
-                      style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If
-                      MOQ is 10 Units</span>
-                    <em
-                      style="font-style: normal; color: var(--acc); font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹566
-                      <span
-                        style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
+                  <div style="background: var(--bg2); padding: 12px; border-radius: var(--r-sm); border: 1px solid var(--bdr);">
+                    <span style="font-size: 0.58rem; color: var(--t3); display: block; text-transform: uppercase; font-weight: 600;">If MOQ is 10 Units</span>
+                    <em style="font-style: normal; color: #00e5ff; font-weight: 700; font-size: 1.15rem; font-family: var(--ff-display);">₹566<span style="font-size:0.7rem; color:var(--t3); font-family:var(--ff-body); font-weight:400;">/pcb</span></em>
                   </div>
                 </div>
-                <span
-                  style="font-size: 0.65rem; color: var(--t3); display: block; margin-top: 8px; font-style: italic;">*Current
-                  State Tracking Status - MOQ: NOT SET | Closes: 10 Jul 2026</span>
+                <span style="font-size: 0.65rem; color: var(--t3); display: block; margin-top: 8px; font-style: italic;">*Current State Tracking Status - MOQ: NOT SET | Closes: 10 Jul 2026</span>
               </div>
 
               <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform"
-                  target="_blank" rel="noopener" class="btn-feat" style="background: #00e5ff; flex: 1;">Join Interest
-                  Check Form</a>
-                <a href="https://github.com/Aidan-OS/Mochi40" target="_blank" rel="noopener" class="btn-ghost"
-                  style="padding: 10px 20px;">Source Repository</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSddSWL0SI44ZFKoCSp17JBUTHfpAuB5ttDP2difW1jHNGdQhg/viewform" target="_blank" rel="noopener" class="btn-feat" style="background: #00e5ff; flex: 1;">Join Interest Check Form</a>
+                <a href="https://github.com/Aidan-OS/Mochi40" target="_blank" rel="noopener" class="btn-ghost" style="padding: 10px 20px;">Source Repository</a>
               </div>
             </article>
 
-            <div
-              style="margin-top: 14px; background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 22px;">
-              <h4
-                style="font-family: var(--ff-display); font-size: 0.9rem; margin-bottom: 14px; color: var(--t1); border-bottom: 1px solid var(--bdr); padding-bottom: 8px;">
-                Hardware &amp; Bill of Materials (BOM) Requirements</h4>
+            <div style="margin-top: 14px; background: var(--surf); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 22px;">
+              <h4 style="font-family: var(--ff-display); font-size: 0.9rem; margin-bottom: 14px; color: var(--t1); border-bottom: 1px solid var(--bdr); padding-bottom: 8px;">Hardware &amp; Bill of Materials (BOM) Requirements</h4>
               <div class="gb-hardware-grid">
                 <div>
-                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Microcontroller
-                    Target</strong>
-                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires Elite-C layout form factor
-                    footprints. Standard Pro Micros without a bottom-row pin trace map are incompatible. Supports
-                    nice!nano for wireless builds.</p>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Microcontroller Target</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires Elite-C layout form factor footprints. Standard Pro Micros without a bottom-row pin trace map are incompatible. Supports nice!nano for wireless builds.</p>
                 </div>
                 <div>
-                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">OLED Panel
-                    Support (Optional)</strong>
-                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Provisions accommodate standard
-                    SSD1306 panels, easily acquired via Robu. Native support includes both 128x64 and 128x32 display
-                    module matrix versions.</p>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">OLED Panel Support (Optional)</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Provisions accommodate standard SSD1306 panels, easily acquired via Robu. Native support includes both 128x64 and 128x32 display module matrix versions.</p>
                 </div>
                 <div>
-                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Rotary Controls
-                    (Optional)</strong>
-                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Built around standard EC11 encoders
-                    (also obtainable from Robu). The outward matching physical dial knobs can be custom 3D printed.</p>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Rotary Controls (Optional)</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Built around standard EC11 encoders (also obtainable from Robu). The outward matching physical dial knobs can be custom 3D printed.</p>
                 </div>
                 <div>
-                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Discrete Logic
-                    Hardware Components</strong>
-                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires 60x Through-Hole 1N4148 logic
-                    diodes, 60x switch hotswap sockets, 1x discrete Reset switch, and a chassis framework calling for 9x
-                    M2 heat inserts paired with 5mm M2 screws.</p>
+                  <strong style="color:var(--t1); font-size:0.82rem; display:block; margin-bottom:2px;">Discrete Logic Hardware Components</strong>
+                  <p style="color:var(--t2); font-size:0.76rem; line-height:1.5;">Requires 60x Through-Hole 1N4148 logic diodes, 60x switch hotswap sockets, 1x discrete Reset switch, and a chassis framework calling for 9x M2 heat inserts paired with 5mm M2 screws.</p>
                 </div>
               </div>
-              <p
-                style="font-size:0.72rem; color:var(--t3); margin-top:14px; border-top:1px solid var(--bdr); padding-top:8px;">
+              <p style="font-size:0.72rem; color:var(--t3); margin-top:14px; border-top:1px solid var(--bdr); padding-top:8px;">
                 The complete itemized checklist map manifest file can be found right on the open source link grid page:
-                <a href="https://github.com/Aidan-OS/Mochi40/blob/main/BOM.csv" target="_blank" rel="noopener"
-                  style="color:#00e5ff; text-decoration:underline;">Mochi40 Full BOM File Checklist</a>.
+                <a href="https://github.com/Aidan-OS/Mochi40/blob/main/BOM.csv" target="_blank" rel="noopener" style="color:#00e5ff; text-decoration:underline;">Mochi40 Full BOM File Checklist</a>.
               </p>
             </div>
           </div>
 
-          <!-- ══════════════════════════════════════════════
-              MOCHI40 IMAGE MEDIA PANE
-          ══════════════════════════════════════════════ -->
           <div class="gb-media-pane">
-            <div class="gallery-item rv-card" style="aspect-ratio: 4/3; width: 100%;">
-              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram"
-                style="width: 100%; height: 100%; object-fit: cover;"
-                onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
-              <div class="gallery-item-overlay">
-                <span class="gallery-item-label">Mochi40 PCB Layout</span>
-              </div>
+            <div class="gallery-item">
+              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
+              <div class="gallery-item-overlay"><span class="gallery-item-label">Mochi40 PCB Layout</span></div>
             </div>
-
-            <div class="gallery-item rv-card" style="aspect-ratio: 4/3; width: 100%;">
-              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build"
-                style="width: 100%; height: 100%; object-fit: cover;"
-                onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
-              <div class="gallery-item-overlay">
-                <span class="gallery-item-label">Case Integration Build</span>
-              </div>
+            <div class="gallery-item">
+              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
+              <div class="gallery-item-overlay"><span class="gallery-item-label">Case Integration Build</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="svc-section rv" aria-labelledby="t3">
+    <!-- Section 03: Stabilizers -->
+    <section class="svc-section" aria-labelledby="t3">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">03</span>
@@ -2264,7 +692,7 @@
           <p class="sec-desc">Eliminate rattle and achieve smooth, consistent stabilizers on every key.</p>
         </header>
         <div class="cards-stab">
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">🛠️</span>
               <div class="cp">
                 <em class="ca" data-price-key="stabServices.Full Stabilizer Service">₹65</em>
@@ -2274,7 +702,7 @@
             <h3 class="ct">Full Stabilizer Service</h3>
             <p class="cd">Complete disassembly, deep clean, lubing, and tuning for optimal performance.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">⚖️</span>
               <div class="cp">
                 <em class="ca" data-price-key="stabServices.Wire Balancing Only">₹25</em>
@@ -2284,7 +712,7 @@
             <h3 class="ct">Wire Balancing Only</h3>
             <p class="cd">Precise wire balancing to eliminate rattle and wobble.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">♻️</span>
               <div class="cp">
                 <em class="ca" data-price-key="stabServices.Restore Old Stabilizers">₹40</em>
@@ -2298,15 +726,16 @@
       </div>
     </section>
 
-    <section class="svc-section rv" aria-labelledby="t4">
+    <!-- Section 04: Assembly -->
+    <section class="svc-section" aria-labelledby="t4">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">04</span>
           <h2 class="sec-title" id="t4">Build &amp; Soldering Services</h2>
           <p class="sec-desc">Professional soldering, desoldering, and complete keyboard assembly.</p>
         </header>
-        <div class="cards cards-wide">
-          <article class="card rv-card">
+        <div class="cards-wide">
+          <article class="card">
             <div class="ch"><span class="ci">🔧</span>
               <div class="cp">
                 <em class="ca" data-price-key="solderServices.Solder Switches">₹7</em>
@@ -2316,7 +745,7 @@
             <h3 class="ct">Solder Switches</h3>
             <p class="cd">Clean, consistent solder joints on every pin.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">🔩</span>
               <div class="cp">
                 <em class="ca" data-price-key="solderServices.Desolder Switches">₹12</em>
@@ -2326,27 +755,25 @@
             <h3 class="ct">Desolder Switches</h3>
             <p class="cd">Safe removal without PCB pad damage.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">⌨️</span>
               <div class="cp">
-                <em class="ca" style="font-size:clamp(0.95rem,1.8vw,1.3rem)"
-                  data-price-key="solderServices.60–65% Keyboard Build">₹500–550</em>
+                <em class="ca" style="font-size:clamp(0.95rem,1.8vw,1.3rem)" data-price-key="solderServices.60–65% Keyboard Build">₹500–550</em>
               </div>
             </div>
             <h3 class="ct">60–65% Keyboard Build</h3>
             <p class="cd">Complete compact form factor assembly, tested and tuned.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">🖥️</span>
               <div class="cp">
-                <em class="ca" style="font-size:clamp(0.95rem,1.8vw,1.3rem)"
-                  data-price-key="solderServices.TKL Keyboard Build">₹650–800</em>
+                <em class="ca" style="font-size:clamp(0.95rem,1.8vw,1.3rem)" data-price-key="solderServices.TKL Keyboard Build">₹650–800</em>
               </div>
             </div>
             <h3 class="ct">TKL Keyboard Build</h3>
             <p class="cd">Full tenkeyless assembly with quality verification.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">🔌</span>
               <div class="cp">
                 <em class="ca" data-price-key="solderServices.Millmax Socket Install">₹18</em>
@@ -2356,22 +783,22 @@
             <h3 class="ct">Millmax Socket Install</h3>
             <p class="cd">Precision socket installation for hotswap conversion.</p>
           </article>
-          <article class="card rv-card">
+          <article class="card">
             <div class="ch"><span class="ci">🔁</span>
               <div class="cp">
                 <em class="ca" data-price-key="solderServices.Hotswap Socket Install / Replace">₹13</em>
                 <span class="cu">per socket</span>
               </div>
             </div>
-            <h3 class="ct">Hotswap Socket Install / Replacement</h3>
+            <h3 class="ct">Hotswap Socket Install</h3>
             <p class="cd">New install or damaged socket replacement.</p>
           </article>
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">🧩</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">Split Keyboard Build</h3>
             <p class="cd">Custom split ergonomic keyboard assembly and wiring.</p>
           </article>
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">🔬</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">PCB Troubleshooting</h3>
             <p class="cd">Diagnose and fix PCB issues, trace shorts, component faults.</p>
@@ -2380,7 +807,8 @@
       </div>
     </section>
 
-    <section class="svc-section rv" id="custom-design" aria-labelledby="t5">
+    <!-- Section 05: Engineering Architecture design -->
+    <section class="svc-section" id="custom-design" aria-labelledby="t5">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">05</span>
@@ -2388,22 +816,22 @@
           <p class="sec-desc">End-to-end design, fabrication support, and firmware — from concept to working board.</p>
         </header>
         <div class="cards">
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">📐</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">PCB Design &amp; Layout</h3>
             <p class="cd">Schematic to layout, fully routed and DRC-verified for production.</p>
           </article>
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">🏭</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">PCB Fabrication Support</h3>
             <p class="cd">Gerber prep, fab vendor coordination, and quality control.</p>
           </article>
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">🎛️</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">Custom Keyboard Build</h3>
             <p class="cd">Fully bespoke keyboard built to your exact specifications.</p>
           </article>
-          <article class="card card-q rv-card">
+          <article class="card card-q">
             <div class="ch"><span class="ci">💾</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">Firmware Upload &amp; Testing</h3>
             <p class="cd">QMK/VIA flashing, keymap configuration, and full functional testing.</p>
@@ -2412,25 +840,85 @@
       </div>
     </section>
 
-    <section class="svc-section rv" aria-labelledby="t6">
+    <!-- Section 06: Mouse Work -->
+    <section class="svc-section" id="mouse-services" aria-labelledby="t6">
       <div class="wrap">
         <header class="sec-head">
           <span class="sec-num">06</span>
-          <h2 class="sec-title" id="t6">Electronics Repair</h2>
+          <h2 class="sec-title" id="t6">Mouse Services</h2>
+          <p class="sec-desc">Switch swaps, tape mods, and repairs to keep your mouse feeling and sounding right.</p>
+        </header>
+        <div class="cards-wide">
+          <article class="card">
+            <div class="ch"><span class="ci">🖱️</span>
+              <div class="cp">
+                <em class="ca" data-price-key="mouseSwitchServices.Switch Swap (Left / Right Click)">₹100</em>
+                <span class="cu">per switch</span>
+              </div>
+            </div>
+            <h3 class="ct">Switch Swap (Left / Right Click)</h3>
+            <p class="cd">Replace worn, double-clicking, or mushy main switches — bring your own or ask us to source.</p>
+          </article>
+          <article class="card">
+            <div class="ch"><span class="ci">🔘</span>
+              <div class="cp">
+                <em class="ca" data-price-key="mouseSwitchServices.Middle / Side Button Switch Swap">₹80</em>
+                <span class="cu">per switch</span>
+              </div>
+            </div>
+            <h3 class="ct">Middle / Side Button Switch Swap</h3>
+            <p class="cd">Replace scroll-click, forward/back, or DPI switches.</p>
+          </article>
+          <article class="card">
+            <div class="ch"><span class="ci">🧵</span>
+              <div class="cp">
+                <em class="ca" data-price-key="mouseModServices.Tape Mod">₹300</em>
+              </div>
+            </div>
+            <h3 class="ct">Tape Mod</h3>
+            <p class="cd">Internal shell taping to reduce flex, rattle, and hollow acoustics.</p>
+          </article>
+          <article class="card">
+            <div class="ch"><span class="ci">🛼</span>
+              <div class="cp">
+                <em class="ca" data-price-key="mouseModServices.Skate / Feet Replacement">₹150</em>
+              </div>
+            </div>
+            <h3 class="ct">Skate / Feet Replacement</h3>
+            <p class="cd">Fresh PTFE skates fitted and leveled.</p>
+          </article>
+          <article class="card card-q">
+            <div class="ch"><span class="ci">🎡</span><span class="qbadge">Quote Based</span></div>
+            <h3 class="ct">Encoder Replacement (Scroll Wheel)</h3>
+            <p class="cd">Fix inconsistent, skipping, or dead scroll — encoder sourced to match your model.</p>
+          </article>
+          <article class="card card-q">
+            <div class="ch"><span class="ci">🩺</span><span class="qbadge">Quote Based</span></div>
+            <h3 class="ct">General Mouse Diagnostics &amp; Repair</h3>
+            <p class="cd">Cable, sensor, button, or connectivity issues.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07: Component Electronics Work -->
+    <section class="svc-section" aria-labelledby="t7">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title" id="t7">Electronics Repair</h2>
           <p class="sec-desc">Component-level diagnosis and repair for general electronics.</p>
         </header>
         <div class="repair-layout">
-          <article class="card card-q card-solo rv-card">
+          <article class="card card-q card-solo">
             <div class="ch"><span class="ci">⚡</span><span class="qbadge">Quote Based</span></div>
             <h3 class="ct">General Electronics Repair</h3>
-            <p class="cd">Component-level repair and diagnostics for consumer electronics, PCBs, and modules. Fill in
-              the inquiry form and we'll assess your device and get back with a quote.</p>
+            <p class="cd">Component-level repair and diagnostics for consumer electronics, PCBs, and modules. Fill in the inquiry form and we'll assess your device and get back with a quote.</p>
             <br />
-            <p class="cd" style="color:var(--t3);font-size:0.72rem;">Commonly repaired: keyboards, controllers, custom
-              PCBs, microcontroller modules, and hobbyist electronics.</p>
+            <p class="cd" style="color:var(--t3);font-size:0.72rem;">Commonly repaired: keyboards, controllers, custom PCBs, microcontroller modules, and hobbyist electronics.</p>
           </article>
 
-          <div class="inquiry-form-wrap rv-card">
+          <div class="inquiry-form-wrap">
             <h4 class="inquiry-form-title">Send a Repair Inquiry</h4>
             <p class="inquiry-form-sub">Describe your device and issue — we'll get back to you with a quote.</p>
             <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
@@ -2439,40 +927,29 @@
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
               <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+              
               <div class="form-row">
-                <div class="form-row">
-                  <label for="fi-name">Name</label>
-                  <input type="text" id="fi-name" name="name" placeholder="Your full name" required
-                    autocomplete="name" />
-                </div>
+                <label for="fi-name">Name</label>
+                <input type="text" id="fi-name" name="name" placeholder="Your full name" required autocomplete="name" />
               </div>
               <div class="form-row">
                 <label for="fi-phone">WhatsApp / Phone Number</label>
-                <input type="tel" id="fi-phone" name="phone" placeholder="+91 9998888000" required autocomplete="tel"
-                  pattern="[0-9+\-\s()]{10,20}" />
+                <input type="tel" id="fi-phone" name="phone" placeholder="+91 9998888000" required autocomplete="tel" pattern="[0-9+\-\s()]{10,20}" />
               </div>
               <div class="form-row">
                 <label for="fi-email">Email</label>
-                <input type="email" id="fi-email" name="email" placeholder="your@email.com" required
-                  autocomplete="email" />
+                <input type="email" id="fi-email" name="email" placeholder="your@email.com" required autocomplete="email" />
               </div>
               <div class="form-row">
                 <label for="fi-device">Keyboard / Device Model</label>
-                <input type="text" id="fi-device" name="device_model" placeholder="e.g. Keychron K2, Arduino Mega…"
-                  required />
+                <input type="text" id="fi-device" name="device_model" placeholder="e.g. Keychron K2, Arduino Mega…" required />
               </div>
               <div class="form-row">
                 <label for="fi-issue">Issue Description</label>
-                <textarea id="fi-issue" name="issue_description"
-                  placeholder="Describe the problem in detail — what's happening, when it started, any damage visible…"
-                  required></textarea>
+                <textarea id="fi-issue" name="issue_description" placeholder="Describe the problem in detail — what's happening, when it started, any damage visible…" required></textarea>
               </div>
               <button type="submit" class="btn-form-submit">
                 Send Inquiry
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>
               </button>
             </form>
           </div>
@@ -2480,65 +957,51 @@
       </div>
     </section>
 
-    <section class="gallery-section rv" id="gallery" aria-labelledby="t-gallery">
+    <!-- Section 08: Presentation Portfolio -->
+    <section class="gallery-section" id="gallery" aria-labelledby="t-gallery">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">07</span>
+          <span class="sec-num">08</span>
           <h2 class="sec-title" id="t-gallery">Sample Work</h2>
           <p class="sec-desc">A look at previous builds, mods, and PCB work — quality you can see.</p>
         </header>
         <div class="gallery-grid" id="gallery-grid">
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-01.jpg" alt="Sample Work 1"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('Split Keyboard Repair')" />
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-01.jpg" alt="Split Keyboard Repair" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split Keyboard Repair')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Split Keyboard Repair</span></div>
           </div>
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-02.jpg" alt="Sample Work 2"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('Switch Service')" />
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-02.jpg" alt="Switch Service" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Switch Service')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Switch Service</span></div>
           </div>
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-03.jpg" alt="Sample Work 3"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('Split keyboard build')" />
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-03.jpg" alt="Split Keyboard Build" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split keyboard build')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Split Keyboard Build</span></div>
           </div>
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-04.jpg" alt="Sample Work 4"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('Full Builds')" />
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-04.jpg" alt="Full Builds" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Full Builds')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Full Builds</span></div>
           </div>
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-05.jpg" alt="Sample Work 5"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('Pcb and Firmware Troubleshooting')" />
-            <div class="gallery-item-overlay"><span class="gallery-item-label">Pcb and Firmware Troubleshooting</span>
-            </div>
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-05.jpg" alt="Pcb and Firmware Troubleshooting" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Pcb and Firmware Troubleshooting')" />
+            <div class="gallery-item-overlay"><span class="gallery-item-label">Pcb and Firmware Troubleshooting</span></div>
           </div>
-          <div class="gallery-item rv-card">
-            <img src="assets/sample-images/sample-06.jpg" alt="Sample Work 6"
-              onerror="this.closest('.gallery-item').classList.add('img-error'); this.closest('.gallery-item').innerHTML=placeholderHTML('PCB Testing')" />
+          <div class="gallery-item">
+            <img src="assets/sample-images/sample-06.jpg" alt="PCB Testing" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('PCB Testing')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">PCB Testing</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="reviews-section rv" id="reviews" aria-labelledby="t-reviews">
+    <!-- Section 09: Feedback Modules -->
+    <section class="reviews-section" id="reviews" aria-labelledby="t-reviews">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">08</span>
+          <span class="sec-num">09</span>
           <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
             <h2 class="sec-title" id="t-reviews" style="margin-bottom:0;">Customer Reviews</h2>
-            <a href="https://discord.com/channels/716114857430220861/1466808214896246950" target="_blank" rel="noopener"
-              style="display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-display);font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--t3);border:1px solid var(--bdr);padding:5px 12px;border-radius:99px;transition:color 0.2s,border-color 0.2s,transform 0.2s;white-space:nowrap;flex-shrink:0;"
-              onmouseover="this.style.color='var(--t1)';this.style.borderColor='var(--bdr-h)';this.style.transform='translateY(-1px)'"
-              onmouseout="this.style.color='var(--t3)';this.style.borderColor='var(--bdr)';this.style.transform='translateY(0)'">
-              <svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                <path d="M5.2 6.5a1.3 1.3 0 1 0 2.6 0 1.3 1.3 0 0 0-2.6 0Z" fill="currentColor" />
-                <path
-                  d="M10.66 2.14A10.27 10.27 0 0 0 8.12 1.4a.04.04 0 0 0-.04.02c-.1.18-.22.42-.3.6a9.5 9.5 0 0 0-2.55 0 6.28 6.28 0 0 0-.3-.6.04.04 0 0 0-.04-.02c-.91.16-1.77.44-2.54.74a.04.04 0 0 0-.02.01C.84 4.83.4 7.45.63 10.04c0 .01.01.02.02.03a10.31 10.31 0 0 0 3.1 1.57.04.04 0 0 0 .04-.01c.24-.33.45-.67.63-1.03a.04.04 0 0 0-.02-.05 6.78 6.78 0 0 1-.97-.46.04.04 0 0 1 0-.06l.2-.15a.04.04 0 0 1 .04 0c2.03.93 4.23.93 6.24 0a.04.04 0 0 1 .04 0l.2.15a.04.04 0 0 1 0 .06 6.4 6.4 0 0 1-.97.46.04.04 0 0 0-.02.05c.19.36.4.7.63 1.03a.04.04 0 0 0 .04.01 10.27 10.27 0 0 0 3.11-1.57.04.04 0 0 0 .02-.03c.27-2.97-.45-5.57-1.9-7.87a.03.03 0 0 0-.02-.01Z"
-                  fill="currentColor" />
-              </svg>
+            <a href="https://discord.com/channels/716114857430220861/1466808214896246950" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--ff-display);font-size:0.62rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--t3);border:1px solid var(--bdr);padding:5px 12px;border-radius:99px;transition:color 0.2s,border-color 0.2s,transform 0.2s;white-space:nowrap;flex-shrink:0;">
               Verify on Discord
             </a>
           </div>
@@ -2564,39 +1027,40 @@
       </div>
     </section>
 
-    <section class="info-section rv" id="info" aria-labelledby="t8">
+    <!-- Section 10: Critical Operational Specs -->
+    <section class="info-section" id="info" aria-labelledby="t8">
       <div class="wrap">
         <header class="sec-head">
-          <span class="sec-num">09</span>
+          <span class="sec-num">10</span>
           <h2 class="sec-title" id="t8">Important Information</h2>
         </header>
         <div class="info-grid">
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">⏱</span>
             <h4>Turnaround</h4>
             <p>5–7 days depending on order complexity and queue.</p>
           </div>
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">🔍</span>
             <h4>Compatibility</h4>
             <p>Customer must verify compatibility before shipping parts.</p>
           </div>
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">💳</span>
             <h4>Payment</h4>
             <p>Payment after completion. Optional work samples on request.</p>
           </div>
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">📦</span>
             <h4>Shipping</h4>
             <p>Buyer covers all shipping costs in both directions.</p>
           </div>
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">📊</span>
             <h4>Bulk Orders</h4>
             <p>Negotiable pricing for large-quantity orders.</p>
           </div>
-          <div class="info-card rv-card">
+          <div class="info-card">
             <span class="info-ico">✅</span>
             <h4>Quality Guarantee</h4>
             <p>Precision and consistency guaranteed on every order.</p>
@@ -2605,113 +1069,61 @@
       </div>
     </section>
 
-    <section class="cta-section rv" id="contact" aria-labelledby="cta-t">
+    <!-- Conversion Banner Panel -->
+    <section class="cta-section" id="contact" aria-labelledby="cta-t">
       <div class="cta-wrap">
         <span class="cta-tag">Let's build something great</span>
         <h2 class="cta-title" id="cta-t">Ready to Mod<br />Your Keyboard?</h2>
-        <p class="cta-desc">Place an order directly or contact me on Discord for custom quotes, bulk orders, and
-          inquiries.</p>
+        <p class="cta-desc">Place an order directly or contact me on Discord for custom quotes, bulk orders, and inquiries.</p>
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-          <a href="/order/" class="btn-prime btn-prime-lg">
-            Place an Order
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </a>
-          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener"
-            style="display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-display);font-size:0.92rem;font-weight:700;letter-spacing:0.04em;color:var(--t2);border:1px solid var(--bdr);padding:13px 32px;border-radius:99px;transition:color .2s,border-color .2s,transform .2s;"
-            onmouseover="this.style.color='var(--t1)';this.style.borderColor='var(--bdr-h)';this.style.transform='translateY(-1px)'"
-            onmouseout="this.style.color='var(--t2)';this.style.borderColor='var(--bdr)';this.style.transform='translateY(0)'">
-            Discord
-          </a>
+          <a href="/order/" class="btn-prime btn-prime-lg">Place an Order</a>
+          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;font-family:var(--ff-display);font-size:0.92rem;font-weight:700;letter-spacing:0.04em;color:var(--t2);border:1px solid var(--bdr);padding:13px 32px;border-radius:99px;transition:color .2s,border-color .2s,transform .2s;">Discord</a>
         </div>
         <div class="cta-deco" aria-hidden="true"></div>
       </div>
     </section>
-
   </main>
 
-  <footer class="footer">
+  <footer class="site-footer">
+    <span class="footer-watermark" aria-hidden="true">KEEBFORGE</span>
     <div class="footer-main">
       <div class="footer-brand-col">
-        <div class="footer-logo">
-          <span>KeebForge</span><span class="logo-dot">.</span><span>in</span>
+        <div class="footer-brand-line">
+          <span class="footer-brand-ico" aria-hidden="true">⌨</span>
+          <span>KeebForge<span class="logo-dot">.</span>in</span>
         </div>
-        <p class="footer-tagline">
-          Professional keyboard modding, custom builds, and PCB engineering. Based in Jammu &amp; Kashmir — serving
-          keyboard enthusiasts pan-India.
-        </p>
-        <div class="footer-socials">
-          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="footer-social">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <path d="M5.2 6.5a1.3 1.3 0 1 0 2.6 0 1.3 1.3 0 0 0-2.6 0Z" fill="currentColor" />
-              <path
-                d="M10.66 2.14A10.27 10.27 0 0 0 8.12 1.4a.04.04 0 0 0-.04.02c-.1.18-.22.42-.3.6a9.5 9.5 0 0 0-2.55 0 6.28 6.28 0 0 0-.3-.6.04.04 0 0 0-.04-.02c-.91.16-1.77.44-2.54.74a.04.04 0 0 0-.02.01C.84 4.83.4 7.45.63 10.04c0 .01.01.02.02.03a10.31 10.31 0 0 0 3.1 1.57.04.04 0 0 0 .04-.01c.24-.33.45-.67.63-1.03a.04.04 0 0 0-.02-.05 6.78 6.78 0 0 1-.97-.46.04.04 0 0 1 0-.06l.2-.15a.04.04 0 0 1 .04 0c2.03.93 4.23.93 6.24 0a.04.04 0 0 1 .04 0l.2.15a.04.04 0 0 1 0 .06 6.4 6.4 0 0 1-.97.46.04.04 0 0 0-.02.05c.19.36.4.7.63 1.03a.04.04 0 0 0 .04.01 10.27 10.27 0 0 0 3.11-1.57.04.04 0 0 0 .02-.03c.27-2.97-.45-5.57-1.9-7.87a.03.03 0 0 0-.02-.01Z"
-                fill="currentColor" />
-            </svg>
-            Discord
-          </a>
-          <a href="mailto:contact@keebforge.in" class="footer-social">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <path d="M1.5 3.5h10 l-5 4-5-4Z" stroke="currentColor" stroke-width="1.1" />
-              <path d="M1.5 3.5v6h10v-6" stroke="currentColor" stroke-width="1.1" />
-            </svg>
-            Email
-          </a>
+        <p class="footer-blurb">Independent electronics workshop for custom keyboards. No middlemen, no markups — just precision switch, build, and repair work for the keeb community.</p>
+        <span class="footer-status">
+          <span class="footer-status-dot"></span>Accepting Orders
+        </span>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-col-links">
+          <a href="#services">_Switch Lubing</a>
+          <a href="#services">_Stabilizer Tuning</a>
+          <a href="#services">_Keyboard Builds</a>
+          <a href="#custom-design">_PCB Design</a>
+          <a href="#mouse-services">_Mouse Services</a>
         </div>
       </div>
 
       <div>
-        <div class="footer-col-title">Quick Links</div>
-        <div class="footer-links">
-          <a href="#services" class="footer-link"><span class="footer-link-dot"></span>Services</a>
-          <a href="#group-buy-detail" class="footer-link"><span class="footer-link-dot"
-              style="background:#00e5ff;"></span>Mochi40 Run</a>
-          <a href="#pricing" class="footer-link"><span class="footer-link-dot"></span>Pricing</a>
-          <a href="#gallery" class="footer-link"><span class="footer-link-dot"></span>Sample Work</a>
-          <a href="/Terms&Conditions/" class="footer-link"><span class="footer-link-dot"></span>Terms &amp;
-            Conditions</a>
-          <a href="/order/" class="footer-link"><span class="footer-link-dot"></span>Place an Order</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <div class="footer-links">
-          <a href="/About/" class="footer-link">
-            <span class="footer-link-dot"></span>About Me
-          </a>
-          <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="footer-link">
-            <span class="footer-link-dot"></span>Discord: hardy_022
-          </a>
-          <a href="mailto:contact@keebforge.in" class="footer-link">
-            <span class="footer-link-dot"></span>contact@keebforge.in
-          </a>
-          <span class="footer-link" style="cursor:default;">
-            <span class="footer-link-dot"></span>Jammu &amp; Kashmir, India
-          </span>
-          <span class="footer-link" style="cursor:default;">
-            <span class="footer-link-dot"></span>Pan-India Shipping Available
-          </span>
+        <div class="footer-col-title">Navigate</div>
+        <div class="footer-col-links">
+          <a href="#">_Home</a>
+          <a href="/order/">_Order</a>
+          <a href="/Terms&amp;Conditions/">_Terms &amp; Conditions</a>
+          <a href="/Review/">_Drop Reviews</a>
         </div>
       </div>
     </div>
 
-    <div class="footer-dev">
-      <div class="footer-dev-inner">
-        <p class="footer-copy">© 2026 KeebForge.in — Electronics Engineer &amp; Custom Keyboard Specialist</p>
-        <a href="https://portfolio.shadow269.in/" target="_blank" rel="noopener" class="footer-dev-credit">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-            <path d="M6.5 1.5L8 5h3.5L8.5 7.5l1 3.5L6.5 9 3 11l1-3.5L1.5 5H5z" stroke="currentColor" stroke-width="1.1"
-              stroke-linejoin="round" />
-          </svg>
-          Designed &amp; built by <span class="dev-name">shadow269</span>
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-            <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </a>
+    <div class="footer-bottom">
+      <p class="footer-sys-line">© 2026 KEEBFORGE.in // ELECTRONICS ENGINEER // JAMMU &amp; KASHMIR // SYSTEM_END</p>
+      <div class="footer-bottom-right">
+        <a href="https://portfolio.shadow269.in/" target="_blank" rel="noopener" class="footer-dev-credit">Designed by <span class="dev-name">shadow269</span></a>
       </div>
     </div>
   </footer>
@@ -2723,26 +1135,20 @@
     (function () {
       'use strict';
 
-      /* ══════════════════════════════════════════
-          PRICING INJECTION
-      ══════════════════════════════════════════ */
+      // Dynamic Price Engine Mapping Object Injection
       function applyPrices() {
         var P = window.KEEBFORGE_PRICES;
         if (!P) return;
-
         document.querySelectorAll('[data-price-key]').forEach(function (el) {
           var key = el.getAttribute('data-price-key');
           var dot = key.indexOf('.');
           if (dot === -1) return;
           var sectionKey = key.slice(0, dot);
           var itemName = key.slice(dot + 1);
-
           var section = P[sectionKey];
           if (!section || !section.items) return;
-
           var item = section.items.find(function (i) { return i.name === itemName; });
           if (!item) return;
-
           if (item.priceMin && item.priceMax) {
             el.textContent = '₹' + item.priceMin + '–' + item.priceMax;
           } else if (item.price && item.price > 0) {
@@ -2751,15 +1157,10 @@
         });
       }
 
-      applyPrices();
-
-      /* ══════════════════════════════════════════
-          DYNAMIC DUAL-MARQUEE REVIEWS RENDERING
-      ══════════════════════════════════════════ */
+      // Marquee Matrix Feedback Engine
       function renderReviews() {
         var reviews = window.KEEBFORGE_REVIEWS;
         if (!reviews || !reviews.length) return;
-
         var track1 = document.getElementById('reviews-track-1');
         var track2 = document.getElementById('reviews-track-2');
         var avgEl = document.getElementById('reviews-avg-num');
@@ -2767,7 +1168,6 @@
         var countEl = document.getElementById('reviews-count');
         if (!track1 || !track2) return;
 
-        // Compute average stats
         var total = reviews.reduce(function (s, r) { return s + r.rating; }, 0);
         var avg = (total / reviews.length).toFixed(1);
         if (avgEl) avgEl.textContent = avg;
@@ -2781,17 +1181,13 @@
           starsEl.innerHTML = starsHTML;
         }
 
-        // Helper to map card elements cleanly
         function buildCardHTML(r) {
           var initials = r.name.split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2).toUpperCase();
           var starsHTML = '';
           for (var i = 1; i <= 5; i++) {
             starsHTML += '<span class="star' + (i > r.rating ? ' star-empty' : '') + '">' + (i <= r.rating ? '★' : '☆') + '</span>';
           }
-          var verifiedHTML = r.verified
-            ? '<span class="review-verified"><svg width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#5dde6a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified</span>'
-            : '';
-
+          var verifiedHTML = r.verified ? '<span class="review-verified">Verified</span>' : '';
           return '<article class="review-card">' +
             '<div class="review-card-top">' +
             '<div class="review-stars">' + starsHTML + '</div>' +
@@ -2801,40 +1197,24 @@
             '<div class="review-footer">' +
             '<div class="review-author">' +
             '<div class="review-avatar">' + initials + '</div>' +
-            '<div>' +
-            '<div class="review-name">' + r.name + '</div>' +
-            (r.location ? '<div class="review-location">' + r.location + '</div>' : '') +
+            '<div><div class="review-name">' + r.name + '</div>' + (r.location ? '<div class="review-location">' + r.location + '</div>' : '') + '</div>' +
             '</div>' +
-            '</div>' +
-            '<div class="review-meta-right">' +
-            '<span class="review-date">' + r.date + '</span>' +
-            verifiedHTML +
-            '</div>' +
+            '<div class="review-meta-right"><span class="review-date">' + r.date + '</span>' + verifiedHTML + '</div>' +
             '</div>' +
             '</article>';
         }
 
         var track1HTML = '';
         var track2HTML = '';
-
         reviews.forEach(function (r, index) {
           var cardHTML = buildCardHTML(r);
-          if (index % 2 === 0) {
-            track1HTML += cardHTML;
-          } else {
-            track2HTML += cardHTML;
-          }
+          if (index % 2 === 0) { track1HTML += cardHTML; } else { track2HTML += cardHTML; }
         });
-
         track1.innerHTML = track1HTML + track1HTML;
         track2.innerHTML = track2HTML + track2HTML;
       }
 
-      renderReviews();
-
-      /* ══════════════════════════════════════════
-          CANVAS SCROLL ANIMATION
-      ══════════════════════════════════════════ */
+      // Hardware Frame Preloader Canvas Controller
       const TOTAL_FRAMES = 207;
       const FRAME_DIR = 'assets/frames/';
       const FRAME_PREFIX = 'frame_';
@@ -2851,16 +1231,9 @@
       const ctx = canvas.getContext('2d');
       const heroContent = document.getElementById('hero-content');
       const scrollInd = document.getElementById('scroll-ind');
-      const frameCur = document.getElementById('frame-cur');
 
       const frames = new Array(TOTAL_FRAMES).fill(null);
-      let loadedCount = 0;
-      let currentFrameF = 0;
-      let targetFrameF = 0;
-      let lastDrawnFrame = -1;
-      let rafId = null;
-      let heroActive = true;
-      let isReady = false;
+      let loadedCount = 0, currentFrameF = 0, targetFrameF = 0, lastDrawnFrame = -1, rafId = null, heroActive = true, isReady = false;
 
       function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -2868,8 +1241,6 @@
         const fi = Math.round(currentFrameF);
         if (frames[fi] && frames[fi] !== 'error') drawFrame(fi);
       }
-      window.addEventListener('resize', resizeCanvas, { passive: true });
-      resizeCanvas();
 
       function pad4(n) { return String(n).padStart(4, '0'); }
       function frameSrc(i) { return `${FRAME_DIR}${FRAME_PREFIX}${pad4(i + 1)}${FRAME_EXT}`; }
@@ -2910,22 +1281,18 @@
       function getScrollProgress() {
         const rect = heroSection.getBoundingClientRect();
         const total = heroSection.offsetHeight - window.innerHeight;
-        if (total <= 0) return 0;
-        return Math.max(0, Math.min(1, -rect.top / total));
+        return total <= 0 ? 0 : Math.max(0, Math.min(1, -rect.top / total));
       }
-
-      function lerp(a, b, t) { return a + (b - a) * t; }
 
       function tick() {
         if (!heroActive || !isReady) return;
         const progress = getScrollProgress();
         targetFrameF = progress * (TOTAL_FRAMES - 1);
-        currentFrameF = lerp(currentFrameF, targetFrameF, LERP_FACTOR);
+        currentFrameF = currentFrameF + (targetFrameF - currentFrameF) * LERP_FACTOR;
         const fi = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrameF)));
         if (fi !== lastDrawnFrame) {
           drawFrame(fi);
           lastDrawnFrame = fi;
-          if (frameCur) frameCur.textContent = String(fi + 1).padStart(3, '0');
         }
         heroContent.style.opacity = Math.max(0, 1 - progress * 2.8);
         heroContent.style.transform = `translateY(${progress * -30}px)`;
@@ -2937,7 +1304,6 @@
       function stopLoop() { cancelAnimationFrame(rafId); rafId = null; }
 
       window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30), { passive: true });
-      nav.classList.toggle('scrolled', window.scrollY > 30);
 
       const heroObs = new IntersectionObserver(entries => {
         heroActive = entries[0].isIntersecting;
@@ -2945,74 +1311,25 @@
       }, { threshold: 0 });
       heroObs.observe(heroSection);
 
-      function initRevealSections() {
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-        }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.rv').forEach(el => obs.observe(el));
-      }
-
-      function initRevealCards() {
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (!e.isIntersecting) return;
-            e.target.querySelectorAll('.rv-card, .info-card').forEach((c, i) => {
-              setTimeout(() => c.classList.add('visible'), i * 65);
-            });
-            obs.unobserve(e.target);
-          });
-        }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('.cards, .info-grid, .gallery-grid, .marquee-reviews-container, .switch-grid, .cards-stab, .repair-layout, .switch-cards-wrap, .gb-detail-layout').forEach(el => obs.observe(el));
-      }
-
       function bindScrollButton() {
         if (!scrollInd) return;
-
         scrollInd.addEventListener('click', function () {
           const targetSection = document.getElementById('services');
           if (!targetSection) return;
-
-          document.documentElement.style.scrollBehavior = 'auto';
-
-          const yOffset = -12;
-          const targetY = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          const startY = window.pageYOffset;
-          const distance = targetY - startY;
-
-          const duration = 4000;
-          let startTime = null;
-
-          function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-          }
-
-          document.documentElement.style.scrollBehavior = '';
+          const targetY = targetSection.getBoundingClientRect().top + window.pageYOffset - 12;
           window.scrollTo({ top: targetY, behavior: 'smooth' });
         });
       }
 
-      /* ══════════════════════════════════════════
-          INTERACTIVE MODAL CONFIGURATIONS
-      ══════════════════════════════════════════ */
       function setupGBModal() {
         const modal = document.getElementById('gbModal');
         const closeBtn = document.getElementById('gbModalClose');
         const overlay = document.getElementById('gbModalOverlay');
         const learnBtn = document.getElementById('gbModalLearn');
-
         if (!modal) return;
-
-        if (!sessionStorage.getItem('mochi40-ic-seen')) {
-          setTimeout(() => {
-            modal.classList.add('modal-open');
-          }, 2000);
-        }
-
-        function closeModal() {
-          modal.classList.remove('modal-open');
-          sessionStorage.setItem('mochi40-ic-seen', 'true');
-        }
-
+        function openModal(e) { if (e) e.preventDefault(); modal.classList.add('modal-open'); }
+        function closeModal() { modal.classList.remove('modal-open'); }
+        document.querySelectorAll('[data-open-gb-modal]').forEach(function (el) { el.addEventListener('click', openModal); });
         closeBtn.addEventListener('click', closeModal);
         overlay.addEventListener('click', closeModal);
         learnBtn.addEventListener('click', closeModal);
@@ -3020,7 +1337,7 @@
 
       async function init() {
         document.body.style.overflow = 'hidden';
-        try { await loadAllFrames(); } catch (e) { console.warn('Frame load error:', e); }
+        try { await loadAllFrames(); } catch (e) { console.warn(e); }
         if (frames[0] && frames[0] !== 'error') drawFrame(0);
         isReady = true;
         loaderBar.style.width = '100%';
@@ -3029,37 +1346,27 @@
         loader.classList.add('hidden');
         document.body.style.overflow = '';
         if (heroActive) startLoop();
-        initRevealSections();
-        initRevealCards();
         bindScrollButton();
         setupGBModal();
+        applyPrices();
+        renderReviews();
+        resizeCanvas();
       }
 
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(init);
-      else init();
+      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(init); } else { init(); }
 
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          resizeCanvas();
-          const fi = Math.round(currentFrameF);
-          if (frames[fi] && frames[fi] !== 'error') drawFrame(fi);
-        }, 100);
+        resizeTimer = setTimeout(resizeCanvas, 100);
       }, { passive: true });
-
     })();
 
     window.placeholderHTML = function (label) {
-      return `<div class="gallery-placeholder" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--t3);">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="opacity:0.35">
-      <rect x="3" y="5" width="26" height="22" rx="3" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="11" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M3 22l7-7 5 5 4-4 10 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-    </svg>
-    <span class="gallery-placeholder-text">${label}</span>
-    <span style="font-size:0.6rem;opacity:0.4;font-family:var(--ff-display);letter-spacing:0.08em">Add image →</span>
-  </div>`;
+      return `<div class="gallery-placeholder">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="22" rx="3" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="12" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 22l7-7 5 5 4-4 10 9" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span class="gallery-placeholder-text">${label}</span>
+      </div>`;
     };
   </script>
 </body>
