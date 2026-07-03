@@ -1118,12 +1118,12 @@
         <div class="device-panel active-device" data-device="keyboard">
           <div class="field-stack">
             <div class="field-inline">
-              <label for="kb-model">Keyboard Chassis Hardware / Model Name</label>
+              <label for="kb-model">Keyboard Chassis Hardware / PCB Name</label>
               <input type="text" id="kb-model" placeholder="e.g. Neo65, Keychron Q1, Mode Envoy…" />
             </div>
 
             <div class="field-inline">
-              <label>Form-Factor Layout Allocation Matrix</label>
+              <label>Form-Factor Layout Allocation</label>
               <div class="pill-radio-group" id="layout-group">
                 <label class="pill-radio"><input type="radio" name="layout" value="60%" /><span>60%</span></label>
                 <label class="pill-radio"><input type="radio" name="layout" value="65%" /><span>65%</span></label>
@@ -1159,15 +1159,15 @@
             </div>
 
             <div class="field-inline">
-              <label for="kb-switch-name">Component Switch Identifier Model</label>
+              <label for="kb-switch-name">Switch Model</label>
               <input type="text" id="kb-switch-name" placeholder="e.g. Gateron Cream Soda, HMX Xinhai…" />
             </div>
 
             <div class="field-inline">
-              <label>Keycap Matrix Enclosure State</label>
+              <label>Are Keycaps Included?</label>
               <div class="pill-radio-group" id="keycaps-group">
                 <label class="pill-radio"><input type="radio" name="keycaps" value="Keycaps Included" /><span>Included</span></label>
-                <label class="pill-radio"><input type="radio" name="keycaps" value="No Keycaps" /><span>Omit Caps</span></label>
+                <label class="pill-radio"><input type="radio" name="keycaps" value="No Keycaps" /><span>Not Included</span></label>
               </div>
               <div class="inline-note" id="keycaps-note" style="display:none;">
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0;margin-top:2px;color:var(--t3)">
@@ -1218,7 +1218,7 @@
             <circle cx="9.5" cy="12" r="1" fill="currentColor" />
           </svg>
           <div>
-            <strong>Logistics Variables Omitted</strong> Logistic transport overhead limits calculated outside base structural framework totals.
+            <strong>Logistics is not included</strong> Logistic transport overhead limits calculated outside base structural framework totals.
           </div>
         </div>
 
@@ -1251,11 +1251,11 @@
 
           <div class="form-grid">
             <div class="field">
-              <label for="name">Legal Name Statement <span class="req">*</span></label>
+              <label for="name">Full Name<span class="req">*</span></label>
               <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
             </div>
             <div class="field">
-              <label for="discord">Discord Handle Identity</label>
+              <label for="discord">Discord Username [If Applicable]</label>
               <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul_forge" />
             </div>
             <div class="field">
@@ -1263,7 +1263,7 @@
               <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
             </div>
             <div class="field">
-              <label for="phone">Mobile Network Interface / WhatsApp <span class="req">*</span></label>
+              <label for="phone">Mobile / WhatsApp <span class="req">*</span></label>
               <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
             </div>
             <div class="field">
@@ -1271,23 +1271,65 @@
               <div class="summary-box empty" id="summary-display">No active service processes declared.</div>
             </div>
             <div class="field">
-              <label for="notes">Engineering Notes / Explicit Structural Adjustments</label>
-              <textarea id="notes" name="Additional Notes" placeholder="Detail operational expectations, alignment metrics, grease parameters, target acoustic signatures..."></textarea>
+              <label for="notes">Engineering Notes / Adjustments Or Messages</label>
+              <textarea id="notes" name="Additional Notes" placeholder="Message..."></textarea>
             </div>
             <div class="field">
-              <label for="address">Postal Line Drop Address <span class="req">*</span></label>
+              <label for="address">Address <span class="req">*</span></label>
               <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
             </div>
             <div class="field">
-              <label for="city">City Element <span class="req">*</span></label>
+              <label for="city">City <span class="req">*</span></label>
               <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
             </div>
             <div class="field">
               <label for="state">Territory / State Province <span class="req">*</span></label>
-              <input type="text" id="state" name="State" placeholder="e.g. Jammu & Kashmir" required autocomplete="address-level1" />
+              <select id="state" name="State" required autocomplete="address-level1" style="background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r-sm); color: var(--t1); font-family: var(--ff-body); font-size: 0.9rem; padding: 12px 14px; transition: all 0.2s var(--ease-out); outline: none; width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;">
+                <option value="" disabled selected hidden>Select your state / UT...</option>
+                <optgroup label="States">
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                </optgroup>
+                <optgroup label="Union Territories">
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  <option value="Ladakh">Ladakh</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Puducherry">Puducherry</option>
+                </optgroup>
+              </select>
             </div>
             <div class="field">
-              <label for="pincode">Postal Region Code / Pincode <span class="req">*</span></label>
+              <label for="pincode">Postal Code / Pincode <span class="req">*</span></label>
               <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
             </div>
           </div>
