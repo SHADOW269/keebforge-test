@@ -73,7 +73,7 @@
       --bdr-h: rgba(255, 255, 255, 0.18);
       --t1: #f5f5fa;
       --t2: #aeaebc;
-      --t3: #71717f;
+      --t3: #9494a6;
       --acc: #c9f31d;
       --acc-dim: rgba(201, 243, 29, 0.09);
       --acc-glow: rgba(201, 243, 29, 0.16);
@@ -348,7 +348,7 @@
     .info-card { background: var(--bg1); border: 1px solid var(--bdr); border-radius: var(--r-md); padding: 26px 22px; transition: background 0.25s, border-color 0.28s, transform 0.28s var(--ease-out); }
     .info-card:hover { background: var(--bg2); border-color: var(--bdr-h); transform: translateY(-4px); }
     .info-ico { font-size: 1.75rem; margin-bottom: 14px; display: block; line-height: 1; }
-    .info-card h4 { font-family: var(--ff-display); font-size: 0.92rem; font-weight: 700; color: var(--t1); margin-bottom: 7px; }
+    .info-card h3 { font-family: var(--ff-display); font-size: 0.92rem; font-weight: 700; color: var(--t1); margin-bottom: 7px; }
     .info-card p { font-size: 0.8rem; color: var(--t2); line-height: 1.65; }
 
     /* Component Repair Forms Architecture */
@@ -613,11 +613,11 @@
 
           <div class="gb-media-pane">
             <div class="gallery-item">
-              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
+              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" loading="lazy" decoding="async" width="658" height="483" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
               <div class="gallery-item-overlay"><span class="gallery-item-label">Mochi40 PCB Layout</span></div>
             </div>
             <div class="gallery-item">
-              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
+              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" loading="lazy" decoding="async" width="645" height="628" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
               <div class="gallery-item-overlay"><span class="gallery-item-label">Case Integration Build</span></div>
             </div>
           </div>
@@ -1058,32 +1058,32 @@
         <div class="info-grid">
           <div class="info-card">
             <span class="info-ico">⏱</span>
-            <h4>Turnaround</h4>
+            <h3>Turnaround</h3>
             <p>5–7 days depending on order complexity and queue.</p>
           </div>
           <div class="info-card">
             <span class="info-ico">🔍</span>
-            <h4>Compatibility</h4>
+            <h3>Compatibility</h3>
             <p>Customer must verify compatibility before shipping parts.</p>
           </div>
           <div class="info-card">
             <span class="info-ico">💳</span>
-            <h4>Payment</h4>
+            <h3>Payment</h3>
             <p>Payment after completion. Optional work samples on request.</p>
           </div>
           <div class="info-card">
             <span class="info-ico">📦</span>
-            <h4>Shipping</h4>
+            <h3>Shipping</h3>
             <p>Buyer covers all shipping costs in both directions.</p>
           </div>
           <div class="info-card">
             <span class="info-ico">📊</span>
-            <h4>Bulk Orders</h4>
+            <h3>Bulk Orders</h3>
             <p>Negotiable pricing for large-quantity orders.</p>
           </div>
           <div class="info-card">
             <span class="info-ico">✅</span>
-            <h4>Quality Guarantee</h4>
+            <h3>Quality Guarantee</h3>
             <p>Precision and consistency guaranteed on every order.</p>
           </div>
         </div>
@@ -1266,9 +1266,27 @@
       const frames = new Array(EFFECTIVE_FRAMES).fill(null);
       let loadedCount = 0, currentFrameF = 0, targetFrameF = 0, lastDrawnFrame = -1, rafId = null, heroActive = true, isReady = false;
 
+      // PERF FIX (forced reflow): cache the layout-dependent numbers the
+      // scroll loop needs instead of calling getBoundingClientRect() on
+      // every rAF tick. getBoundingClientRect() forces a synchronous
+      // layout if anything upstream is dirty, and doing that every frame
+      // during a scroll was flagged as the page's top forced-reflow cost
+      // (Style & Layout: ~1.8s of main-thread time). window.scrollY is a
+      // cheap read with no layout cost, so combined with a cached
+      // offsetTop/offsetHeight (recomputed only on load/resize, not per
+      // frame) we get the same scroll progress without re-triggering layout.
+      let heroOffsetTop = 0;
+      let heroScrollTotal = 0;
+
+      function updateHeroMetrics() {
+        heroOffsetTop = heroSection.offsetTop;
+        heroScrollTotal = heroSection.offsetHeight - window.innerHeight;
+      }
+
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        updateHeroMetrics();
         const fi = Math.round(currentFrameF);
         if (frames[fi] && frames[fi] !== 'error') drawFrame(fi);
       }
@@ -1317,9 +1335,9 @@
       }
 
       function getScrollProgress() {
-        const rect = heroSection.getBoundingClientRect();
-        const total = heroSection.offsetHeight - window.innerHeight;
-        return total <= 0 ? 0 : Math.max(0, Math.min(1, -rect.top / total));
+        if (heroScrollTotal <= 0) return 0;
+        const scrolled = window.scrollY - heroOffsetTop;
+        return Math.max(0, Math.min(1, scrolled / heroScrollTotal));
       }
 
       function tick() {
@@ -1399,6 +1417,7 @@
       // gated behind document.fonts.ready, so font loading and frame
       // loading happen in parallel rather than serially.
       async function init() {
+        updateHeroMetrics();
         try { await loadFirstFrameThenRest(); } catch (e) { console.warn(e); }
 
         if (frames[0] && frames[0] !== 'error') drawFrame(0);
@@ -1409,9 +1428,25 @@
 
         bindScrollButton();
         setupGBModal();
+        resizeCanvas();
+      }
+
+      // PERF FIX / BUG FIX: prices.js and reviews.js are loaded with `defer`,
+      // so they only run after the whole document has been parsed — which is
+      // AFTER this inline script block executes. Calling applyPrices()/
+      // renderReviews() directly from init() ran them before
+      // window.KEEBFORGE_PRICES / window.KEEBFORGE_REVIEWS existed, so
+      // nothing ever rendered. DOMContentLoaded always fires after deferred
+      // scripts have run, so that's the safe point to call them.
+      function renderDeferredData() {
         applyPrices();
         renderReviews();
-        resizeCanvas();
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderDeferredData);
+      } else {
+        // Script somehow ran after DOMContentLoaded already fired
+        renderDeferredData();
       }
 
       init();
