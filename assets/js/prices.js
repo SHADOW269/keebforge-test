@@ -236,13 +236,13 @@ window.KEEBFORGE_PRICES = {
       {
         name: "Switch Swap (Left / Right Click)",
         desc: "Replace worn, double-clicking, or mushy main switches — bring your own switches or ask us to source",
-        price: 100,
+        price: 0,
         unit: "msw",
       },
       {
         name: "Middle / Side Button Switch Swap",
         desc: "Replace scroll-click, forward/back, or DPI switches",
-        price: 80,
+        price: 0,
         unit: "msw",
       },
     ],
@@ -259,14 +259,14 @@ window.KEEBFORGE_PRICES = {
       {
         name: "Tape Mod",
         desc: "Internal shell taping to reduce flex, rattle, and hollow acoustics",
-        price: 600,
-        unit: "flat",
+        price: 0,
+        unit: "quote",
       },
       {
         name: "Skate / Feet Replacement",
         desc: "Fresh PTFE skates fitted and leveled",
-        price: 150,
-        unit: "flat",
+        price: 0,
+        unit: "quote",
       },
       {
         name: "Encoder Replacement (Scroll Wheel)",
