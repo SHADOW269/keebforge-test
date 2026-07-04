@@ -1,66 +1,118 @@
-# KeebForge.in — Portfolio & Custom Keyboard Architecture
+<table style="border: none; border-collapse: collapse;">
+  <tr>
+    <td width="110" style="border: none; padding: 0;">
+      <img src="assets/img/favicon.png" alt="KEYDIR.in Logo" width="100">
+    </td>
+    <td style="border: none; padding: 0 0 0 16px;">
+      <h1>⌨ KeebForge.in</h1>
+      <b>Independent Electronics Workshop for Custom Mechanical Keyboards And Accessory</b>
+      <br>Precision switch modifications, custom keyboard builds, PCB design, firmware, soldering, electronics repair, tech accessory and an integrated pricing & order management experience.<br><br>
+      <a href="https://keebforge.in/">🌐 Keebforge.in</a> &nbsp;·&nbsp;
+      <a href="https://keebforge.in/order/">🐛 Place Order</a> &nbsp;·&nbsp;
+      <a href="https://keebforge.in/Terms&Conditions/">🍴Terms & Conditions </a> &nbsp;·&nbsp;
+      <a href="https://keebforge.in/About/">🚀 About Me</a>
+    </td>
+  </tr>
+</table>
 
-A high-performance, dark-themed responsive storefront and price estimation engine tailored for electronics engineering and premium custom mechanical keyboard modifications.
+# Current Services
+
+## Switch Services
+
+- Krytox 205g0 Lubing
+- Stem Tuning
+- Durock Films
+- TX Films
+- Spring Swap
+- Complete Switch Mod
+
+
+## Stabilizer Services
+
+- Full Stabilizer Service
+- Wire Balancing
+- Stabilizer Restoration
+
+## Build Services
+
+- Switch Soldering
+- Switch Desoldering
+- Keyboard Assembly
+- Mill-Max Installation
+- Hotswap Socket Installation
+- Split Keyboard Build
+  
+## PCB & Engineering
+
+- PCB Design
+- PCB Fabrication Support
+- Firmware Flashing
+- PCB Diagnostics
+
+## Mouse Services
+
+- Switch Replacement
+- Encoder Replacement
+- Tape Mod
+- Skate Replacement
+- General Repairs
+
+## Electronics Repair
+
+- Component-level diagnostics
+- PCB repair
+- Microcontroller repair
+- Hobby electronics
+- Consumer electronics
 
 ---
 
-## 🛠️ Architecture Overview
+# Community Projects
 
-The system is engineered as a lightweight, static multi-page ecosystem designed for instant load times, high-contrast readability under complex graphic states, and frictionless order routing.
+## Mochi40
 
-├── index.html               # Main Landing & Cinematic Interactive Portfolio
-├── order/
-│   └── index.html           # Dynamic Price Estimator & Client Validation Form
-├── thanks/
-│   └── index.html           # Transaction Success Confirmation Screen
-└── assets/
-├── js/
-│   └── prices.js        # Centralized Global Pricing Object Configuration
-└── frames/
-└── frame_0001.webp  # WebP Pre-rendered Cinematic Background Assets
+An open-source 40% custom mechanical keyboard project featuring:
 
-
----
-
-## 💎 Key Production Features
-
-* **Cinematic Frame Interpolation:** The landing page utilizes a customized linear-interpolated (`LERP`) HTML5 Canvas rendering loop synchronized to structural viewport scroll percentages, scrolling seamlessly through `207` standalone WebP asset frames.
-* **Centralized Single-Source Pricing:** Both the portfolio views and the client data sheets draw flat numbers, ranges, and structures dynamically from a unified global script token definition.
-* **High-Contrast Color Profiles:** Custom-tuned palette rules (`--t1`, `--t2`, `--t3`) guarantee perfect typography parsing ($AA$ / $AAA$ compliance) over complex translucent layers and purple/pink moving canvases.
-* **Frictionless Order Form Rules:** Integrates real-time price summation math, complete with complex automated checkbox logic that handles exclusive modifiers and bundled packages seamlessly.
+- Elite-C footprint
+- nice!nano support
+- OLED support
+- EC11 rotary encoder
+- Hotswap sockets
+- Open-source PCB
+- Manufacturing cost calculator
+- Interest Check tracking
 
 ---
 
-## ⚙️ Configuration Module (`/assets/js/prices.js`)
+# Deployment
 
-To mutate service options, price structures, range metrics, or custom layout text, update the centralized `window.KEEBFORGE_PRICES` object instance. 
+Since the project is fully static, it can be hosted on:
 
-### Data Properties Configuration
-* `unit`: Sets the dynamic evaluation scope (`"sw"` = per switch, `"stab"` = per stabilizer, `"flat"` = fixed sum, `"quote"` = custom estimation analysis).
-* `combo: true`: Triggers high-contrast layout grouping background modifiers.
-* `popular: true`: Spawns the custom built alignment badge framework (`★ Popular`).
-* `comboReplaces`: String arrays defining target names automatically unchecked when selecting complex combination bundles.
+- GitHub Pages
+- Cloudflare Pages
+- Netlify
+- Vercel
+- Firebase Hosting
+- Any static web server
 
-### Object Properties Structure Example
-```javascript
-window.KEEBFORGE_PRICES = {
-  switchServices: {
-    label: "Switch Services (per switch)",
-    unit: "sw",
-    items: [
-      {
-        name: "Krytox 205g0 Lubing",
-        desc: "Premium lube for buttery feel",
-        price: 12,
-      },
-      {
-        name: "🔥 Complete Mod (Combo)",
-        desc: "Lube + Film + Spring Swap",
-        price: 20,
-        combo: true,
-        popular: true,
-        comboReplaces: ["Krytox 205g0 Lubing", "Durock Films"],
-      }
-    ]
-  }
-};
+---
+# Future Roadmap
+
+- [ ] Online payment integration
+- [ ] Customer dashboard
+- [ ] Order tracking
+- [ ] Inventory management
+- [ ] Review submission system
+- [ ] Admin panel
+- [ ] Dynamic project showcase
+- [ ] Multi-language support
+- [ ] Dark/Light theme toggle
+- [ ] Email notifications
+
+---
+<p align="center">
+  <br><br>
+  <a href="https://">
+    <img src="assets/img/Banner.png" alt="KEYDIR.in Banner" height="70%">
+  </a>
+</p>
