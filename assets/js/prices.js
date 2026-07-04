@@ -5,24 +5,34 @@
  * This file is loaded by index.html (and any future pages).
  *
  * Units:
- *   "sw"   → priced per switch   (uses qty-sw counter)
- *   "stab" → priced per stab     (uses qty-stab counter)
+ *   "sw"   → priced per switch (keyboard)  (uses qty-sw counter)
+ *   "msw"  --> priced per switch (mouse)     (uses qty-msw counter)
+ *   "stab" → priced per stab               (uses qty-stab counter)
  *   "flat" → flat / fixed price  (qty = 1, always)
  *   "quote"→ no fixed price, goes to "quoted" list
  *
  * price:
- *   - For "sw" / "stab" / "flat": set the number (e.g. 12)
+ *   - For "sw" / "msw" / "stab" / "flat": set the number (e.g. 12)
  *   - For a range (e.g. builds): set priceMin + priceMax, leave price: 0
  *   - For "quote": set price: 0
  *
  * flags:
  *   combo: true   → highlighted combo row
  *   popular: true → shows ★ Popular badge
+ *   highlight: true → highlights card box item on screen explicitly
  *   comboReplaces → array of service names this combo deselects when picked
  *   exclusiveWith → array of service names that deselect this when picked
+ *
+ * device:
+ *   "keyboard" | "mouse" → which tab this group appears under in the
+ *   order form. Required on every group so the tab filter works.
  */
 
 window.KEEBFORGE_PRICES = {
+
+  /* ═══════════════════════════════════════════════════════
+     KEYBOARD
+  ═══════════════════════════════════════════════════════ */
 
   /* ─────────────────────────────────────────
      SWITCH SERVICES  (per switch)
@@ -30,6 +40,7 @@ window.KEEBFORGE_PRICES = {
   switchServices: {
     label: "Switch Services (per switch)",
     unit: "sw",
+    device: "keyboard",
     items: [
       {
         name: "Krytox 205g0 Lubing",
@@ -62,6 +73,7 @@ window.KEEBFORGE_PRICES = {
         price: 20,
         combo: true,
         popular: true,
+        highlight: true, // HIGHLIGHTED ITEM
         comboReplaces: [
           "Krytox 205g0 Lubing",
           "Durock Films",
@@ -79,11 +91,13 @@ window.KEEBFORGE_PRICES = {
   stabServices: {
     label: "Stabilizer Services (per stabilizer)",
     unit: "stab",
+    device: "keyboard",
     items: [
       {
         name: "Full Stabilizer Service",
         desc: "Disassembly, clean, lube, tune",
         price: 65,
+        highlight: true, // HIGHLIGHTED ITEM
         comboReplaces: ["Wire Balancing Only", "Restore Old Stabilizers"],
       },
       {
@@ -107,6 +121,7 @@ window.KEEBFORGE_PRICES = {
   solderServices: {
     label: "Build & Soldering Services",
     unit: "sw",
+    device: "keyboard",
     items: [
       {
         name: "Solder Switches",
@@ -171,6 +186,7 @@ window.KEEBFORGE_PRICES = {
   customWork: {
     label: "Custom PCB & Keyboard Design (quoted after review)",
     unit: "quote",
+    device: "keyboard",
     items: [
       {
         name: "Custom PCB Design & Layout",
@@ -199,6 +215,68 @@ window.KEEBFORGE_PRICES = {
       {
         name: "General Electronics Repair",
         desc: "Component-level diagnosis & repair",
+        price: 0,
+        unit: "quote",
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════════════
+     MOUSE
+  ═══════════════════════════════════════════════════════ */
+
+  /* ─────────────────────────────────────────
+     MOUSE SWITCH SERVICES  (per switch)
+  ───────────────────────────────────────── */
+  mouseSwitchServices: {
+    label: "Mouse Switch Services (per switch)",
+    unit: "msw",
+    device: "mouse",
+    items: [
+      {
+        name: "Switch Swap (Left / Right Click)",
+        desc: "Replace worn, double-clicking, or mushy main switches — bring your own switches or ask us to source",
+        price: 100,
+        unit: "msw",
+      },
+      {
+        name: "Middle / Side Button Switch Swap",
+        desc: "Replace scroll-click, forward/back, or DPI switches",
+        price: 80,
+        unit: "msw",
+      },
+    ],
+  },
+
+  /* ─────────────────────────────────────────
+     MOUSE MODS & REPAIRS
+  ───────────────────────────────────────── */
+  mouseModServices: {
+    label: "Mouse Mods & Repairs",
+    unit: "flat",
+    device: "mouse",
+    items: [
+      {
+        name: "Tape Mod",
+        desc: "Internal shell taping to reduce flex, rattle, and hollow acoustics",
+        price: 600,
+        unit: "flat",
+      },
+      {
+        name: "Skate / Feet Replacement",
+        desc: "Fresh PTFE skates fitted and leveled",
+        price: 150,
+        unit: "flat",
+      },
+      {
+        name: "Encoder Replacement (Scroll Wheel)",
+        desc: "Fix inconsistent, skipping, or dead scroll — encoder sourced to match your model",
+        price: 0,
+        unit: "quote",
+      },
+      {
+        name: "General Mouse Diagnostics & Repair",
+        desc: "Cable, sensor, button, or connectivity issues",
         price: 0,
         unit: "quote",
       },

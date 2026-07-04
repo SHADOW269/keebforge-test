@@ -10,179 +10,240 @@
   <meta name="theme-color" content="#080a0c" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
-  
+
   <style>
-:root {
-  --black:      #060608;
-  --bg:         #080a0c;
-  --bg1:        #0d0f12;
-  --surf:       rgba(255,255,255,0.038);
-  --bdr:        rgba(255,255,255,0.07);
-  --bdr-h:      rgba(255,255,255,0.14);
-  --t1:         #f0f0f5;
-  --t2:         #9a9aa8;
-  --t3:         #5a5a68;
-  --acc:        #d4f700;
-  --acc-glow:   rgba(212,247,0,0.22);
-  --acc-dim:    rgba(212,247,0,0.10);
-  --ff-display: 'Syne', sans-serif;
-  --ff-body:    'Outfit', sans-serif;
-  --nav-h:      56px;
-  --pad-x:      clamp(20px, 5vw, 48px);
-  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
-  --r-lg: 24px;
-}
+    /* ══════════════════════════════════════════════
+       ROOT — matched to keebforge.in main site
+    ══════════════════════════════════════════════ */
+    :root {
+      --black: #08070c;
+      --bg: #0a0910;
+      --bg1: #0f0e17;
+      --bg2: #15131f;
+      --bg3: #1b1928;
+      --purple: #7c6ff2;
+      --surf: rgba(255, 255, 255, 0.045);
+      --bdr: rgba(255, 255, 255, 0.09);
+      --bdr-h: rgba(255, 255, 255, 0.18);
+      --t1: #f5f5fa;
+      --t2: #aeaebc;
+      --t3: #71717f;
+      --acc: #c9f31d;
+      --acc-dim: rgba(201, 243, 29, 0.09);
+      --acc-glow: rgba(201, 243, 29, 0.16);
+      --ff-display: 'Space Grotesk', sans-serif;
+      --ff-body: 'Inter', sans-serif;
+      --nav-h: 56px;
+      --max-w: 1160px;
+      --pad-x: clamp(20px, 5vw, 48px);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --r-lg: 20px;
+      --shadow-card:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+        0 24px 48px -12px rgba(6, 5, 12, 0.6),
+        0 8px 24px -8px rgba(124, 111, 242, 0.10);
+    }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 15px; -webkit-text-size-adjust: 100%; }
-body {
-  background: var(--bg);
-  color: var(--t1);
-  font-family: var(--ff-body);
-  font-weight: 400;
-  line-height: 1.6;
-  overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0 var(--pad-x);
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; -webkit-text-size-adjust: 100%; }
+    body {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 111, 242, 0.10) 0%, transparent 60%),
+        var(--bg);
+      color: var(--t1);
+      font-family: var(--ff-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0 var(--pad-x);
+    }
+    a { text-decoration: none; }
 
-/* NAV */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--nav-h);
-  z-index: 500;
-  background: rgba(6,6,8,0.75);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid var(--bdr);
-}
-.nav-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.nav-logo {
-  font-family: var(--ff-display);
-  font-size: 0.97rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  color: var(--t1);
-}
-.logo-dot { color: var(--acc); }
+    /* ══════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 500;
+      background: rgba(6, 6, 8, 0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--bdr);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 0.97rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--t1);
+    }
+    .logo-dot { color: var(--acc); }
 
-/* THANK YOU CARD */
-.thanks-card {
-  background: var(--surf);
-  border: 1px solid var(--bdr);
-  border-radius: var(--r-lg);
-  padding: 48px 40px;
-  max-width: 540px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.55);
-  animation: fadeUp 0.8s var(--ease-out) both;
-}
-.thanks-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.035) 0%, transparent 55%);
-  pointer-events: none;
-}
+    /* ══════════════════════════════════════════════
+       THANK YOU CARD
+    ══════════════════════════════════════════════ */
+    .thanks-card {
+      background: var(--surf);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r-lg);
+      padding: 48px 40px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      animation: fadeUp 0.8s var(--ease-out) both;
+    }
+    .thanks-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201, 243, 29, 0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-/* NEON SUCCESS MARK */
-.icon-container {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--acc-dim);
-  border: 1px solid rgba(212,247,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px;
-  color: var(--acc);
-  box-shadow: 0 0 30px var(--acc-glow);
-}
+    .icon-container {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--acc-dim);
+      border: 1px solid rgba(201, 243, 29, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: var(--acc);
+      box-shadow: 0 0 28px var(--acc-glow);
+      animation: popIn 0.6s 0.15s var(--ease-out) both;
+    }
 
-.thanks-title {
-  font-family: var(--ff-display);
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--t1);
-  line-height: 1.1;
-  margin-bottom: 14px;
-}
-.thanks-desc {
-  font-size: 0.92rem;
-  color: var(--t2);
-  line-height: 1.65;
-  margin-bottom: 32px;
-}
+    .review-stars-recap { display: flex; gap: 4px; justify-content: center; margin-bottom: 18px; }
+    .review-stars-recap .star { font-size: 1.1rem; color: var(--acc); }
 
-/* BUTTONS */
-.btn-home {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--ff-display);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #000;
-  background: var(--acc);
-  padding: 12px 28px;
-  border-radius: 99px;
-  transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
-}
-.btn-home:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 24px var(--acc-glow);
-}
+    .thanks-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--t1);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .thanks-desc {
+      font-size: 0.9rem;
+      color: var(--t2);
+      line-height: 1.65;
+      margin-bottom: 30px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-.redirect-countdown {
-  font-size: 0.72rem;
-  color: var(--t3);
-  margin-top: 24px;
-  letter-spacing: 0.02em;
-}
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--ff-display);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--t2);
+      background: var(--bg1);
+      border: 1px solid var(--bdr);
+      padding: 7px 16px;
+      border-radius: 99px;
+      margin-bottom: 32px;
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--acc);
+      box-shadow: 0 0 10px var(--acc-glow);
+      animation: pulse 2.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--ff-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #000;
+      background: var(--acc);
+      padding: 12px 28px;
+      border-radius: 99px;
+      transition: transform 0.22s var(--ease-out), box-shadow 0.22s;
+    }
+    .btn-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px var(--acc-glow), 0 0 0 4px var(--acc-dim);
+    }
+
+    .redirect-countdown {
+      font-size: 0.72rem;
+      color: var(--t3);
+      margin-top: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 480px) {
+      .thanks-card { padding: 36px 22px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- BACKGROUND FIXED NAV -->
+  <canvas id="confetti-canvas" aria-hidden="true" style="position:fixed;inset:0;z-index:900;pointer-events:none;width:100%;height:100%;"></canvas>
+
   <nav class="nav" role="navigation">
     <div class="nav-inner">
-      <div class="nav-logo">
+      <a href="/" class="nav-logo">
         <span>KeebForge</span><span class="logo-dot">.</span><span>in</span>
-      </div>
+      </a>
     </div>
   </nav>
 
-  <!-- CONFIRMATION FRAME -->
   <main class="thanks-card">
     <div class="icon-container" aria-hidden="true">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -190,11 +251,17 @@ body {
         <polyline points="22 4 12 14.01 9 11.01" />
       </svg>
     </div>
-    
+
     <h1 class="thanks-title">Review Submitted</h1>
     <p class="thanks-desc">
-      Your experience has been logged securely. Thank you for taking the time to share feedback with the mechanical keyboard community!
+      Thanks for taking the time to share your experience — it genuinely helps other keyboard folks trust the work.
     </p>
+
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      Live on the site within 48 hours
+    </div>
+    <br />
 
     <a href="/" class="btn-home">
       Return to Home
@@ -207,23 +274,199 @@ body {
   </main>
 
   <script>
-    (function () {
-      'use strict';
-      
-      var timeLeft = 5;
-      var countdownEl = document.getElementById('countdown-label');
-      
-      var interval = setInterval(function () {
-        timeLeft--;
-        if (countdownEl) {
-          countdownEl.textContent = 'Redirecting automatically in ' + timeLeft + ' second' + (timeLeft !== 1 ? 's' : '') + '...';
+  (function () {
+    'use strict';
+
+    /* ── Redirect countdown ── */
+    var timeLeft = 5;
+    var countdownEl = document.getElementById('countdown-label');
+
+    var interval = setInterval(function () {
+      timeLeft--;
+      if (countdownEl) {
+        countdownEl.textContent = 'Redirecting automatically in ' + timeLeft + ' second' + (timeLeft !== 1 ? 's' : '') + '...';
+      }
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        window.location.href = '/';
+      }
+    }, 1000);
+
+    /* ── Tech-themed particle burst ── */
+    var canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+      canvas.width = window.innerWidth * DPR;
+      canvas.height = window.innerHeight * DPR;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    var colors = ['#c9f31d', '#7c6ff2', '#f5f5fa', '#9d94ff', '#e4ff7a'];
+    var GRAVITY = 0.15;
+    var DRAG = 0.994;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var TYPES = ['keycap', 'chip', 'binary', 'node', 'bracket'];
+    var BIN_CHARS = ['0', '1'];
+    var BRACKET_CHARS = ['{ }', '< />', '#', '01'];
+
+    function pick(arr) { return arr[(Math.random() * arr.length) | 0]; }
+
+    function makeSprinkle(originX, originY) {
+      var angle = (Math.random() * Math.PI * 0.9) + Math.PI * 0.05;
+      var speed = 5 + Math.random() * 7;
+      var size = 9 + Math.random() * 7;
+      return {
+        x: originX,
+        y: originY,
+        vx: Math.cos(angle) * speed * (Math.random() < 0.5 ? -1 : 1),
+        vy: -Math.sin(angle) * speed - 2,
+        size: size,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.3,
+        color: pick(colors),
+        type: pick(TYPES),
+        glyph: pick(BIN_CHARS),
+        bracket: pick(BRACKET_CHARS),
+        life: 1,
+        decay: 0.0028 + Math.random() * 0.0018
+      };
+    }
+
+    var particles = [];
+    var running = false;
+
+    function drawParticle(p) {
+      var s = p.size;
+      ctx.strokeStyle = p.color;
+      ctx.fillStyle = p.color;
+      ctx.lineWidth = Math.max(1, s * 0.12);
+
+      switch (p.type) {
+        case 'keycap': {
+          var r = s * 0.22, w = s, h = s;
+          ctx.beginPath();
+          ctx.moveTo(-w / 2 + r, -h / 2);
+          ctx.arcTo(w / 2, -h / 2, w / 2, h / 2, r);
+          ctx.arcTo(w / 2, h / 2, -w / 2, h / 2, r);
+          ctx.arcTo(-w / 2, h / 2, -w / 2, -h / 2, r);
+          ctx.arcTo(-w / 2, -h / 2, w / 2, -h / 2, r);
+          ctx.closePath();
+          ctx.globalAlpha *= 0.16;
+          ctx.fill();
+          ctx.globalAlpha /= 0.16;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-w / 3, -h / 4);
+          ctx.lineTo(w / 3, -h / 4);
+          ctx.stroke();
+          break;
         }
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-          window.location.href = '/';
+        case 'chip': {
+          var cw = s * 1.1, ch = s * 0.7;
+          ctx.strokeRect(-cw / 2, -ch / 2, cw, ch);
+          var pins = 3;
+          for (var i = 0; i < pins; i++) {
+            var px = -cw / 2 + (cw / (pins - 1)) * i;
+            ctx.beginPath();
+            ctx.moveTo(px, -ch / 2);
+            ctx.lineTo(px, -ch / 2 - s * 0.22);
+            ctx.moveTo(px, ch / 2);
+            ctx.lineTo(px, ch / 2 + s * 0.22);
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          ctx.arc(-cw / 2 + 2, 0, 1.1, 0, Math.PI * 2);
+          ctx.fill();
+          break;
         }
-      }, 1000);
-    })();
+        case 'binary': {
+          ctx.font = '700 ' + s + 'px "Space Grotesk", monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.glyph, 0, 0);
+          break;
+        }
+        case 'node': {
+          ctx.beginPath();
+          ctx.arc(0, 0, s * 0.16, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(-s * 0.16, 0);
+          ctx.lineTo(-s * 0.6, 0);
+          ctx.moveTo(s * 0.16, 0);
+          ctx.lineTo(s * 0.6, 0);
+          ctx.moveTo(0, -s * 0.16);
+          ctx.lineTo(0, -s * 0.6);
+          ctx.stroke();
+          break;
+        }
+        case 'bracket': {
+          ctx.font = '700 ' + (s * 0.85) + 'px "Space Grotesk", monospace';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.bracket, 0, 0);
+          break;
+        }
+      }
+    }
+
+    function burst() {
+      var w = window.innerWidth;
+      var originY = window.innerHeight * 0.32;
+      var points = [w * 0.18, w * 0.5, w * 0.82];
+      points.forEach(function (px) {
+        for (var i = 0; i < 30; i++) particles.push(makeSprinkle(px, originY));
+      });
+      if (!running) { running = true; tick(); }
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      var alive = false;
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        if (p.life <= 0) continue;
+        alive = true;
+
+        p.vy += GRAVITY;
+        p.vx *= DRAG;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.life -= p.decay;
+
+        if (p.y > window.innerHeight + 30 || p.life <= 0) { p.life = 0; continue; }
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        drawParticle(p);
+        ctx.restore();
+      }
+
+      if (alive) {
+        requestAnimationFrame(tick);
+      } else {
+        running = false;
+        particles = [];
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      }
+    }
+
+    if (!reduceMotion) {
+      setTimeout(burst, 250);
+    }
+  })();
   </script>
 
 </body>
