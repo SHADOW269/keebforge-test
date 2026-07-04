@@ -9,9 +9,21 @@
     content="Meet the electronics engineer behind KeebForge.in. Precision keyboard modifications, PCB design, and component-level electronics repair." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
+  <link rel="preconnect" href="https://gateway.umami.is" />
+
+  <!-- PERF FIX: was a render-blocking <link rel="stylesheet">
+       (Insight: Render-blocking requests, ~2s savings). Loaded async via
+       preload -> onload swap, same pattern as /order/, /Terms&Conditions/,
+       /review/, with a <noscript> fallback for JS-disabled clients. -->
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
-    rel="stylesheet" />
+    fetchpriority="low"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" />
+  </noscript>
+
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
   <style>
     /* ══════════════════════════════════════════════
@@ -29,7 +41,10 @@
       --bdr-h: rgba(255, 255, 255, 0.12);
       --t1: #f3f4f6;
       --t2: #9ca3af;
-      --t3: #6b7280;
+      /* CONTRAST FIX: brightened for WCAG AA against --bg1 (social-handle,
+         footer-blurb, footer-sys-line, footer-dev-credit all use this
+         directly). */
+      --t3: #9498a3;
       --acc: #d4f700;
       --acc-dim: rgba(212, 247, 0, 0.06);
       --acc-glow: rgba(212, 247, 0, 0.08);
@@ -923,7 +938,8 @@
     </div>
   </nav>
 
-  <div class="about-container">
+  <!-- A11Y FIX: document had no <main> landmark -->
+  <main class="about-container">
     <a href="/" class="back-link">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="transform: scaleX(-1); margin-bottom: -1px;">
         <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -1171,7 +1187,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </main>
 
   <footer class="site-footer">
     <span class="footer-watermark" aria-hidden="true">KEEBFORGE</span>

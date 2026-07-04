@@ -22,7 +22,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://gateway.umami.is" />
+
+  <!-- PERF FIX: was a render-blocking <link rel="stylesheet">
+       (Insight: Render-blocking requests, ~2s savings). Loaded async via
+       preload -> onload swap, same pattern as /order/ and /Terms&Conditions/,
+       with a <noscript> fallback for JS-disabled clients. -->
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        fetchpriority="low"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+  </noscript>
+
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
 
   <style>
@@ -41,7 +54,9 @@
       --bdr-h: rgba(255, 255, 255, 0.18);
       --t1: #f5f5fa;
       --t2: #aeaebc;
-      --t3: #71717f;
+      /* CONTRAST FIX: brightened for WCAG AA against --bg1/--bg2 (field
+         labels, star hint text, review meta text all use this directly). */
+      --t3: #9b9ba8;
       --acc: #c9f31d;
       --acc-dim: rgba(201, 243, 29, 0.09);
       --acc-glow: rgba(201, 243, 29, 0.16);
@@ -572,7 +587,8 @@
     </div>
   </nav>
 
-  <div class="page">
+  <!-- A11Y FIX: document had no <main> landmark -->
+  <main class="page">
     <div class="review-wrap">
 
       <header class="page-header">
@@ -595,13 +611,16 @@
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="rating-row">
-              <span class="field-label">Overall Rating *</span>
-              <div class="stars" role="radiogroup" aria-label="Star rating">
-                <span class="star" data-val="1" role="radio" aria-label="1 star" tabindex="0">★</span>
-                <span class="star" data-val="2" role="radio" aria-label="2 stars" tabindex="0">★</span>
-                <span class="star" data-val="3" role="radio" aria-label="3 stars" tabindex="0">★</span>
-                <span class="star" data-val="4" role="radio" aria-label="4 stars" tabindex="0">★</span>
-                <span class="star" data-val="5" role="radio" aria-label="5 stars" tabindex="0">★</span>
+              <span class="field-label" id="rating-group-label">Overall Rating *</span>
+              <!-- A11Y FIX: role="radio" elements need aria-checked (Lighthouse:
+                   "[role]s do not have all required [aria-*] attributes").
+                   Initialized false, kept in sync with selection in JS. -->
+              <div class="stars" role="radiogroup" aria-label="Star rating" aria-labelledby="rating-group-label">
+                <span class="star" data-val="1" role="radio" aria-label="1 star" aria-checked="false" tabindex="0">★</span>
+                <span class="star" data-val="2" role="radio" aria-label="2 stars" aria-checked="false" tabindex="0">★</span>
+                <span class="star" data-val="3" role="radio" aria-label="3 stars" aria-checked="false" tabindex="0">★</span>
+                <span class="star" data-val="4" role="radio" aria-label="4 stars" aria-checked="false" tabindex="0">★</span>
+                <span class="star" data-val="5" role="radio" aria-label="5 stars" aria-checked="false" tabindex="0">★</span>
                 <span class="star-val" id="star-val-label">Tap to rate</span>
               </div>
               <input type="hidden" name="rating" id="rating-input" required />
@@ -701,7 +720,7 @@
 
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="site-footer">
     <span class="footer-watermark" aria-hidden="true">KEEBFORGE</span>
@@ -764,7 +783,18 @@
     var previewCard = document.getElementById('previewCard');
 
     function paintStars(n) {
-      stars.forEach(function (s) { s.classList.toggle('active', parseInt(s.dataset.val, 10) <= n); });
+      stars.forEach(function (s) {
+        var isActive = parseInt(s.dataset.val, 10) <= n;
+        s.classList.toggle('active', isActive);
+      });
+    }
+
+    // A11Y FIX: keep aria-checked in sync with the actual chosen rating
+    // (hover preview shouldn't change the committed a11y state).
+    function syncAriaChecked() {
+      stars.forEach(function (s) {
+        s.setAttribute('aria-checked', parseInt(s.dataset.val, 10) === chosen ? 'true' : 'false');
+      });
     }
 
     function updatePreviewStars(n) {
@@ -784,6 +814,7 @@
         starLabel.textContent = labels[chosen];
         starLabel.classList.add('filled');
         paintStars(chosen);
+        syncAriaChecked();
         updatePreviewStars(chosen);
         pulsePreview();
       });
