@@ -16,7 +16,19 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://gateway.umami.is" />
+
+  <!-- PERF FIX: was a render-blocking <link rel="stylesheet">, costing ~2s
+       of critical-path latency (Insight: Render-blocking requests). Loaded
+       async via preload -> onload swap, same pattern as /order/, with a
+       <noscript> fallback for JS-disabled clients. -->
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        fetchpriority="low"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+  </noscript>
 
   <style>
     :root {
@@ -28,7 +40,9 @@
       --bdr: rgba(255, 255, 255, 0.09);
       --t1: #f5f5fa;
       --t2: #aeaebc;
-      --t3: #71717f;
+      /* CONTRAST FIX: brightened for WCAG AA against --bg1 (footer-blurb,
+         footer-sys-line, footer-dev-credit all use this directly). */
+      --t3: #9b9ba8;
       --acc: #c9f31d;
       --acc-dim: rgba(201, 243, 29, 0.09);
       --acc-glow: rgba(201, 243, 29, 0.16);

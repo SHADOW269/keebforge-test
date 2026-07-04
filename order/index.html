@@ -8,7 +8,7 @@
   <script defer src="https://cloud.umami.is/script.js" data-website-id="db504642-e075-4a18-9da3-02f971af33c5"></script>
   <meta name="description" content="Professional switch lubing, custom keyboard builds, PCB design, troubleshooting, and micro-soldering repairs. Based in Jammu &amp; Kashmir. Pan-India mail-in service." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://keebforge.in/" />
+  <link rel="canonical" href="https://keebforge.in/order/" />
   <meta name="geo.region" content="IN-JK" />
   <meta name="geo.placename" content="Jammu &amp; Kashmir" />
   <meta name="theme-color" content="#060709" />
@@ -263,6 +263,15 @@
       .sticky-summary-hub {
         position: sticky;
         top: calc(var(--nav-h) + 24px);
+        /* STICKY FIX: grid items stretch to fill the row height by default,
+           which made this column exactly as tall as the (much taller) left
+           column — leaving zero slack for position:sticky to actually
+           float/track the scroll, so it just sat static and then scrolled
+           away with the page. align-self: start keeps this column at its
+           own natural (shorter) height, so it now has room to stick and
+           travel with the viewport as you scroll through the left side,
+           only releasing near the bottom of the page. */
+        align-self: start;
       }
     }
 
@@ -461,7 +470,7 @@
 
     .inline-note {
       display: flex;
-      align-start: flex-start;
+      align-items: flex-start;
       gap: 10px;
       font-size: 0.8rem;
       color: var(--t2);
@@ -924,8 +933,11 @@
       line-height: 1.5;
     }
 
+    /* A11Y FIX: link relied on color alone (Lighthouse "Links rely on
+       colour to be distinguishable") — underline restores a non-color cue. */
     .submit-note a {
       color: var(--acc);
+      text-decoration: underline;
     }
 
     /* ── Terminal Style Footer ── */
@@ -1148,7 +1160,7 @@
   <main>
     <header class="page-header">
       <h1 class="page-title">Place an Order</h1>
-      <p class="page-desc">Configure your custom service request package down below. Systems pricing values adapt live as you edit changes.</p>
+      <p class="page-desc">Configure your service request below. Pricing updates automatically as you make selections.</p>
     </header>
 
     <!-- Interactive Dashboard Setup Container -->
@@ -1157,16 +1169,16 @@
       <!-- Configurator Section (Left) -->
       <div class="main-config-stream">
         <div class="panel">
-          <button class="clear-btn" type="button" onclick="clearAll()">✕ Reset Config</button>
+          <button class="clear-btn" type="button" onclick="clearAll()">✕ Reset Form</button>
           <p class="panel-tag">Step 01</p>
-          <h2 class="panel-title">Hardware Definition &amp; Target Spec</h2>
+          <h2 class="panel-title">Device Details</h2>
 
           <div class="device-tabs" role="tablist">
             <button type="button" class="device-tab active" data-device="keyboard" onclick="switchDevice('keyboard')" role="tab" aria-selected="true">
-              ⌨️ Keyboard Variant <span class="tab-count" id="tab-count-keyboard"></span>
+              ⌨️ Keyboard <span class="tab-count" id="tab-count-keyboard"></span>
             </button>
             <button type="button" class="device-tab" data-device="mouse" onclick="switchDevice('mouse')" role="tab" aria-selected="false">
-              🖱️ Mouse Variant <span class="tab-count" id="tab-count-mouse"></span>
+              🖱️ Mouse <span class="tab-count" id="tab-count-mouse"></span>
             </button>
           </div>
 
@@ -1174,12 +1186,12 @@
           <div class="device-panel active-device" data-device="keyboard">
             <div class="field-stack">
               <div class="field-inline">
-                <label for="kb-model">Keyboard Chassis Hardware / PCB Name</label>
+                <label for="kb-model">Keyboard Model / PCB Name</label>
                 <input type="text" id="kb-model" placeholder="e.g. Neo65, Keychron Q1, Mode Envoy…" />
               </div>
 
               <div class="field-inline">
-                <label id="layout-group-label">Form-Factor Layout Allocation</label>
+                <label id="layout-group-label">Keyboard Layout</label>
                 <div class="pill-radio-group" id="layout-group" role="radiogroup" aria-labelledby="layout-group-label">
                   <label class="pill-radio"><input type="radio" name="layout" value="60%" /><span>60%</span></label>
                   <label class="pill-radio"><input type="radio" name="layout" value="65%" /><span>65%</span></label>
@@ -1193,7 +1205,7 @@
               </div>
 
               <div class="field-inline">
-                <label id="component-scale-label">Component Scale Parameters</label>
+                <label id="component-scale-label">Component Quantities</label>
                 <div class="qty-stack-row">
                   <div class="qty-row">
                     <span class="qty-label" id="qty-sw-label">Switches</span>
@@ -1230,7 +1242,7 @@
                     <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2" />
                     <path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
                   </svg>
-                  <span>Chassis system undergoes deep multi-point structural functional mapping confirmation tests during final dynamic pass staging operations.</span>
+                  <span>We'll check keycap compatibility with your build before starting work.</span>
                 </div>
               </div>
             </div>
@@ -1240,7 +1252,7 @@
           <div class="device-panel" data-device="mouse">
             <div class="field-stack">
               <div class="field-inline">
-                <label for="mouse-model">Mouse Core Chassis Target Identity Model</label>
+                <label for="mouse-model">Mouse Model</label>
                 <input type="text" id="mouse-model" placeholder="e.g. G Pro X Superlight 2, Razer Viper V3 Pro…" />
               </div>
             </div>
@@ -1250,7 +1262,7 @@
         <!-- Lab Operation Matrix Modifiers -->
         <div class="panel">
           <p class="panel-tag">Step 02</p>
-          <h2 class="panel-title" id="services-panel-title">Available Lab Operation Tuning Modules</h2>
+          <h2 class="panel-title" id="services-panel-title">Available Services</h2>
           <div class="device-panel active-device" data-device="keyboard">
             <div id="keyboard-services" class="service-grid"></div>
           </div>
@@ -1264,7 +1276,7 @@
       <div class="sticky-summary-hub">
         <div class="panel">
           <p class="panel-tag">Summary</p>
-          <h2 class="panel-title">Dynamic Package Invoice</h2>
+          <h2 class="panel-title">Order Summary</h2>
 
           <div class="shipping-notice">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1274,7 +1286,7 @@
               <circle cx="9.5" cy="12" r="1" fill="currentColor" />
             </svg>
             <div>
-              <strong>Logistics is not included</strong> Logistic transport overhead limits calculated outside base structural framework totals.
+              <strong>Shipping is not included</strong> Shipping costs are calculated separately and are not part of this estimate.
             </div>
           </div>
 
@@ -1283,11 +1295,11 @@
               <span class="total-label">Subtotal Estimate</span>
               <span class="total-amount" id="total-display">₹0</span>
             </div>
-            <div class="total-note">* Custom operations parameters evaluated upon arrival.</div>
+            <div class="total-note">* Quote-based services will be confirmed after we review your order.</div>
           </div>
 
-          <p class="panel-tag">Identity &amp; Routing</p>
-          <h2 class="panel-title">User Validation Profile</h2>
+          <p class="panel-tag">Contact Details</p>
+          <h2 class="panel-title">Your Information</h2>
 
           <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
             <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
@@ -1311,11 +1323,11 @@
                 <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
               </div>
               <div class="field">
-                <label for="discord">Discord Username [If Applicable]</label>
+                <label for="discord">Discord Username (Optional)</label>
                 <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul_forge" />
               </div>
               <div class="field">
-                <label for="email">Primary Communication Node / Email <span class="req">*</span></label>
+                <label for="email">Email <span class="req">*</span></label>
                 <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
               </div>
               <div class="field">
@@ -1323,11 +1335,11 @@
                 <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
               </div>
               <div class="field">
-                <label id="summary-display-label">Aggregated Operations Manifest</label>
-                <div class="summary-box empty" id="summary-display" role="status" aria-labelledby="summary-display-label">No active service processes declared.</div>
+                <label id="summary-display-label">Order Details</label>
+                <div class="summary-box empty" id="summary-display" role="status" aria-labelledby="summary-display-label">No services selected yet.</div>
               </div>
               <div class="field">
-                <label for="notes">Engineering Notes / Adjustments Or Messages</label>
+                <label for="notes">Additional Notes</label>
                 <textarea id="notes" name="Additional Notes" placeholder="Message..."></textarea>
               </div>
               <div class="field">
@@ -1339,7 +1351,7 @@
                 <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
               </div>
               <div class="field">
-                <label for="state">Territory / State Province <span class="req">*</span></label>
+                <label for="state">State / Union Territory <span class="req">*</span></label>
                 <select id="state" name="State" required autocomplete="address-level1" style="background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r-sm); color: var(--t1); font-family: var(--ff-body); font-size: 0.9rem; padding: 12px 14px; transition: all 0.2s var(--ease-out); outline: none; width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;">
                   <option value="" disabled selected hidden>Select your state / UT...</option>
                   <optgroup label="States">
@@ -1391,14 +1403,14 @@
             </div>
 
             <button class="submit-btn" type="submit">
-              Commit Configuration Manifest
+              Submit Order Request
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </button>
             <p class="submit-note">
-              Telemetry routes directly onto <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br />
-              Processing takes up to 24–48 hours. Submitting confirms alignment with systemic <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a> modules.
+              Your request will be sent directly to <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br />
+              Processing typically takes 24–48 hours. By submitting, you agree to our <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a>.
             </p>
           </form>
         </div>
@@ -1414,7 +1426,7 @@
           <span class="footer-brand-ico" aria-hidden="true">⌨</span>
           <span>KeebForge<span class="logo-dot">.</span>in</span>
         </div>
-        <p class="footer-blurb">Independent electronics workshop for custom keyboards. No middlemen, no markups — just precision switch, build, and repair work for the keeb community.</p>
+        <p class="footer-blurb">An independent electronics workshop specializing in custom mechanical keyboards. No middlemen, no markups — just precision switch, build, and repair work for the keyboard community.</p>
         <span class="footer-status">
           <span class="footer-status-dot"></span>Accepting Orders
         </span>
@@ -1567,7 +1579,7 @@
           noteDiv.className = 'inline-note';
           noteDiv.style.marginTop = '12px';
           noteDiv.innerHTML = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-            <span>Select custom engineering pathways. Dynamic quotes lock sequentially during manual staging verification passes on Discord.</span>`;
+            <span>Select the services you need and we'll follow up with a custom quote on Discord.</span>`;
           div.appendChild(noteDiv);
         }
         if (sec.hasSwitchDetail) {
@@ -1582,8 +1594,8 @@
             <div class="field-inline" style="margin-top: 12px;">
               <label id="mouse-switch-source-label">Switch Source</label>
               <div class="pill-radio-group" id="mouse-switch-source-group" role="radiogroup" aria-labelledby="mouse-switch-source-label">
-                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Bring your own switch" /><span>Supply Own</span></label>
-                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Source from KeebForge" /><span>Lab Source</span></label>
+                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Bring your own switch" /><span>Bring My Own</span></label>
+                <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Source from KeebForge" /><span>Source It For Me</span></label>
               </div>
             </div>`;
           div.appendChild(detailDiv);
@@ -1608,7 +1620,7 @@
         t.classList.toggle('active', isActive);
         t.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
-      document.getElementById('services-panel-title').textContent = device === 'keyboard' ? 'Available Keyboard Operation Tuning Modules' : 'Available Mouse Operation Tuning Modules';
+      document.getElementById('services-panel-title').textContent = device === 'keyboard' ? 'Available Keyboard Services' : 'Available Mouse Services';
     }
 
     function attachListeners() {
@@ -1769,7 +1781,7 @@
 
       const summaryEl = document.getElementById('summary-display');
       if (lines.length === 0 && quoteLines.length === 0) {
-        summaryEl.textContent = 'No active service processes declared.';
+        summaryEl.textContent = 'No services selected yet.';
         summaryEl.className = 'summary-box empty';
       } else {
         summaryEl.className = 'summary-box';
