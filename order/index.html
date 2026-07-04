@@ -33,7 +33,16 @@
   <meta name="twitter:image" content="https://keebforge.in/assets/img/Banner.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet" />
+
+  <!-- PERF FIX: load the Google Fonts stylesheet asynchronously instead of
+       render-blocking. preload -> onload swaps it to a real stylesheet once
+       downloaded; the <noscript> fallback covers JS-disabled clients. -->
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" />
+  </noscript>
 
   <style>
     :root {
@@ -45,8 +54,9 @@
       --bdr: rgba(255, 255, 255, 0.045);
       --bdr-h: rgba(255, 255, 255, 0.12);
       --t1: #f3f4f6;
-      --t2: #9ca3af;
-      --t3: #6b7280;
+      /* CONTRAST FIX: brightened --t2 / --t3 for WCAG AA against the near-black background */
+      --t2: #b7bcc6;
+      --t3: #8b93a0;
       --acc: #d4f700;
       --acc-dim: rgba(212, 247, 0, 0.04);
       --acc-glow: rgba(212, 247, 0, 0.08);
@@ -1090,264 +1100,267 @@
     </div>
   </nav>
 
-  <header class="page-header">
-    <h1 class="page-title">Place an Order</h1>
-    <p class="page-desc">Configure your custom service request package down below. Systems pricing values adapt live as you edit changes.</p>
-  </header>
+  <!-- A11Y FIX: wrap the primary page content in a <main> landmark -->
+  <main>
+    <header class="page-header">
+      <h1 class="page-title">Place an Order</h1>
+      <p class="page-desc">Configure your custom service request package down below. Systems pricing values adapt live as you edit changes.</p>
+    </header>
 
-  <!-- Interactive Dashboard Setup Container -->
-  <div class="order-wrap">
+    <!-- Interactive Dashboard Setup Container -->
+    <div class="order-wrap">
 
-    <!-- Configurator Section (Left) -->
-    <div class="main-config-stream">
-      <div class="panel">
-        <button class="clear-btn" type="button" onclick="clearAll()">✕ Reset Config</button>
-        <p class="panel-tag">Step 01</p>
-        <h2 class="panel-title">Hardware Definition &amp; Target Spec</h2>
+      <!-- Configurator Section (Left) -->
+      <div class="main-config-stream">
+        <div class="panel">
+          <button class="clear-btn" type="button" onclick="clearAll()">✕ Reset Config</button>
+          <p class="panel-tag">Step 01</p>
+          <h2 class="panel-title">Hardware Definition &amp; Target Spec</h2>
 
-        <div class="device-tabs" role="tablist">
-          <button type="button" class="device-tab active" data-device="keyboard" onclick="switchDevice('keyboard')" role="tab" aria-selected="true">
-            ⌨️ Keyboard Variant <span class="tab-count" id="tab-count-keyboard"></span>
-          </button>
-          <button type="button" class="device-tab" data-device="mouse" onclick="switchDevice('mouse')" role="tab" aria-selected="false">
-            🖱️ Mouse Variant <span class="tab-count" id="tab-count-mouse"></span>
-          </button>
-        </div>
+          <div class="device-tabs" role="tablist">
+            <button type="button" class="device-tab active" data-device="keyboard" onclick="switchDevice('keyboard')" role="tab" aria-selected="true">
+              ⌨️ Keyboard Variant <span class="tab-count" id="tab-count-keyboard"></span>
+            </button>
+            <button type="button" class="device-tab" data-device="mouse" onclick="switchDevice('mouse')" role="tab" aria-selected="false">
+              🖱️ Mouse Variant <span class="tab-count" id="tab-count-mouse"></span>
+            </button>
+          </div>
 
-        <!-- Keyboard Dynamic Fields Panel -->
-        <div class="device-panel active-device" data-device="keyboard">
-          <div class="field-stack">
-            <div class="field-inline">
-              <label for="kb-model">Keyboard Chassis Hardware / PCB Name</label>
-              <input type="text" id="kb-model" placeholder="e.g. Neo65, Keychron Q1, Mode Envoy…" />
-            </div>
-
-            <div class="field-inline">
-              <label>Form-Factor Layout Allocation</label>
-              <div class="pill-radio-group" id="layout-group">
-                <label class="pill-radio"><input type="radio" name="layout" value="60%" /><span>60%</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="65%" /><span>65%</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="75%" /><span>75%</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="TKL" /><span>TKL</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="96%" /><span>96%</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="100%" /><span>100%</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="Full Size" /><span>Full Size</span></label>
-                <label class="pill-radio"><input type="radio" name="layout" value="Custom" /><span>Custom</span></label>
+          <!-- Keyboard Dynamic Fields Panel -->
+          <div class="device-panel active-device" data-device="keyboard">
+            <div class="field-stack">
+              <div class="field-inline">
+                <label for="kb-model">Keyboard Chassis Hardware / PCB Name</label>
+                <input type="text" id="kb-model" placeholder="e.g. Neo65, Keychron Q1, Mode Envoy…" />
               </div>
-            </div>
 
-            <div class="field-inline">
-              <label>Component Scale Parameters</label>
-              <div class="qty-stack-row">
-                <div class="qty-row">
-                  <span class="qty-label">Switches</span>
-                  <div class="qty-ctrl">
-                    <button class="qty-btn" type="button" onclick="adjustQty('sw',-1)">−</button>
-                    <input class="qty-val" type="number" id="qty-sw" value="65" min="1" max="999" onchange="recalc()" />
-                    <button class="qty-btn" type="button" onclick="adjustQty('sw',1)">+</button>
-                  </div>
-                </div>
-                <div class="qty-row">
-                  <span class="qty-label">Stabilizers</span>
-                  <div class="qty-ctrl">
-                    <button class="qty-btn" type="button" onclick="adjustQty('stab',-1)">−</button>
-                    <input class="qty-val" type="number" id="qty-stab" value="4" min="1" max="99" onchange="recalc()" />
-                    <button class="qty-btn" type="button" onclick="adjustQty('stab',1)">+</button>
-                  </div>
+              <div class="field-inline">
+                <label id="layout-group-label">Form-Factor Layout Allocation</label>
+                <div class="pill-radio-group" id="layout-group" role="radiogroup" aria-labelledby="layout-group-label">
+                  <label class="pill-radio"><input type="radio" name="layout" value="60%" /><span>60%</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="65%" /><span>65%</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="75%" /><span>75%</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="TKL" /><span>TKL</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="96%" /><span>96%</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="100%" /><span>100%</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="Full Size" /><span>Full Size</span></label>
+                  <label class="pill-radio"><input type="radio" name="layout" value="Custom" /><span>Custom</span></label>
                 </div>
               </div>
-            </div>
 
-            <div class="field-inline">
-              <label for="kb-switch-name">Switch Model</label>
-              <input type="text" id="kb-switch-name" placeholder="e.g. Gateron Cream Soda, HMX Xinhai…" />
-            </div>
-
-            <div class="field-inline">
-              <label>Are Keycaps Included?</label>
-              <div class="pill-radio-group" id="keycaps-group">
-                <label class="pill-radio"><input type="radio" name="keycaps" value="Keycaps Included" /><span>Included</span></label>
-                <label class="pill-radio"><input type="radio" name="keycaps" value="No Keycaps" /><span>Not Included</span></label>
+              <div class="field-inline">
+                <label id="component-scale-label">Component Scale Parameters</label>
+                <div class="qty-stack-row">
+                  <div class="qty-row">
+                    <span class="qty-label" id="qty-sw-label">Switches</span>
+                    <div class="qty-ctrl">
+                      <button class="qty-btn" type="button" onclick="adjustQty('sw',-1)" aria-label="Decrease switch quantity">−</button>
+                      <input class="qty-val" type="number" id="qty-sw" value="65" min="1" max="999" onchange="recalc()" aria-labelledby="qty-sw-label" />
+                      <button class="qty-btn" type="button" onclick="adjustQty('sw',1)" aria-label="Increase switch quantity">+</button>
+                    </div>
+                  </div>
+                  <div class="qty-row">
+                    <span class="qty-label" id="qty-stab-label">Stabilizers</span>
+                    <div class="qty-ctrl">
+                      <button class="qty-btn" type="button" onclick="adjustQty('stab',-1)" aria-label="Decrease stabilizer quantity">−</button>
+                      <input class="qty-val" type="number" id="qty-stab" value="4" min="1" max="99" onchange="recalc()" aria-labelledby="qty-stab-label" />
+                      <button class="qty-btn" type="button" onclick="adjustQty('stab',1)" aria-label="Increase stabilizer quantity">+</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="inline-note" id="keycaps-note" style="display:none;">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0;margin-top:2px;color:var(--t3)">
-                  <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2" />
-                  <path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
-                </svg>
-                <span>Chassis system undergoes deep multi-point structural functional mapping confirmation tests during final dynamic pass staging operations.</span>
+
+              <div class="field-inline">
+                <label for="kb-switch-name">Switch Model</label>
+                <input type="text" id="kb-switch-name" placeholder="e.g. Gateron Cream Soda, HMX Xinhai…" />
+              </div>
+
+              <div class="field-inline">
+                <label id="keycaps-group-label">Are Keycaps Included?</label>
+                <div class="pill-radio-group" id="keycaps-group" role="radiogroup" aria-labelledby="keycaps-group-label">
+                  <label class="pill-radio"><input type="radio" name="keycaps" value="Keycaps Included" /><span>Included</span></label>
+                  <label class="pill-radio"><input type="radio" name="keycaps" value="No Keycaps" /><span>Not Included</span></label>
+                </div>
+                <div class="inline-note" id="keycaps-note" style="display:none;">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style="flex-shrink:0;margin-top:2px;color:var(--t3)">
+                    <circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2" />
+                    <path d="M6.5 6v3M6.5 4.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+                  </svg>
+                  <span>Chassis system undergoes deep multi-point structural functional mapping confirmation tests during final dynamic pass staging operations.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mouse Dynamic Fields Panel -->
+          <div class="device-panel" data-device="mouse">
+            <div class="field-stack">
+              <div class="field-inline">
+                <label for="mouse-model">Mouse Core Chassis Target Identity Model</label>
+                <input type="text" id="mouse-model" placeholder="e.g. G Pro X Superlight 2, Razer Viper V3 Pro…" />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Mouse Dynamic Fields Panel -->
-        <div class="device-panel" data-device="mouse">
-          <div class="field-stack">
-            <div class="field-inline">
-              <label for="mouse-model">Mouse Core Chassis Target Identity Model</label>
-              <input type="text" id="mouse-model" placeholder="e.g. G Pro X Superlight 2, Razer Viper V3 Pro…" />
-            </div>
+        <!-- Lab Operation Matrix Modifiers -->
+        <div class="panel">
+          <p class="panel-tag">Step 02</p>
+          <h2 class="panel-title" id="services-panel-title">Available Lab Operation Tuning Modules</h2>
+          <div class="device-panel active-device" data-device="keyboard">
+            <div id="keyboard-services" class="service-grid"></div>
+          </div>
+          <div class="device-panel" data-device="mouse">
+            <div id="mouse-services" class="service-grid"></div>
           </div>
         </div>
       </div>
 
-      <!-- Lab Operation Matrix Modifiers -->
-      <div class="panel">
-        <p class="panel-tag">Step 02</p>
-        <h2 class="panel-title" id="services-panel-title">Available Lab Operation Tuning Modules</h2>
-        <div class="device-panel active-device" data-device="keyboard">
-          <div id="keyboard-services" class="service-grid"></div>
-        </div>
-        <div class="device-panel" data-device="mouse">
-          <div id="mouse-services" class="service-grid"></div>
-        </div>
-      </div>
-    </div>
+      <!-- Persistent Invoice Hub Sidebar (Right) -->
+      <div class="sticky-summary-hub">
+        <div class="panel">
+          <p class="panel-tag">Summary</p>
+          <h2 class="panel-title">Dynamic Package Invoice</h2>
 
-    <!-- Persistent Invoice Hub Sidebar (Right) -->
-    <div class="sticky-summary-hub">
-      <div class="panel">
-        <p class="panel-tag">Summary</p>
-        <h2 class="panel-title">Dynamic Package Invoice</h2>
-
-        <div class="shipping-notice">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <rect x="1" y="4" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
-            <path d="M10 6h1.5a1 1 0 0 1 .9.55l.6 1.2V11h-3V6Z" stroke="currentColor" stroke-width="1.2" />
-            <circle cx="3.5" cy="12" r="1" fill="currentColor" />
-            <circle cx="9.5" cy="12" r="1" fill="currentColor" />
-          </svg>
-          <div>
-            <strong>Logistics is not included</strong> Logistic transport overhead limits calculated outside base structural framework totals.
-          </div>
-        </div>
-
-        <div class="total-container">
-          <div class="total-bar">
-            <span class="total-label">Subtotal Estimate</span>
-            <span class="total-amount" id="total-display">₹0</span>
-          </div>
-          <div class="total-note">* Custom operations parameters evaluated upon arrival.</div>
-        </div>
-
-        <p class="panel-tag">Identity &amp; Routing</p>
-        <h2 class="panel-title">User Validation Profile</h2>
-
-        <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
-          <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
-          <input type="hidden" name="Order Summary" id="order-summary-hidden" value="No services selected." />
-          <input type="hidden" name="Estimated Total" id="total-hidden" value="₹0" />
-
-          <input type="hidden" name="Keyboard Model" id="hidden-kb-model" value="" />
-          <input type="hidden" name="Keyboard Layout" id="hidden-kb-layout" value="" />
-          <input type="hidden" name="Keyboard Switch Name" id="hidden-kb-switch" value="" />
-          <input type="hidden" name="Keycaps" id="hidden-kb-keycaps" value="" />
-          <input type="hidden" name="Mouse Model" id="hidden-mouse-model" value="" />
-          <input type="hidden" name="Mouse Switch Name" id="hidden-mouse-switch" value="" />
-          <input type="hidden" name="Mouse Switch Source" id="hidden-mouse-switch-source" value="" />
-
-          <div class="form-grid">
-            <div class="field">
-              <label for="name">Full Name<span class="req">*</span></label>
-              <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
-            </div>
-            <div class="field">
-              <label for="discord">Discord Username [If Applicable]</label>
-              <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul_forge" />
-            </div>
-            <div class="field">
-              <label for="email">Primary Communication Node / Email <span class="req">*</span></label>
-              <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
-            </div>
-            <div class="field">
-              <label for="phone">Mobile / WhatsApp <span class="req">*</span></label>
-              <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
-            </div>
-            <div class="field">
-              <label>Aggregated Operations Manifest</label>
-              <div class="summary-box empty" id="summary-display">No active service processes declared.</div>
-            </div>
-            <div class="field">
-              <label for="notes">Engineering Notes / Adjustments Or Messages</label>
-              <textarea id="notes" name="Additional Notes" placeholder="Message..."></textarea>
-            </div>
-            <div class="field">
-              <label for="address">Address <span class="req">*</span></label>
-              <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
-            </div>
-            <div class="field">
-              <label for="city">City <span class="req">*</span></label>
-              <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
-            </div>
-            <div class="field">
-              <label for="state">Territory / State Province <span class="req">*</span></label>
-              <select id="state" name="State" required autocomplete="address-level1" style="background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r-sm); color: var(--t1); font-family: var(--ff-body); font-size: 0.9rem; padding: 12px 14px; transition: all 0.2s var(--ease-out); outline: none; width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;">
-                <option value="" disabled selected hidden>Select your state / UT...</option>
-                <optgroup label="States">
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                </optgroup>
-                <optgroup label="Union Territories">
-                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                  <option value="Chandigarh">Chandigarh</option>
-                  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                  <option value="Ladakh">Ladakh</option>
-                  <option value="Lakshadweep">Lakshadweep</option>
-                  <option value="Puducherry">Puducherry</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="field">
-              <label for="pincode">Postal Code / Pincode <span class="req">*</span></label>
-              <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
-            </div>
-          </div>
-
-          <button class="submit-btn" type="submit">
-            Commit Configuration Manifest
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          <div class="shipping-notice">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="1" y="4" width="9" height="8" rx="1" stroke="currentColor" stroke-width="1.2" />
+              <path d="M10 6h1.5a1 1 0 0 1 .9.55l.6 1.2V11h-3V6Z" stroke="currentColor" stroke-width="1.2" />
+              <circle cx="3.5" cy="12" r="1" fill="currentColor" />
+              <circle cx="9.5" cy="12" r="1" fill="currentColor" />
             </svg>
-          </button>
-          <p class="submit-note">
-            Telemetry routes directly onto <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br />
-            Processing takes up to 24–48 hours. Submitting confirms alignment with systemic <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a> modules.
-          </p>
-        </form>
+            <div>
+              <strong>Logistics is not included</strong> Logistic transport overhead limits calculated outside base structural framework totals.
+            </div>
+          </div>
+
+          <div class="total-container">
+            <div class="total-bar">
+              <span class="total-label">Subtotal Estimate</span>
+              <span class="total-amount" id="total-display">₹0</span>
+            </div>
+            <div class="total-note">* Custom operations parameters evaluated upon arrival.</div>
+          </div>
+
+          <p class="panel-tag">Identity &amp; Routing</p>
+          <h2 class="panel-title">User Validation Profile</h2>
+
+          <form action="https://formsubmit.co/contact@keebforge.in" method="POST">
+            <input type="hidden" name="_subject" value="New KeebForge.in Order Request" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="http://keebforge.in/thanks/" />
+            <input type="hidden" name="Order Summary" id="order-summary-hidden" value="No services selected." />
+            <input type="hidden" name="Estimated Total" id="total-hidden" value="₹0" />
+
+            <input type="hidden" name="Keyboard Model" id="hidden-kb-model" value="" />
+            <input type="hidden" name="Keyboard Layout" id="hidden-kb-layout" value="" />
+            <input type="hidden" name="Keyboard Switch Name" id="hidden-kb-switch" value="" />
+            <input type="hidden" name="Keycaps" id="hidden-kb-keycaps" value="" />
+            <input type="hidden" name="Mouse Model" id="hidden-mouse-model" value="" />
+            <input type="hidden" name="Mouse Switch Name" id="hidden-mouse-switch" value="" />
+            <input type="hidden" name="Mouse Switch Source" id="hidden-mouse-switch-source" value="" />
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full Name<span class="req">*</span></label>
+                <input type="text" id="name" name="Name" placeholder="e.g. Rahul Sharma" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="discord">Discord Username [If Applicable]</label>
+                <input type="text" id="discord" name="Discord Username" placeholder="e.g. rahul_forge" />
+              </div>
+              <div class="field">
+                <label for="email">Primary Communication Node / Email <span class="req">*</span></label>
+                <input type="email" id="email" name="Email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="phone">Mobile / WhatsApp <span class="req">*</span></label>
+                <input type="tel" id="phone" name="Phone / WhatsApp" placeholder="+91 99988 88000" required autocomplete="tel" />
+              </div>
+              <div class="field">
+                <label id="summary-display-label">Aggregated Operations Manifest</label>
+                <div class="summary-box empty" id="summary-display" role="status" aria-labelledby="summary-display-label">No active service processes declared.</div>
+              </div>
+              <div class="field">
+                <label for="notes">Engineering Notes / Adjustments Or Messages</label>
+                <textarea id="notes" name="Additional Notes" placeholder="Message..."></textarea>
+              </div>
+              <div class="field">
+                <label for="address">Address <span class="req">*</span></label>
+                <input type="text" id="address" name="Street Address" placeholder="House/Flat no., Street, Area, Landmark…" required autocomplete="street-address" />
+              </div>
+              <div class="field">
+                <label for="city">City <span class="req">*</span></label>
+                <input type="text" id="city" name="City" placeholder="e.g. Srinagar" required autocomplete="address-level2" />
+              </div>
+              <div class="field">
+                <label for="state">Territory / State Province <span class="req">*</span></label>
+                <select id="state" name="State" required autocomplete="address-level1" style="background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r-sm); color: var(--t1); font-family: var(--ff-body); font-size: 0.9rem; padding: 12px 14px; transition: all 0.2s var(--ease-out); outline: none; width: 100%; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;">
+                  <option value="" disabled selected hidden>Select your state / UT...</option>
+                  <optgroup label="States">
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                  </optgroup>
+                  <optgroup label="Union Territories">
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="field">
+                <label for="pincode">Postal Code / Pincode <span class="req">*</span></label>
+                <input type="text" id="pincode" name="Pincode" placeholder="e.g. 190001" required pattern="[0-9]{6}" maxlength="6" autocomplete="postal-code" />
+              </div>
+            </div>
+
+            <button class="submit-btn" type="submit">
+              Commit Configuration Manifest
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <p class="submit-note">
+              Telemetry routes directly onto <a href="mailto:contact@keebforge.in">contact@keebforge.in</a>.<br />
+              Processing takes up to 24–48 hours. Submitting confirms alignment with systemic <a href="/Terms&Conditions/" style="text-decoration: underline;">Terms &amp; Conditions</a> modules.
+            </p>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="site-footer">
     <span class="footer-watermark" aria-hidden="true">KEEBFORGE</span>
@@ -1390,7 +1403,10 @@
     </div>
   </footer>
 
-  <script src="/assets/js/prices.js"></script>
+  <!-- PERF FIX: defer keeps prices.js out of the render-blocking path.
+       It still runs before DOMContentLoaded fires, so renderGroups()
+       below can safely rely on window.KEEBFORGE_PRICES being ready. -->
+  <script defer src="/assets/js/prices.js"></script>
   <script>
     const CHK_SVG = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const LAYOUT_MAP = {
@@ -1446,15 +1462,24 @@
       return label;
     }
 
+    // PERF FIX: build every section into an in-memory DocumentFragment first,
+    // then attach both target containers to the live DOM exactly once each.
+    // The previous version appended one <div class="est-group"> per section
+    // directly onto the live tree, forcing a style/layout recalculation on
+    // every single insert ("forced reflow" in the Lighthouse trace).
     function renderGroups() {
       const P = window.KEEBFORGE_PRICES;
       if (!P) return;
 
+      const fragmentsByTarget = {};
+
       SECTIONS.forEach(sec => {
         const group = P[sec.key];
         if (!group) return;
-        const targetEl = document.getElementById(sec.target);
-        if (!targetEl) return;
+
+        if (!fragmentsByTarget[sec.target]) {
+          fragmentsByTarget[sec.target] = document.createDocumentFragment();
+        }
 
         const div = document.createElement('div');
         div.className = 'est-group';
@@ -1470,11 +1495,11 @@
           qtyDiv.className = 'qty-row';
           qtyDiv.style.marginTop = '12px';
           qtyDiv.innerHTML = `
-            <span class="qty-label">${sec.qtyLabel}</span>
+            <span class="qty-label" id="qty-${sec.qtyUnit}-label">${sec.qtyLabel}</span>
             <div class="qty-ctrl">
-              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',-1)">−</button>
-              <input class="qty-val" type="number" id="qty-${sec.qtyUnit}" value="${sec.qtyDef}" min="1" max="${sec.qtyMax}" onchange="recalc()" />
-              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',1)">+</button>
+              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',-1)" aria-label="Decrease ${sec.qtyLabel.toLowerCase()}">−</button>
+              <input class="qty-val" type="number" id="qty-${sec.qtyUnit}" value="${sec.qtyDef}" min="1" max="${sec.qtyMax}" onchange="recalc()" aria-labelledby="qty-${sec.qtyUnit}-label" />
+              <button class="qty-btn" type="button" onclick="adjustQty('${sec.qtyUnit}',1)" aria-label="Increase ${sec.qtyLabel.toLowerCase()}">+</button>
             </div>`;
           div.appendChild(qtyDiv);
         }
@@ -1492,20 +1517,26 @@
           detailDiv.id = 'mouse-switch-detail';
           detailDiv.innerHTML = `
             <div class="field-inline">
-              <label>Switch Name</label>
+              <label for="mouse-switch-name">Switch Name</label>
               <input type="text" id="mouse-switch-name" placeholder="e.g. Kailh GM 8.0, Huano Blue Dot…" />
             </div>
             <div class="field-inline" style="margin-top: 12px;">
-              <label>Switch Source</label>
-              <div class="pill-radio-group" id="mouse-switch-source-group">
+              <label id="mouse-switch-source-label">Switch Source</label>
+              <div class="pill-radio-group" id="mouse-switch-source-group" role="radiogroup" aria-labelledby="mouse-switch-source-label">
                 <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Bring your own switch" /><span>Supply Own</span></label>
                 <label class="pill-radio"><input type="radio" name="mouse-switch-source" value="Source from KeebForge" /><span>Lab Source</span></label>
               </div>
             </div>`;
           div.appendChild(detailDiv);
         }
-        targetEl.appendChild(div);
+        fragmentsByTarget[sec.target].appendChild(div);
       });
+
+      Object.keys(fragmentsByTarget).forEach(targetId => {
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) targetEl.appendChild(fragmentsByTarget[targetId]);
+      });
+
       attachListeners();
       attachInfoListeners();
     }

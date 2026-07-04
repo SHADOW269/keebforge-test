@@ -40,6 +40,9 @@
   <meta name="twitter:description" content="Engineering-grade workshop handling custom mechanical keyboard builds, switch mods, and board-level micro-soldering diagnostics across India." />
   <meta name="twitter:image" content="https://keebforge.in/assets/img/Banner.png" />
 
+  <!-- PERF FIX: preload the very first hero frame so it isn't queued behind fonts/CSS -->
+  <link rel="preload" as="image" href="assets/frames/frame_0001.webp" fetchpriority="high" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
@@ -568,11 +571,11 @@
 
           <div class="gb-media-pane">
             <div class="gallery-item">
-              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
+              <img src="assets/groupbuy-mochi40/LAYOUT.png" alt="Mochi40 PCB Footprint Layout Diagram" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 PCB Layout Missing')" />
               <div class="gallery-item-overlay"><span class="gallery-item-label">Mochi40 PCB Layout</span></div>
             </div>
             <div class="gallery-item">
-              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
+              <img src="assets/groupbuy-mochi40/BUILD.png" alt="Mochi40 Complete Case Mechanical Assembly Build" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=window.placeholderHTML('Mochi40 Build Mockup Missing')" />
               <div class="gallery-item-overlay"><span class="gallery-item-label">Case Integration Build</span></div>
             </div>
           </div>
@@ -945,27 +948,27 @@
         </header>
         <div class="gallery-grid" id="gallery-grid">
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-01.jpg" alt="Split Keyboard Repair" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split Keyboard Repair')" />
+            <img src="assets/sample-images/sample-01.jpg" alt="Split Keyboard Repair" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split Keyboard Repair')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Split Keyboard Repair</span></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-02.jpg" alt="Switch Service" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Switch Service')" />
+            <img src="assets/sample-images/sample-02.jpg" alt="Switch Service" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Switch Service')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Switch Service</span></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-03.jpg" alt="Split Keyboard Build" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split keyboard build')" />
+            <img src="assets/sample-images/sample-03.jpg" alt="Split Keyboard Build" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Split keyboard build')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Split Keyboard Build</span></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-04.jpg" alt="Full Builds" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Full Builds')" />
+            <img src="assets/sample-images/sample-04.jpg" alt="Full Builds" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Full Builds')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Full Builds</span></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-05.jpg" alt="Pcb and Firmware Troubleshooting" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Pcb and Firmware Troubleshooting')" />
+            <img src="assets/sample-images/sample-05.jpg" alt="Pcb and Firmware Troubleshooting" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('Pcb and Firmware Troubleshooting')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">Pcb and Firmware Troubleshooting</span></div>
           </div>
           <div class="gallery-item">
-            <img src="assets/sample-images/sample-06.jpg" alt="PCB Testing" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('PCB Testing')" />
+            <img src="assets/sample-images/sample-06.jpg" alt="PCB Testing" loading="lazy" decoding="async" onerror="this.closest('.gallery-item').innerHTML=placeholderHTML('PCB Testing')" />
             <div class="gallery-item-overlay"><span class="gallery-item-label">PCB Testing</span></div>
           </div>
         </div>
@@ -1231,14 +1234,19 @@
         });
       }
 
-      async function loadAllFrames() {
-        const indices = Array.from({ length: TOTAL_FRAMES }, (_, i) => i);
+      // PERF FIX: only block the page reveal on the FIRST frame.
+      // Everything after that streams in the background while the
+      // user can already see and interact with the page.
+      async function loadFirstFrameThenRest() {
+        await loadFrame(0);
+        loadRemainingFrames(); // fire-and-forget, not awaited
+      }
+
+      async function loadRemainingFrames() {
+        const indices = Array.from({ length: TOTAL_FRAMES - 1 }, (_, i) => i + 1);
         for (let i = 0; i < indices.length; i += PRELOAD_BATCH) {
           const batch = indices.slice(i, i + PRELOAD_BATCH);
           await Promise.all(batch.map(loadFrame));
-          const pct = Math.round((loadedCount / TOTAL_FRAMES) * 100);
-          loaderBar.style.width = pct + '%';
-          loaderText.textContent = `Loading frames… ${pct}%`;
         }
       }
 
@@ -1264,7 +1272,14 @@
         if (!heroActive || !isReady) return;
         const progress = getScrollProgress();
         targetFrameF = progress * (TOTAL_FRAMES - 1);
-        currentFrameF = currentFrameF + (targetFrameF - currentFrameF) * LERP_FACTOR;
+
+        // Clamp the scrub target to what's actually loaded so far, so
+        // fast scrolling ahead of the background loader doesn't try to
+        // draw frames that haven't arrived yet.
+        const maxLoadedIndex = Math.max(0, loadedCount - 1);
+        const clampedTarget = Math.min(targetFrameF, maxLoadedIndex);
+
+        currentFrameF = currentFrameF + (clampedTarget - currentFrameF) * LERP_FACTOR;
         const fi = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrameF)));
         if (fi !== lastDrawnFrame) {
           drawFrame(fi);
@@ -1311,17 +1326,19 @@
         learnBtn.addEventListener('click', closeModal);
       }
 
+      // PERF FIX: reveal the page as soon as the first frame is ready,
+      // instead of waiting for all 207 frames to download. Also no longer
+      // gated behind document.fonts.ready, so font loading and frame
+      // loading happen in parallel rather than serially.
       async function init() {
-        document.body.style.overflow = 'hidden';
-        try { await loadAllFrames(); } catch (e) { console.warn(e); }
+        try { await loadFirstFrameThenRest(); } catch (e) { console.warn(e); }
+
         if (frames[0] && frames[0] !== 'error') drawFrame(0);
         isReady = true;
-        loaderBar.style.width = '100%';
-        loaderText.textContent = 'Ready';
-        await new Promise(r => setTimeout(r, 400));
+
         loader.classList.add('hidden');
-        document.body.style.overflow = '';
         if (heroActive) startLoop();
+
         bindScrollButton();
         setupGBModal();
         applyPrices();
@@ -1329,7 +1346,7 @@
         resizeCanvas();
       }
 
-      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(init); } else { init(); }
+      init();
 
       let resizeTimer;
       window.addEventListener('resize', () => {
