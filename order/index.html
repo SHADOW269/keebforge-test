@@ -38,10 +38,11 @@
        render-blocking. preload -> onload swaps it to a real stylesheet once
        downloaded; the <noscript> fallback covers JS-disabled clients. -->
   <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        fetchpriority="low"
         onload="this.onload=null;this.rel='stylesheet'" />
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" />
   </noscript>
 
   <style>
@@ -54,9 +55,9 @@
       --bdr: rgba(255, 255, 255, 0.045);
       --bdr-h: rgba(255, 255, 255, 0.12);
       --t1: #f3f4f6;
-      /* CONTRAST FIX: brightened --t2 / --t3 for WCAG AA against the near-black background */
-      --t2: #b7bcc6;
-      --t3: #8b93a0;
+      /* CONTRAST FIX: brightened further for WCAG AA against near-black bg, incl. small/bold text */
+      --t2: #c3c8d2;
+      --t3: #9ba2ad;
       --acc: #d4f700;
       --acc-dim: rgba(212, 247, 0, 0.04);
       --acc-glow: rgba(212, 247, 0, 0.08);
@@ -83,6 +84,26 @@
       scroll-behavior: smooth;
     }
 
+    /* SCROLL PERF FIX: smooth scrolling + backdrop-filter repaints compete for
+       the compositor on low-end mobile GPUs, causing scroll to stutter/lag
+       mid-way. Respect reduced-motion and fall back to instant scroll on
+       narrow/touch viewports where the jank is most visible. */
+    @media (max-width: 640px) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     body {
       background: var(--bg);
       color: var(--t1);
@@ -105,10 +126,24 @@
       right: 0;
       height: var(--nav-h);
       z-index: 500;
-      background: rgba(4, 5, 7, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(4, 5, 7, 0.86);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--bdr);
+      /* SCROLL PERF FIX: promote to its own compositor layer once, up front,
+         instead of the browser re-rasterizing the blur every scroll frame. */
+      transform: translateZ(0);
+      will-change: backdrop-filter;
+    }
+
+    /* SCROLL PERF FIX: on small/touch screens the blur is the main jank
+       source (GPU-bound). Drop it for a cheap solid bar instead. */
+    @media (max-width: 640px) {
+      .nav {
+        background: rgba(6, 7, 9, 0.97);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
     }
 
     .nav-inner {
@@ -239,6 +274,9 @@
       padding: clamp(16px, 4vw, 32px);
       position: relative;
       animation: fadeUp 0.6s 0.1s both var(--ease-out);
+      /* PERF FIX: isolate each panel's layout/paint so re-renders inside one
+         panel (checkbox toggles, qty changes) don't force layout on siblings. */
+      contain: layout style;
     }
 
     .panel-tag {
@@ -294,7 +332,7 @@
       border-radius: var(--r-sm);
       padding: 12px 8px;
       cursor: pointer;
-      transition: all 0.2s var(--ease-out);
+      transition: color 0.2s var(--ease-out), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
     }
 
     .device-tab:hover {
@@ -368,7 +406,7 @@
       padding: 12px 16px;
       outline: none;
       width: 100%;
-      transition: all 0.2s var(--ease-out);
+      transition: border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
     }
 
     .field-inline input[type="text"]::placeholder {
@@ -401,7 +439,7 @@
       padding: 10px 4px;
       cursor: pointer;
       user-select: none;
-      transition: all 0.2s var(--ease-out);
+      transition: color 0.2s var(--ease-out), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
       text-align: center;
     }
 
@@ -467,10 +505,13 @@
       padding: 16px;
       cursor: pointer;
       border-radius: var(--r-sm);
-      transition: all 0.2s var(--ease-out);
+      transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
       user-select: none;
       border: 1px solid var(--bdr);
       background: var(--bg2);
+      /* PERF FIX: contain paint/layout per-row so toggling one checkbox
+         doesn't force style/layout recalculation across the whole list. */
+      contain: layout style;
     }
 
     .service-row:hover {
@@ -496,7 +537,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
+      transition: background-color 0.15s, border-color 0.15s;
       background: var(--bg1);
     }
 
@@ -635,7 +676,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s;
+      transition: background-color 0.2s;
     }
 
     .qty-btn:hover {
@@ -672,7 +713,7 @@
       border-radius: var(--r-sm);
       padding: 6px 12px;
       cursor: pointer;
-      transition: all 0.2s var(--ease-out);
+      transition: color 0.2s var(--ease-out), background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
       position: absolute;
       top: 32px;
       right: 32px;
@@ -814,7 +855,7 @@
       font-family: var(--ff-body);
       font-size: 0.9rem;
       padding: 12px 14px;
-      transition: all 0.2s var(--ease-out);
+      transition: border-color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
       outline: none;
       width: 100%;
     }
@@ -867,7 +908,7 @@
       padding: 16px;
       cursor: pointer;
       margin-top: 12px;
-      transition: all 0.2s var(--ease-out);
+      transition: background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     }
 
     .submit-btn:hover {
@@ -1045,6 +1086,9 @@
       box-shadow: 0 0 10px var(--acc-glow);
       animation: pulse 2.4s ease-in-out infinite;
       flex-shrink: 0;
+      /* PERF FIX: hint the compositor up front so this opacity animation
+         doesn't get flagged/repainted as a non-composited animation. */
+      will-change: opacity;
     }
 
     .footer-dev-credit {
@@ -1403,10 +1447,12 @@
     </div>
   </footer>
 
-  <!-- PERF FIX: defer keeps prices.js out of the render-blocking path.
-       It still runs before DOMContentLoaded fires, so renderGroups()
-       below can safely rely on window.KEEBFORGE_PRICES being ready. -->
-  <script defer src="/assets/js/prices.js"></script>
+  <!-- PERF FIX: fetchpriority=high so this actually-critical logic file
+       (drives the whole configurator) isn't starved behind the font CSS
+       preload, which now runs at fetchpriority=low. defer keeps both out
+       of the render-blocking path either way. -->
+  <script defer fetchpriority="high" src="/assets/js/prices.js"></script>
+  <script defer fetchpriority="low" src="/assets/js/reviews.js"></script>
   <script>
     const CHK_SVG = `<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const LAYOUT_MAP = {
@@ -1423,6 +1469,22 @@
       { key: 'mouseSwitchServices', showQty: true, qtyUnit: 'msw', qtyDef: 2, qtyMax: 8, qtyLabel: 'Target Switch Units', target: 'mouse-services', hasSwitchDetail: true },
       { key: 'mouseModServices', showQty: false, target: 'mouse-services' },
     ];
+
+    // PERF FIX: memoize which SECTIONS.key a given item name belongs to, so
+    // recalc() doesn't re-scan every SECTIONS/items array for every single
+    // checked row on every keystroke/toggle (this was the main quadratic
+    // cost contributing to layout thrash on rapid checkbox interaction).
+    const nameToDevice = new Map();
+    function indexDeviceMap() {
+      const P = window.KEEBFORGE_PRICES;
+      if (!P) return;
+      SECTIONS.forEach(sec => {
+        const group = P[sec.key];
+        if (!group) return;
+        const device = group.device || 'keyboard';
+        group.items.forEach(item => nameToDevice.set(item.name, device));
+      });
+    }
 
     function priceLabel(item, groupUnit) {
       const unit = item.unit || groupUnit;
@@ -1464,9 +1526,6 @@
 
     // PERF FIX: build every section into an in-memory DocumentFragment first,
     // then attach both target containers to the live DOM exactly once each.
-    // The previous version appended one <div class="est-group"> per section
-    // directly onto the live tree, forcing a style/layout recalculation on
-    // every single insert ("forced reflow" in the Lighthouse trace).
     function renderGroups() {
       const P = window.KEEBFORGE_PRICES;
       if (!P) return;
@@ -1537,6 +1596,7 @@
         if (targetEl) targetEl.appendChild(fragmentsByTarget[targetId]);
       });
 
+      indexDeviceMap();
       attachListeners();
       attachInfoListeners();
     }
@@ -1649,26 +1709,37 @@
       });
     }
 
+    // PERF FIX (forced reflow): the previous version wrote total-display's
+    // textContent, then read dataset off checkboxes for tab counts, then
+    // wrote summary innerHTML, then wrote hidden inputs — interleaving DOM
+    // reads/writes across a loop. All reads now happen first (in the
+    // querySelectorAll loop below, which only touches dataset/attributes —
+    // never layout-triggering props), and every write is batched at the end.
+    let recalcQueued = false;
     function recalc() {
+      if (recalcQueued) return;
+      recalcQueued = true;
+      requestAnimationFrame(() => {
+        recalcQueued = false;
+        runRecalc();
+      });
+    }
+
+    function runRecalc() {
       const qtySw = parseInt(document.getElementById('qty-sw')?.value) || 1;
       const qtyStab = parseInt(document.getElementById('qty-stab')?.value) || 1;
       const qtyMsw = parseInt(document.getElementById('qty-msw')?.value) || 1;
       let total = 0;
       const lines = [], quoteLines = [];
       const tabCounts = { keyboard: 0, mouse: 0 };
-      const P = window.KEEBFORGE_PRICES;
 
-      document.querySelectorAll('.service-row').forEach(row => {
-        if (!row.querySelector('input[type="checkbox"]').checked) return;
-        let device = 'keyboard';
-        if (P) {
-          for (const sec of SECTIONS) {
-            if (P[sec.key]?.items.some(i => i.name === row.dataset.name)) {
-              device = P[sec.key].device || 'keyboard';
-              break;
-            }
-          }
-        }
+      // READ PHASE — collect everything needed from the DOM, no writes yet.
+      const checkedRows = Array.from(document.querySelectorAll('.service-row')).filter(
+        row => row.querySelector('input[type="checkbox"]').checked
+      );
+
+      checkedRows.forEach(row => {
+        const device = nameToDevice.get(row.dataset.name) || 'keyboard';
         tabCounts[device] = (tabCounts[device] || 0) + 1;
         const price = parseInt(row.dataset.price) || 0;
         const priceMax = parseInt(row.dataset.priceMax) || 0;
@@ -1689,6 +1760,7 @@
         lines.push(`${name} × ${qty} = ₹${sub}`);
       });
 
+      // WRITE PHASE — every DOM mutation happens together, in one frame.
       document.getElementById('total-display').textContent = '₹' + total.toLocaleString('en-IN');
       ['keyboard', 'mouse'].forEach(d => {
         const el = document.getElementById('tab-count-' + d);
