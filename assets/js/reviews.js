@@ -22,4 +22,13 @@ window.KEEBFORGE_REVIEWS = [
     date: "Apr 2026",
     verified: true,
   },
+  {
+    name: "kaezr",
+    location: "Bangalore",
+    rating: 4,
+    service: "Keyboard Build",
+    text: "got my first split keyboard from them, the led stopped working when i got it first but he repaired it for free. Overall I am happy with the product.",
+    date: "June 2026",
+    verified: true,
+  },
 ];
