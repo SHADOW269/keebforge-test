@@ -64,7 +64,7 @@
       --acc: #d4f700;
       --acc-dim: rgba(212, 247, 0, 0.04);
       --acc-glow: rgba(212, 247, 0, 0.08);
-      --nav-h: 64px;
+      --nav-h: 56px;
       --max-w: 1320px;
       --pad-x: clamp(16px, 4vw, 40px);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -126,31 +126,23 @@
     /* ── Navigation ── */
     .nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: var(--nav-h);
       z-index: 500;
-      background: rgba(4, 5, 7, 0.86);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(6, 6, 8, 0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       border-bottom: 1px solid var(--bdr);
-      /* SCROLL PERF FIX: promote to its own compositor layer once, up front,
-         instead of the browser re-rasterizing the blur every scroll frame. */
       transform: translateZ(0);
       will-change: backdrop-filter;
     }
-
-    /* SCROLL PERF FIX: on small/touch screens the blur is the main jank
-       source (GPU-bound). Drop it for a cheap solid bar instead. */
     @media (max-width: 640px) {
       .nav {
-        background: rgba(6, 7, 9, 0.97);
+        background: rgba(6, 6, 8, 0.94);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
       }
     }
-
     .nav-inner {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -158,62 +150,40 @@
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
     }
-
     .nav-logo {
       font-family: var(--ff-display);
-      font-size: 1.15rem;
+      font-size: 0.97rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .logo-dot {
-      color: var(--acc);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      margin-left: auto;
-      margin-right: 36px;
-    }
-
-    .nav-link {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--t2);
-      transition: color 0.2s var(--ease-out);
-    }
-
-    .nav-link:hover {
+      letter-spacing: 0.04em;
       color: var(--t1);
+      margin-right: auto;
     }
-
+    .logo-dot { color: var(--acc); }
+    .nav-links { display: flex; gap: 30px; margin-right: 32px; }
+    .nav-link { font-size: 0.76rem; font-weight: 500; color: var(--t2); letter-spacing: 0.03em; transition: color 0.2s; }
+    .nav-link:hover { color: var(--t1); }
     .nav-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-family: var(--ff-display);
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       color: #000;
       background: var(--acc);
-      padding: 8px 18px;
-      border-radius: var(--r-sm);
-      transition: background 0.2s, transform 0.2s var(--ease-out);
+      padding: 7px 16px;
+      border-radius: 99px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
     }
-
     .nav-cta:hover {
       transform: translateY(-1px);
-      background: #e2ff00;
+      box-shadow: 0 0 20px var(--acc-glow);
     }
-
-    @media (max-width: 640px) {
-      .nav-links {
-        display: none;
-      }
-    }
+    @media (max-width: 640px) { .nav-links { display: none; } }
 
     /* ── Typography & Structure ── */
     .page-header {
@@ -1150,21 +1120,21 @@
 
 <body>
   <!-- Navigation Top Bar -->
-  <nav class="nav">
+  <nav class="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">
+      <a href="/" class="nav-logo" aria-label="KeebForge.in Home">
         <span>KeebForge</span><span class="logo-dot">.</span><span>in</span>
       </a>
       <div class="nav-links">
-        <a href="../index.html#services" class="nav-link">Services</a>
-        <a href="../index.html#pricing" class="nav-link">Pricing</a>
-        <a href="../index.html#info" class="nav-link">Info</a>
+        <a href="/#services" class="nav-link">Services</a>
+        <a href="/#pricing" class="nav-link">Pricing</a>
+        <a href="/#gallery" class="nav-link">Gallery</a>
+        <a href="/#info" class="nav-link">Info</a>
       </div>
-      <a href="https://discord.com/users/hardy_022" target="_blank" rel="noopener" class="nav-cta">
-        Discord
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-            stroke-linejoin="round" />
+      <a href="/order/" class="nav-cta">
+        Place an Order
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
