@@ -165,12 +165,7 @@
       transform: translateZ(0);
       will-change: backdrop-filter;
     }
-    /* SCROLL PERF FIX: a heavy blur(24px)+saturate backdrop-filter repainting
-       on a fixed nav every scroll frame — while the hero canvas is *also*
-       repainting every scroll frame underneath — is the main reason the
-       whole page feels like it lags/freezes mid-scroll on mobile GPUs.
-       Swap to a cheap solid background there instead. */
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
       .nav.scrolled {
         background: rgba(6, 6, 8, 0.94);
         backdrop-filter: none;
@@ -422,9 +417,11 @@
       .combo-wrap { grid-column: 1 / -1; }
     }
 
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
     @media (max-width: 768px) {
       html { font-size: 14px; }
-      .nav-links { display: none; }
       .btn-ghost { display: none; }
       
       .gb-detail-layout { grid-template-columns: 1fr; }
@@ -473,7 +470,12 @@
         <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#info" class="nav-link">Info</a>
       </div>
-      <a href="/order/" class="nav-cta">Place an Order</a>
+      <a href="/order/" class="nav-cta">
+        Place an Order
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 10L10 2M10 2H4.5M10 2V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </nav>
 
